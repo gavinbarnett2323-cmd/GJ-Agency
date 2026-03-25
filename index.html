@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GJ Services — Home & Auto Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #ffffff;
+    --off-white: #f8f6f2;
+    --cream: #f0ede6;
+    --ink: #1a1a18;
+    --ink-light: #3d3d3a;
+    --muted: #8a8880;
+    --accent: #2e6b3e;
+    --accent-light: #4a9460;
+    --accent-pale: #e8f2eb;
+    --border: #e2ddd6;
+    --shadow: 0 4px 30px rgba(26,26,24,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--ink);
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 1.1rem 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--ink); letter-spacing: -0.01em;
+  }
+  .logo span { color: var(--accent); }
+  nav ul { list-style: none; display: flex; gap: 2.5rem; }
+  nav ul a {
+    text-decoration: none; color: var(--muted);
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+    font-weight: 500; transition: color 0.25s;
+  }
+  nav ul a:hover { color: var(--accent); }
+  .nav-cta {
+    background: var(--accent); color: var(--white);
+    padding: 0.6rem 1.5rem; font-size: 0.75rem;
+    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;
+    border: none; cursor: pointer; transition: background 0.25s;
+    text-decoration: none; border-radius: 2px;
+  }
+  .nav-cta:hover { background: var(--accent-light); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 70px;
+  }
+  .hero-left {
+    background: var(--off-white);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 5rem 4rem 5rem 3rem;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 2rem;
+  }
+  .hero-tag::before {
+    content: ''; width: 28px; height: 2px; background: var(--accent);
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 4.8rem);
+    font-weight: 700; line-height: 1.1;
+    letter-spacing: -0.02em; margin-bottom: 1.5rem;
+    color: var(--ink);
+  }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero-sub {
+    font-size: 1rem; line-height: 1.8; color: var(--muted);
+    max-width: 420px; margin-bottom: 3rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent); color: var(--white);
+    padding: 0.9rem 2.2rem; font-size: 0.8rem;
+    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;
+    border: 2px solid var(--accent); cursor: pointer; transition: all 0.25s;
+    text-decoration: none; display: inline-block; border-radius: 2px;
+  }
+  .btn-primary:hover { background: var(--accent-light); border-color: var(--accent-light); }
+  .btn-outline {
+    background: transparent; color: var(--ink);
+    padding: 0.9rem 2.2rem; font-size: 0.8rem;
+    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;
+    border: 2px solid var(--border); cursor: pointer; transition: all 0.25s;
+    text-decoration: none; display: inline-block; border-radius: 2px;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+    background: var(--cream);
+  }
+  .hero-right img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block;
+    animation: zoomSlow 10s ease-out forwards;
+  }
+  @keyframes zoomSlow {
+    from { transform: scale(1.06); }
+    to { transform: scale(1); }
+  }
+  .hero-right::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(240,237,230,0.3) 0%, transparent 60%);
+  }
+
+  /* trust strip */
+  .trust-strip {
+    background: var(--ink);
+    padding: 1.2rem 3rem;
+    display: flex; align-items: center; justify-content: center;
+    gap: 3rem; flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.6); font-weight: 500;
+  }
+  .trust-item .dot { width: 6px; height: 6px; background: var(--accent-light); border-radius: 50%; }
+
+  /* ─── SERVICES ─── */
+  .services { padding: 7rem 3rem; background: var(--white); }
+  .section-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 4rem;
+  }
+  .section-label {
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .section-label::before { content: ''; width: 24px; height: 2px; background: var(--accent); }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 700; line-height: 1.1; letter-spacing: -0.02em;
+  }
+  .section-title em { font-style: italic; color: var(--accent); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  /* Featured card — car detailing */
+  .service-card {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: box-shadow 0.3s, transform 0.3s;
+    background: var(--white);
+    text-decoration: none; color: inherit;
+    display: block;
+  }
+  .service-card:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-4px);
+  }
+  .card-img {
+    width: 100%; height: 220px; object-fit: cover;
+    display: block;
+    filter: saturate(0.9);
+    transition: filter 0.4s, transform 0.4s;
+  }
+  .service-card:hover .card-img { filter: saturate(1.1); transform: scale(1.02); }
+  .card-img-wrap { overflow: hidden; }
+  .card-body { padding: 1.8rem 2rem; }
+  .card-icon { font-size: 1.6rem; margin-bottom: 0.8rem; }
+  .card-tag {
+    font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 0.5rem;
+  }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700;
+    margin-bottom: 0.7rem; line-height: 1.2;
+  }
+  .card-desc {
+    font-size: 0.88rem; line-height: 1.7; color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+  .card-link {
+    font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+    font-weight: 600; color: var(--accent);
+    display: flex; align-items: center; gap: 0.5rem;
+    transition: gap 0.25s;
+  }
+  .service-card:hover .card-link { gap: 0.9rem; }
+  .card-link::after { content: '→'; }
+
+  /* Featured detailing card */
+  .service-card.featured {
+    grid-column: span 3;
+    display: grid; grid-template-columns: 1.2fr 1fr;
+    border: 2px solid var(--accent);
+  }
+  .service-card.featured .card-img-wrap { height: 100%; }
+  .service-card.featured .card-img { height: 100%; }
+  .service-card.featured .card-body {
+    padding: 3rem;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .featured-badge {
+    display: inline-block;
+    background: var(--accent); color: var(--white);
+    font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
+    font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 2px;
+    margin-bottom: 1rem;
+  }
+  .service-card.featured .card-title { font-size: 2rem; margin-bottom: 0.8rem; }
+  .service-card.featured .card-desc { font-size: 0.95rem; max-width: 400px; }
+  .brand-note {
+    display: flex; align-items: center; gap: 0.7rem;
+    margin: 1.2rem 0 1.8rem;
+    padding: 0.9rem 1.2rem;
+    background: var(--accent-pale);
+    border-left: 3px solid var(--accent);
+    border-radius: 2px;
+  }
+  .brand-note-label { font-size: 0.75rem; color: var(--ink-light); }
+  .brand-note-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700; color: var(--accent);
+  }
+
+  /* ─── PHOTO STRIP ─── */
+  .photo-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    height: 280px;
+    overflow: hidden;
+  }
+  .strip-item { overflow: hidden; position: relative; }
+  .strip-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: saturate(0.8) brightness(0.9);
+    transition: filter 0.5s, transform 0.5s;
+  }
+  .strip-item:hover img { filter: saturate(1.1) brightness(1); transform: scale(1.05); }
+  .strip-item .strip-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(26,26,24,0.8), transparent);
+    padding: 1.5rem 1rem 0.7rem;
+    font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.85); font-weight: 600;
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .strip-item:hover .strip-label { opacity: 1; }
+
+  /* ─── WHY US ─── */
+  .why { padding: 7rem 3rem; background: var(--off-white); }
+  .why-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center; margin-top: 4rem;
+  }
+  .why-img {
+    width: 100%; height: 480px; object-fit: cover;
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+  }
+  .pillars { display: flex; flex-direction: column; gap: 2rem; }
+  .pillar {
+    display: flex; gap: 1.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .pillar:last-child { border-bottom: none; padding-bottom: 0; }
+  .pillar-icon {
+    width: 46px; height: 46px; min-width: 46px;
+    background: var(--accent-pale); border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+  }
+  .pillar h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem;
+  }
+  .pillar p { font-size: 0.88rem; line-height: 1.7; color: var(--muted); }
+
+  /* ─── STATS ─── */
+  .stats {
+    background: var(--accent);
+    padding: 4rem 3rem;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    text-align: center; gap: 1px;
+  }
+  .stat { padding: 1rem; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem; font-weight: 700;
+    color: var(--white); line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.65); margin-top: 0.4rem; font-weight: 500;
+  }
+
+  /* ─── REVIEWS ─── */
+  .reviews { padding: 7rem 3rem; background: var(--white); }
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 4rem;
+  }
+  .review-card {
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    padding: 2.2rem; border-radius: 4px;
+  }
+  .stars { color: #d4a017; font-size: 0.9rem; letter-spacing: 0.1em; margin-bottom: 1rem; }
+  .review-text {
+    font-size: 0.92rem; line-height: 1.75;
+    color: var(--ink-light); font-style: italic; margin-bottom: 1.5rem;
+  }
+  .reviewer { display: flex; align-items: center; gap: 0.9rem; }
+  .reviewer-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--accent); color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700;
+  }
+  .reviewer-name { font-size: 0.88rem; font-weight: 600; }
+  .reviewer-service { font-size: 0.75rem; color: var(--muted); margin-top: 0.1rem; }
+
+  /* ─── CTA ─── */
+  .cta-section {
+    padding: 7rem 3rem;
+    background: var(--cream);
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+  }
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 700; line-height: 1.1; letter-spacing: -0.02em;
+  }
+  .cta-section h2 em { font-style: italic; color: var(--accent); }
+  .cta-section p { color: var(--muted); line-height: 1.8; margin: 1.5rem 0 2.5rem; }
+  .cta-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .cta-form input, .cta-form select, .cta-form textarea {
+    width: 100%;
+    background: var(--white); border: 1px solid var(--border);
+    color: var(--ink); padding: 0.85rem 1.2rem;
+    font-family: 'Manrope', sans-serif; font-size: 0.88rem;
+    border-radius: 2px; outline: none; transition: border-color 0.25s;
+  }
+  .cta-form input:focus, .cta-form select:focus, .cta-form textarea:focus {
+    border-color: var(--accent);
+  }
+  .cta-form select { appearance: none; cursor: pointer; color: var(--muted); }
+  .cta-form textarea { resize: vertical; min-height: 100px; }
+  .cta-form button {
+    background: var(--accent); color: var(--white);
+    border: none; padding: 1rem 2rem;
+    font-family: 'Manrope', sans-serif; font-size: 0.8rem;
+    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;
+    cursor: pointer; border-radius: 2px; transition: background 0.25s;
+    align-self: flex-start;
+  }
+  .cta-form button:hover { background: var(--accent-light); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    padding: 3rem;
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem; align-items: start;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700; color: var(--white);
+    margin-bottom: 0.8rem;
+  }
+  .footer-logo span { color: var(--accent-light); }
+  footer p { font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.7; }
+  .footer-col h5 {
+    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4); font-weight: 600; margin-bottom: 1rem;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.5rem; }
+  .footer-col ul a {
+    font-size: 0.85rem; color: rgba(255,255,255,0.6);
+    text-decoration: none; transition: color 0.25s;
+  }
+  .footer-col ul a:hover { color: var(--accent-light); }
+  .footer-bottom {
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 1.2rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-bottom p { font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+
+  /* ─── REVEAL ─── */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 960px) {
+    nav ul { display: none; }
+    nav { padding: 1rem 1.5rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { height: 350px; }
+    .hero-left { padding: 4rem 1.5rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+    .service-card.featured .card-img-wrap { height: 240px; }
+    .photo-strip { grid-template-columns: repeat(3, 1fr); height: 200px; }
+    .photo-strip .strip-item:nth-child(n+4) { display: none; }
+    .why-grid, .cta-section { grid-template-columns: 1fr; gap: 3rem; }
+    .why-img { height: 280px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .section-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    footer { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    section, .services, .why, .reviews { padding: 4rem 1.5rem; }
+    .cta-section { padding: 4rem 1.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">GJ<span>.</span>Services</div>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">About</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get a Quote</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Sacramento, CA</div>
+    <h1>Your Home &amp;<br><em>Car</em>, Done Right.</h1>
+    <p class="hero-sub">GJ Services handles the jobs you don't have time for — from lawn care and house cleaning to professional auto detailing. One call, done.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get a Free Quote</a>
+      <a href="#services" class="btn-outline">See Services</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85" alt="GJ Services">
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-item"><span class="dot"></span> Licensed & Insured</div>
+  <div class="trust-item"><span class="dot"></span> Same-Week Availability</div>
+  <div class="trust-item"><span class="dot"></span> 100% Satisfaction Guarantee</div>
+  <div class="trust-item"><span class="dot"></span> Serving Sacramento & Surrounds</div>
+  <div class="trust-item"><span class="dot"></span> Free Quotes</div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label">Everything We Do</div>
+      <div class="section-title">Our <em>Services</em></div>
+    </div>
+    <p style="max-width:300px; font-size:0.88rem; color:var(--muted); line-height:1.7;">Five services, one reliable team. We show up on time and do the job right.</p>
+  </div>
+
+  <div class="services-grid">
+
+    <!-- FEATURED: Car Detailing -->
+    <a href="detailing.html" class="service-card featured reveal">
+      <div class="card-img-wrap">
+        <img class="card-img" src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=900&q=85" alt="Car Detailing">
+      </div>
+      <div class="card-body">
+        <div class="featured-badge">⭐ Signature Brand</div>
+        <div class="card-tag">Auto Detailing</div>
+        <div class="card-title">Professional Car Detailing</div>
+        <p class="card-desc">From a quick hand wash to full paint correction and ceramic coating — we make your car look factory-fresh. Available for all vehicle types including SUVs, trucks, and luxury cars.</p>
+        <div class="brand-note">
+          <div>
+            <div class="brand-note-label">Operated under our detailing brand</div>
+            <div class="brand-note-name">GJ Agency</div>
+          </div>
+        </div>
+        <div class="card-link">View Detailing Services</div>
+      </div>
+    </a>
+
+    <!-- Lawn Care -->
+    <div class="service-card reveal">
+      <div class="card-img-wrap">
+        <img class="card-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="Lawn Care"
+          onerror="this.src='https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=700&q=80'">
+        <img class="card-img" src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=700&q=80" alt="Lawn Care" style="display:block">
+      </div>
+      <div class="card-body">
+        <div class="card-icon">🌿</div>
+        <div class="card-tag">Landscaping</div>
+        <div class="card-title">Lawn Care</div>
+        <p class="card-desc">Mowing, edging, trimming, and seasonal cleanup. We keep your yard looking sharp all year round.</p>
+        <div class="card-link">Learn More</div>
+      </div>
+    </div>
+
+    <!-- House Cleaning -->
+    <div class="service-card reveal">
+      <div class="card-img-wrap">
+        <img class="card-img" src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=700&q=80" alt="House Cleaning">
+      </div>
+      <div class="card-body">
+        <div class="card-icon">🏠</div>
+        <div class="card-tag">Home Services</div>
+        <div class="card-title">House Cleaning</div>
+        <p class="card-desc">Deep cleans, regular maintenance, move-in/out cleaning. We bring the supplies and leave your home spotless.</p>
+        <div class="card-link">Learn More</div>
+      </div>
+    </div>
+
+    <!-- Pressure Washing -->
+    <div class="service-card reveal">
+      <div class="card-img-wrap">
+        <img class="card-img" src="https://images.unsplash.com/photo-1558618047-3b5c0e7a1d8a?w=700&q=80" alt="Pressure Washing"
+          onerror="this.src='https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=700&q=80'">
+        <img class="card-img" src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=700&q=80" alt="Pressure Washing" style="display:block">
+      </div>
+      <div class="card-body">
+        <div class="card-icon">💧</div>
+        <div class="card-tag">Exterior Cleaning</div>
+        <div class="card-title">Pressure Washing</div>
+        <p class="card-desc">Driveways, patios, fences, siding, and decks. High-powered cleaning that removes years of grime fast.</p>
+        <div class="card-link">Learn More</div>
+      </div>
+    </div>
+
+    <!-- Handyman -->
+    <div class="service-card reveal">
+      <div class="card-img-wrap">
+        <img class="card-img" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80" alt="Handyman">
+      </div>
+      <div class="card-body">
+        <div class="card-icon">🔧</div>
+        <div class="card-tag">Home Repairs</div>
+        <div class="card-title">Handyman Services</div>
+        <p class="card-desc">Furniture assembly, minor repairs, fixture installation, and general odd jobs. If it needs fixing, we've got it.</p>
+        <div class="card-link">Learn More</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PHOTO STRIP -->
+<div class="photo-strip">
+  <div class="strip-item">
+    <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=500&q=80" alt="Car detail">
+    <div class="strip-label">Auto Detailing</div>
+  </div>
+  <div class="strip-item">
+    <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=500&q=80" alt="Lawn">
+    <div class="strip-label">Lawn Care</div>
+  </div>
+  <div class="strip-item">
+    <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=500&q=80" alt="Cleaning">
+    <div class="strip-label">House Cleaning</div>
+  </div>
+  <div class="strip-item">
+    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&q=80" alt="Pressure wash">
+    <div class="strip-label">Pressure Washing</div>
+  </div>
+  <div class="strip-item">
+    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=500&q=80" alt="Handyman">
+    <div class="strip-label">Handyman</div>
+  </div>
+</div>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label">Why Choose Us</div>
+      <div class="section-title">Built on <em>Trust</em></div>
+    </div>
+  </div>
+  <div class="why-grid">
+    <img src="https://images.unsplash.com/photo-1523983388277-336a66bf9bcd?w=900&q=85" alt="Our work" class="why-img reveal">
+    <div class="pillars reveal">
+      <div class="pillar">
+        <div class="pillar-icon">⏱️</div>
+        <div>
+          <h4>We Show Up On Time</h4>
+          <p>No waiting around. We respect your schedule — confirmed appointments, same-week availability, real communication.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">✅</div>
+        <div>
+          <h4>Satisfaction Guaranteed</h4>
+          <p>Not happy? We come back and make it right, no questions asked. Your satisfaction is the only outcome we accept.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">💰</div>
+        <div>
+          <h4>Honest, Upfront Pricing</h4>
+          <p>Free quotes with no hidden fees. What we quote is what you pay. Simple, transparent, and fair.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🌱</div>
+        <div>
+          <h4>Local & Family-Owned</h4>
+          <p>We live in the community we serve. We care about our reputation and every job we do.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats reveal">
+  <div class="stat">
+    <div class="stat-num">500+</div>
+    <div class="stat-label">Happy Clients</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">5</div>
+    <div class="stat-label">Services Offered</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">8+</div>
+    <div class="stat-label">Years Experience</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">4.9★</div>
+    <div class="stat-label">Average Rating</div>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label">What Clients Say</div>
+      <div class="section-title">Real <em>Reviews</em></div>
+    </div>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"GJ Services does my lawn every two weeks and my car gets detailed once a month. One team, everything handled. I can't recommend them enough."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">DM</div>
+        <div>
+          <div class="reviewer-name">Derek M.</div>
+          <div class="reviewer-service">Lawn Care + Car Detailing</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Had my driveway and fence pressure washed before putting the house on the market. It looked completely different — like a new property. Worth every dollar."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">TL</div>
+        <div>
+          <div class="reviewer-name">Tina L.</div>
+          <div class="reviewer-service">Pressure Washing</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Fast, clean, professional. They did a deep clean on my whole house and it was spotless. Booked them for monthly service right after."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">PR</div>
+        <div>
+          <div class="reviewer-name">Patricia R.</div>
+          <div class="reviewer-service">House Cleaning</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / CONTACT -->
+<section class="cta-section" id="contact">
+  <div class="reveal">
+    <div class="section-label">Get In Touch</div>
+    <h2>Let's Get Your <em>Job Booked</em></h2>
+    <p>Fill out the form and we'll get back to you within a few hours with a free, no-obligation quote.</p>
+    <div style="display:flex; flex-direction:column; gap:0.7rem; margin-top:1rem;">
+      <div style="display:flex; align-items:center; gap:0.7rem; font-size:0.85rem; color:var(--muted);">
+        <span style="color:var(--accent);">📞</span> (916) 555-0142
+      </div>
+      <div style="display:flex; align-items:center; gap:0.7rem; font-size:0.85rem; color:var(--muted);">
+        <span style="color:var(--accent);">✉️</span> hello@gjservices.com
+      </div>
+      <div style="display:flex; align-items:center; gap:0.7rem; font-size:0.85rem; color:var(--muted);">
+        <span style="color:var(--accent);">📍</span> Sacramento, CA & Surrounding Areas
+      </div>
+      <div style="display:flex; align-items:center; gap:0.7rem; font-size:0.85rem; color:var(--muted);">
+        <span style="color:var(--accent);">🕐</span> Mon–Sat, 7am–6pm
+      </div>
+    </div>
+  </div>
+  <div class="reveal">
+    <div class="cta-form">
+      <div class="form-row">
+        <input type="text" placeholder="Your Name">
+        <input type="tel" placeholder="Phone Number">
+      </div>
+      <select>
+        <option value="" disabled selected>Select a Service</option>
+        <option>Car Detailing (GJ Agency)</option>
+        <option>Lawn Care</option>
+        <option>House Cleaning</option>
+        <option>Pressure Washing</option>
+        <option>Handyman Services</option>
+        <option>Multiple Services</option>
+      </select>
+      <textarea placeholder="Tell us a bit about the job..."></textarea>
+      <button type="button" onclick="handleSubmit(this)">Send My Request →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">GJ<span>.</span>Services</div>
+    <p>Home & auto services done right. Serving Sacramento and surrounding communities.</p>
+  </div>
+  <div class="footer-col">
+    <h5>Services</h5>
+    <ul>
+      <li><a href="detailing.html">Car Detailing (GJ Agency)</a></li>
+      <li><a href="#services">Lawn Care</a></li>
+      <li><a href="#services">House Cleaning</a></li>
+      <li><a href="#services">Pressure Washing</a></li>
+      <li><a href="#services">Handyman</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h5>Contact</h5>
+    <ul>
+      <li><a href="tel:9165550142">(916) 555-0142</a></li>
+      <li><a href="mailto:hello@gjservices.com">hello@gjservices.com</a></li>
+      <li><a href="#contact">Get a Free Quote</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <p>© 2026 GJ Services. All rights reserved.</p>
+  <p style="color:rgba(255,255,255,0.3); font-size:0.72rem;">GJ Agency is the auto detailing brand of GJ Services.</p>
+</div>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => io.observe(el));
+
+  // Fix duplicate images in service cards (only show one)
+  document.querySelectorAll('.card-img-wrap img:first-child').forEach(img => {
+    img.style.display = 'none';
+  });
+
+  function handleSubmit(btn) {
+    const form = btn.closest('.cta-form');
+    const name = form.querySelector('input[type="text"]').value.trim();
+    if (name) {
+      btn.textContent = '✓ Request Sent! We\'ll be in touch soon.';
+      btn.style.background = '#2a6b3e';
+      btn.style.pointerEvents = 'none';
+    } else {
+      form.querySelector('input[type="text"]').focus();
+    }
+  }
+</script>
+</body>
+</html>
