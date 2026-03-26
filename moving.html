@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moving — GJ Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #1a3a6b;
+    --bg: #f9f7f4;
+    --text: #141210;
+    --white: #ffffff;
+    --off: #f9f7f4;
+    --cream: #f2ede6;
+    --ink: #141210;
+    --muted: #8c8680;
+    --border: #e4ddd4;
+    --gold: #b8943f;
+    --shadow: 0 2px 20px rgba(20,18,16,0.07);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Jost', sans-serif; overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.97); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.6rem 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-left { display: flex; align-items: center; gap: 1.2rem; }
+  .back-link { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; transition: color 0.25s; border: 1px solid var(--border); padding: 0.4rem 0.9rem; }
+  .back-link:hover { color: var(--accent); border-color: var(--accent); }
+  .back-link::before { content: '←'; }
+  .nav-divider { width: 1px; height: 22px; background: var(--border); }
+  .nav-logo img { height: 48px; object-fit: contain; }
+  .nav-cta { background: var(--ink); color: var(--white); padding: 0.6rem 1.6rem; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; text-decoration: none; transition: background 0.25s; }
+  .nav-cta:hover { background: var(--accent); }
+
+  .hero { height: 100vh; position: relative; display: flex; align-items: flex-end; overflow: hidden; padding-top: 0; }
+  .hero-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=85') center/cover no-repeat; animation: hz 10s ease-out forwards; }
+  @keyframes hz { from { transform: scale(1.05); } to { transform: scale(1); } }
+  .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.45) 45%, rgba(10,10,10,0.1) 80%, transparent 100%); }
+  .hero-content { position: relative; z-index: 2; padding: 0 3rem 5rem; animation: fu 1s 0.3s both; }
+  @keyframes fu { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+  .hero-tag { display: inline-block; font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: #1a3a6b; border: 1px solid #1a3a6b; padding: 0.3rem 0.9rem; margin-bottom: 1.2rem; font-weight: 500; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 9vw, 7.5rem); line-height: 0.95; font-weight: 700; color: #fff; letter-spacing: -0.01em; margin-bottom: 1rem; }
+  .hero-sub { max-width: 480px; font-size: 1rem; line-height: 1.75; color: rgba(255,255,255,0.6); margin-bottom: 2rem; font-weight: 300; }
+  .btn-accent { background: #1a3a6b; color: #ffffff; padding: 1rem 2.5rem; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; text-decoration: none; display: inline-block; transition: opacity 0.25s; }
+  .btn-accent:hover { opacity: 0.85; }
+  .btn-ghost { border: 1px solid rgba(255,255,255,0.35); color: #fff; padding: 1rem 2.5rem; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; transition: border-color 0.25s; }
+  .btn-ghost:hover { border-color: #fff; }
+  .hero-btns { display: flex; gap: 1rem; }
+
+  .scroll-hint { position: absolute; bottom: 2rem; right: 3rem; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+  .scroll-line { width: 1px; height: 50px; background: #1a3a6b; animation: sp 2s ease-in-out infinite; }
+  @keyframes sp { 0%,100% { opacity:0.3; } 50% { opacity:1; } }
+
+  section { padding: 6rem 3rem; }
+
+  .offerings { background: var(--off); }
+  .sec-label { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: #1a3a6b; font-weight: 600; margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.7rem; }
+  .sec-label::before { content: ''; width: 22px; height: 1px; background: #1a3a6b; }
+  .sec-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700; margin-bottom: 3rem; line-height: 1.1; }
+  .offerings-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+  .offer-card { background: var(--white); border: 1px solid var(--border); padding: 2rem 1.8rem; transition: box-shadow 0.3s, transform 0.3s; position: relative; overflow: hidden; }
+  .offer-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #1a3a6b; transform: scaleX(0); transform-origin: left; transition: transform 0.35s; }
+  .offer-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+  .offer-card:hover::after { transform: scaleX(1); }
+  .offer-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .offer-price { font-size: 1.5rem; font-weight: 600; color: #1a3a6b; font-family: 'Cormorant Garamond', serif; margin-bottom: 0.7rem; }
+  .offer-desc { font-size: 0.83rem; line-height: 1.65; color: var(--muted); font-weight: 300; }
+
+  .why-us { background: var(--white); }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem; }
+  .why-img { width: 100%; height: 420px; object-fit: cover; }
+  .pillars { display: flex; flex-direction: column; }
+  .pillar { display: flex; gap: 1.5rem; padding: 1.6rem 0; border-bottom: 1px solid var(--border); }
+  .pillar:first-child { border-top: 1px solid var(--border); }
+  .p-icon { font-size: 1.4rem; min-width: 2rem; }
+  .pillar h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .pillar p { font-size: 0.83rem; line-height: 1.7; color: var(--muted); font-weight: 300; }
+
+  .cta-band { background: var(--ink); padding: 4rem 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+  .cta-band h3 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 700; color: var(--white); }
+  .cta-band h3 em { font-style: italic; color: #1a3a6b; }
+
+  .contact-sect { background: var(--cream); padding: 6rem 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .contact-sect h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem,3vw,3rem); font-weight: 700; margin-bottom: 1rem; }
+  .contact-sect h2 em { font-style: italic; color: #1a3a6b; }
+  .contact-sect p { font-size: 0.92rem; line-height: 1.8; color: var(--muted); font-weight: 300; margin-bottom: 1.2rem; }
+  .ci { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.8rem; }
+  .ci a, .ci span { font-size: 0.88rem; color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 0.6rem; }
+  .form { display: flex; flex-direction: column; gap: 0.85rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+  .form input, .form select, .form textarea { width: 100%; background: var(--white); border: 1px solid var(--border); color: var(--ink); padding: 0.85rem 1.1rem; font-family: 'Jost', sans-serif; font-size: 0.88rem; outline: none; transition: border-color 0.25s; }
+  .form input:focus, .form select:focus, .form textarea:focus { border-color: #1a3a6b; }
+  .form select { color: var(--muted); cursor: pointer; }
+  .form textarea { resize: vertical; min-height: 100px; }
+  .form button { background: #1a3a6b; color: #ffffff; border: none; padding: 1rem 2rem; font-family: 'Jost', sans-serif; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; cursor: pointer; align-self: flex-start; transition: opacity 0.25s; }
+  .form button:hover { opacity: 0.85; }
+
+  footer { background: var(--ink); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-logo img { height: 44px; filter: invert(1); opacity: 0.85; }
+  footer p { font-size: 0.7rem; color: rgba(255,255,255,0.3); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.25s; }
+  .footer-links a:hover { color: #1a3a6b; }
+
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media(max-width:900px){
+    nav { padding: 0.6rem 1.5rem; }
+    .hero-content { padding: 0 1.5rem 4rem; }
+    .offerings-grid { grid-template-columns: 1fr 1fr; }
+    .why-grid, .contact-sect { grid-template-columns: 1fr; gap: 2.5rem; }
+    .why-img { height: 260px; }
+    .cta-band { flex-direction: column; text-align: center; padding: 3rem 1.5rem; }
+    section { padding: 4rem 1.5rem; }
+    .contact-sect { padding: 4rem 1.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+  }
+  @media(max-width:560px){
+    .offerings-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a href="index.html" class="back-link">All Services</a>
+    <div class="nav-divider"></div>
+    <div class="nav-logo"><img src="logo.png" alt="GJ Agency"></div>
+  </div>
+  <a href="#contact" class="nav-cta">Free Quote</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-tag">📦 GJ Agency</div>
+    <h1>Moving</h1>
+    <p class="hero-sub">Local Moving, Done Easy — Moving is stressful enough — let us handle the heavy lifting. GJ Agency provides reliable local moving help: loading, un...</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-accent">Get a Free Quote</a>
+      <a href="#offerings" class="btn-ghost">View Pricing</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div>Scroll</div>
+</div>
+
+<section class="offerings" id="offerings">
+  <div class="reveal">
+    <div class="sec-label">What's Included</div>
+    <div class="sec-title">Pricing &amp; Packages</div>
+  </div>
+  <div class="offerings-grid reveal">
+    <div class="offer-card">
+      <div class="offer-name">Loading Help (2hr)</div>
+      <div class="offer-price">$149</div>
+      <p class="offer-desc">Two movers for 2 hours — perfect for truck rentals.</p>
+    </div>
+    <div class="offer-card">
+      <div class="offer-name">Unloading Help (2hr)</div>
+      <div class="offer-price">$149</div>
+      <p class="offer-desc">Two movers to unload your truck or container.</p>
+    </div>
+    <div class="offer-card">
+      <div class="offer-name">Load + Unload</div>
+      <div class="offer-price">$249</div>
+      <p class="offer-desc">Full load and unload service with two movers.</p>
+    </div>
+    <div class="offer-card">
+      <div class="offer-name">Furniture Moving</div>
+      <div class="offer-price">$99</div>
+      <p class="offer-desc">Rearrange or move heavy furniture within your home.</p>
+    </div>
+    <div class="offer-card">
+      <div class="offer-name">Junk Hauling</div>
+      <div class="offer-price">From $99</div>
+      <p class="offer-desc">Remove and haul away unwanted furniture and items.</p>
+    </div>
+    <div class="offer-card">
+      <div class="offer-name">Full Move Quote</div>
+      <div class="offer-price">Custom</div>
+      <p class="offer-desc">End-to-end local move — contact us for a custom quote.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="why-us">
+  <div class="reveal">
+    <div class="sec-label">Why Choose Us</div>
+    <div class="sec-title">The GJ Agency Difference</div>
+  </div>
+  <div class="why-grid">
+    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80" alt="GJ Agency team" class="reveal">
+    <div class="pillars reveal">
+      <div class="pillar"><div class="p-icon">✅</div><div><h4>Licensed & Insured</h4><p>Every job is covered. You can trust us in and around your property.</p></div></div>
+      <div class="pillar"><div class="p-icon">⏱️</div><div><h4>On Time, Every Time</h4><p>We confirm appointments and show up when we say we will. Period.</p></div></div>
+      <div class="pillar"><div class="p-icon">💰</div><div><h4>Honest Pricing</h4><p>Free quotes with no hidden fees. What we say is what you pay.</p></div></div>
+      <div class="pillar"><div class="p-icon">🔁</div><div><h4>Satisfaction Guaranteed</h4><p>Not happy? We come back and make it right — no questions asked.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band reveal">
+  <h3>Ready to book your<br><em>Moving?</em></h3>
+  <a href="#contact" class="btn-accent">Get a Free Quote →</a>
+</div>
+
+<section class="contact-sect" id="contact">
+  <div class="reveal">
+    <div class="sec-label">Book This Service</div>
+    <h2>Get a Free<br><em>Quote Today</em></h2>
+    <p>Fill out the form and we'll get back to you within a few hours. No obligation, no pressure.</p>
+    <div class="ci">
+      <a href="tel:9165550142">📞 (916) 555-0142</a>
+      <a href="mailto:hello@gjagency.com">✉️ hello@gjagency.com</a>
+      <span>📍 Sacramento, CA & Surrounds</span>
+      <span>🕐 Mon–Sat, 7am–6pm</span>
+    </div>
+  </div>
+  <div class="reveal">
+    <div class="form">
+      <div class="form-row">
+        <input type="text" placeholder="Your Name">
+        <input type="tel" placeholder="Phone Number">
+      </div>
+      <input type="text" placeholder="Address / Location" style="width:100%">
+      <textarea placeholder="Tell us about the job..."></textarea>
+      <button onclick="submitForm(this)">Send Request →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo"><img src="logo.png" alt="GJ Agency"></div>
+  <p>© 2026 GJ Agency · <a href="index.html" style="color:inherit">All Services</a></p>
+  <div class="footer-links">
+    <a href="index.html">← Home</a>
+    <a href="#offerings">Pricing</a>
+    <a href="#contact">Book</a>
+  </div>
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }), {threshold:0.08});
+  els.forEach(el => io.observe(el));
+  function submitForm(btn){
+    const name = btn.closest('.form').querySelector('input[type="text"]').value.trim();
+    if(name){ btn.textContent='✓ Sent! We\'ll be in touch soon.'; btn.style.opacity='0.7'; btn.style.pointerEvents='none'; }
+    else { btn.closest('.form').querySelector('input[type="text"]').focus(); }
+  }
+</script>
+</body>
+</html>
