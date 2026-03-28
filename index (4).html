@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GJ Agency — We Do It All</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,700;1,300;1,700&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #080807;
+  --near: #0f0f0e;
+  --card: #131312;
+  --gold: #c8973e;
+  --gold2: #e8b85a;
+  --white: #f4f0e8;
+  --muted: #6b6760;
+  --border: rgba(200,151,62,0.18);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+
+/* CURSOR */
+#cursor{position:fixed;width:12px;height:12px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .3s,height .3s;}
+#cursor-ring{position:fixed;width:40px;height:40px;border:1px solid rgba(200,151,62,.6);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;transition:background .4s;}
+nav.scrolled{background:rgba(8,8,7,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-logo img{height:52px;object-fit:contain;}
+nav ul{list-style:none;display:flex;gap:2.5rem;}
+nav ul a{text-decoration:none;color:rgba(244,240,232,.5);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;transition:color .25s;position:relative;}
+nav ul a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .3s;}
+nav ul a:hover{color:var(--white);}
+nav ul a:hover::after{transform:scaleX(1);}
+.nav-phone{font-size:.78rem;letter-spacing:.08em;color:var(--gold);text-decoration:none;font-weight:500;border:1px solid var(--border);padding:.5rem 1.2rem;transition:all .3s;}
+.nav-phone:hover{background:var(--gold);color:var(--black);}
+
+/* HERO */
+.hero{height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:url('WebsiteJ.png') center/cover no-repeat;will-change:transform;}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,rgba(8,8,7,.97) 0%,rgba(8,8,7,.75) 50%,rgba(8,8,7,.3) 100%),linear-gradient(to top,rgba(8,8,7,.9) 0%,transparent 40%);}
+.hero-content{position:relative;z-index:2;padding:0 3rem;max-width:900px;}
+.hero-eyebrow{display:flex;align-items:center;gap:1rem;margin-bottom:2rem;animation:fadeUp 1s .2s both;}
+.eyebrow-pill{background:var(--gold);color:var(--black);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:.3rem .8rem;border-radius:100px;}
+.eyebrow-text{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(244,240,232,.45);}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(5.5rem,14vw,13rem);line-height:.88;letter-spacing:.01em;margin-bottom:.15em;animation:fadeUp 1s .4s both;}
+.hero h1 .gold{color:var(--gold);}
+.hero h1 .outline{-webkit-text-stroke:1px rgba(244,240,232,.25);color:transparent;}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(1.1rem,2vw,1.5rem);font-style:italic;font-weight:300;color:rgba(244,240,232,.55);max-width:520px;line-height:1.6;margin-bottom:2.5rem;animation:fadeUp 1s .6s both;}
+.hero-badge{display:inline-flex;align-items:center;gap:.7rem;background:rgba(200,151,62,.12);border:1px solid var(--border);padding:.6rem 1.2rem;border-radius:100px;font-size:.72rem;letter-spacing:.1em;color:var(--gold);margin-bottom:2.5rem;animation:fadeUp 1s .7s both;}
+.hero-badge .dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.7);}}
+.hero-actions{display:flex;gap:1.2rem;align-items:center;animation:fadeUp 1s .8s both;flex-wrap:wrap;}
+.btn-gold{background:var(--gold);color:var(--black);padding:1rem 2.5rem;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;text-decoration:none;display:inline-block;transition:all .3s;position:relative;overflow:hidden;}
+.btn-gold::before{content:'';position:absolute;inset:0;background:var(--gold2);transform:translateX(-101%);transition:transform .4s ease;}
+.btn-gold:hover::before{transform:translateX(0);}
+.btn-gold span{position:relative;z-index:1;}
+.btn-wire{border:1px solid rgba(244,240,232,.25);color:var(--white);padding:1rem 2.5rem;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;transition:all .3s;}
+.btn-wire:hover{border-color:var(--gold);color:var(--gold);}
+.scroll-cue{position:absolute;bottom:2.5rem;left:3rem;z-index:2;display:flex;align-items:center;gap:1rem;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);animation:fadeUp 1s 1.2s both;}
+.scroll-cue-line{width:60px;height:1px;background:linear-gradient(to right,var(--gold),transparent);}
+.hero-stats{position:absolute;right:3rem;bottom:3rem;z-index:2;display:flex;flex-direction:column;gap:1.5rem;animation:fadeUp 1s 1s both;}
+.hstat{text-align:right;}
+.hstat-num{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--gold);line-height:1;}
+.hstat-label{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);}
+
+/* MARQUEE */
+.marquee-wrap{background:var(--gold);padding:.8rem 0;overflow:hidden;}
+.marquee-track{display:flex;animation:marquee 25s linear infinite;white-space:nowrap;}
+.marquee-track span{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.12em;color:var(--black);padding:0 2.5rem;}
+.marquee-track .sep{color:rgba(0,0,0,.3);}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* STORY */
+.story{padding:8rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;position:relative;overflow:hidden;}
+.story::before{content:'GJ';position:absolute;right:-2rem;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:28vw;color:rgba(200,151,62,.03);line-height:1;pointer-events:none;}
+.story-visual{position:relative;}
+.story-img-wrap{position:relative;width:100%;padding-bottom:120%;overflow:hidden;}
+.story-img-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.7);transition:filter .5s;}
+.story-img-wrap:hover img{filter:saturate(1);}
+.story-img-wrap::before{content:'';position:absolute;top:-12px;left:-12px;right:12px;bottom:12px;border:1px solid var(--border);z-index:-1;}
+.story-badge-float{position:absolute;bottom:-20px;right:-20px;background:var(--gold);color:var(--black);width:120px;height:120px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-family:'Bebas Neue',sans-serif;box-shadow:0 20px 60px rgba(200,151,62,.4);animation:rotate 20s linear infinite;}
+.story-badge-float .big{font-size:2.2rem;line-height:1;}
+.story-badge-float .small{font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;line-height:1.4;}
+@keyframes rotate{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.story-text .label{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:.7rem;}
+.story-text .label::before{content:'';width:24px;height:1px;background:var(--gold);}
+.story-text h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,4vw,4rem);font-weight:700;line-height:1.05;letter-spacing:-.01em;margin-bottom:1.5rem;}
+.story-text h2 em{font-style:italic;color:var(--gold);}
+.story-text p{font-size:.95rem;line-height:1.9;color:rgba(244,240,232,.55);margin-bottom:1.2rem;font-weight:300;}
+.story-text p strong{color:var(--white);font-weight:500;}
+.story-pills{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:2rem;}
+.pill{border:1px solid var(--border);padding:.5rem 1.1rem;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);transition:all .3s;}
+.pill:hover{background:var(--gold);color:var(--black);}
+
+/* SERVICES */
+.services-section{padding:6rem 3rem;background:var(--near);}
+.section-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:4rem;}
+.sh-left .label{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;display:flex;align-items:center;gap:.7rem;}
+.sh-left .label::before{content:'';width:24px;height:1px;background:var(--gold);}
+.sh-left h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,6vw,5.5rem);letter-spacing:.02em;line-height:.9;}
+.sh-right{font-size:.85rem;line-height:1.7;color:var(--muted);max-width:280px;text-align:right;}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);}
+.svc-card{background:var(--card);padding:2.5rem 2rem;text-decoration:none;color:var(--white);display:flex;flex-direction:column;position:relative;overflow:hidden;transition:background .4s;}
+.svc-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(200,151,62,.08),transparent);opacity:0;transition:opacity .4s;}
+.svc-card:hover{background:#1a1a18;}
+.svc-card:hover::before{opacity:1;}
+.svc-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2rem;}
+.svc-icon{font-size:2.2rem;line-height:1;}
+.svc-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:rgba(200,151,62,.07);line-height:1;transition:color .4s;}
+.svc-card:hover .svc-num{color:rgba(200,151,62,.15);}
+.svc-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;margin-bottom:.6rem;line-height:1.2;}
+.svc-desc{font-size:.78rem;line-height:1.65;color:rgba(244,240,232,.4);flex:1;margin-bottom:1.5rem;font-weight:300;}
+.svc-arrow{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.5rem;transition:gap .3s;}
+.svc-card:hover .svc-arrow{gap:1rem;}
+.svc-arrow::after{content:'→';}
+.svc-card.hero-svc{grid-column:span 2;background:linear-gradient(135deg,#1a160d,#0f0e0c);border:1px solid rgba(200,151,62,.25);flex-direction:row;gap:2rem;align-items:center;}
+.svc-card.hero-svc .svc-content{flex:1;}
+.svc-card.hero-svc .svc-name{font-size:1.8rem;}
+.svc-card.hero-svc .svc-desc{color:rgba(244,240,232,.5);}
+.hero-svc-img{width:140px;height:140px;border-radius:50%;object-fit:cover;border:2px solid var(--border);filter:saturate(.6);transition:filter .4s,transform .4s;flex-shrink:0;}
+.svc-card.hero-svc:hover .hero-svc-img{filter:saturate(1);transform:scale(1.05);}
+.svc-badge{display:inline-block;background:var(--gold);color:var(--black);font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;padding:.25rem .7rem;margin-bottom:.7rem;}
+
+/* PARALLAX SPLIT */
+.parallax-split{height:60vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.psplit-bg{position:absolute;inset:-20%;background:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=85') center/cover;filter:brightness(.35) saturate(.5);will-change:transform;}
+.psplit-content{position:relative;z-index:2;text-align:center;}
+.psplit-content h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,10vw,9rem);letter-spacing:.05em;color:var(--white);line-height:.9;}
+.psplit-content h2 .gold{color:var(--gold);}
+.psplit-content p{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-style:italic;color:rgba(244,240,232,.5);margin-top:1rem;}
+
+/* QUICK LINKS */
+.service-cta-row{display:flex;gap:1px;background:var(--border);}
+.mag-btn{flex:1;background:var(--card);padding:2.5rem 2rem;text-align:center;text-decoration:none;color:var(--white);display:flex;flex-direction:column;align-items:center;gap:.8rem;transition:background .3s;position:relative;overflow:hidden;}
+.mag-btn::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transition:transform .4s;}
+.mag-btn:hover{background:#1c1c1a;}
+.mag-btn:hover::after{transform:scaleX(1);}
+.mag-icon{font-size:2rem;}
+.mag-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);}
+
+/* TESTIMONIALS */
+.testimonials{padding:7rem 3rem;background:var(--near);}
+.t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:4rem;}
+.t-card{background:var(--card);padding:2.8rem 2.5rem;position:relative;overflow:hidden;}
+.t-card::before{content:'"';position:absolute;top:-1rem;right:1.5rem;font-family:'Cormorant Garamond',serif;font-size:10rem;color:rgba(200,151,62,.06);line-height:1;pointer-events:none;}
+.stars{color:var(--gold);font-size:.85rem;letter-spacing:.08em;margin-bottom:1.2rem;}
+.t-text{font-size:.92rem;line-height:1.8;color:rgba(244,240,232,.65);font-style:italic;margin-bottom:1.8rem;font-weight:300;}
+.t-person{display:flex;align-items:center;gap:1rem;}
+.t-avatar{width:44px;height:44px;border-radius:50%;background:var(--gold);color:var(--black);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;}
+.t-name{font-size:.9rem;font-weight:500;}
+.t-service{font-size:.72rem;color:var(--muted);margin-top:.1rem;}
+
+/* CONTACT */
+.contact{padding:8rem 3rem;background:var(--black);position:relative;overflow:hidden;}
+.contact::before{content:'CALL US';position:absolute;font-family:'Bebas Neue',sans-serif;font-size:25vw;line-height:1;color:rgba(200,151,62,.025);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;}
+.contact-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;}
+.contact-left .label{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:.7rem;}
+.contact-left .label::before{content:'';width:24px;height:1px;background:var(--gold);}
+.contact-left h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,7vw,6.5rem);letter-spacing:.02em;line-height:.9;margin-bottom:2rem;}
+.contact-left h2 .gold{color:var(--gold);}
+.c-details{display:flex;flex-direction:column;gap:1.2rem;margin-bottom:2.5rem;}
+.c-detail{display:flex;align-items:center;gap:1.2rem;padding:1.2rem 1.5rem;border:1px solid var(--border);transition:border-color .3s,background .3s;text-decoration:none;color:var(--white);}
+.c-detail:hover{border-color:var(--gold);background:rgba(200,151,62,.05);}
+.c-detail-icon{font-size:1.4rem;width:2rem;text-align:center;}
+.c-detail-label{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:.2rem;}
+.c-detail-val{font-size:.95rem;font-weight:400;}
+.contact-form{display:flex;flex-direction:column;gap:0;}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-bottom:1px;}
+.cf-field{background:var(--card);border:none;padding:1.2rem 1.5rem;color:var(--white);font-family:'Jost',sans-serif;font-size:.88rem;font-weight:300;outline:none;width:100%;border-bottom:1px solid transparent;transition:border-color .3s,background .3s;}
+.cf-field:focus{border-bottom-color:var(--gold);background:#1a1a18;}
+.cf-field::placeholder{color:var(--muted);}
+select.cf-field{cursor:pointer;color:var(--muted);}
+textarea.cf-field{min-height:140px;resize:vertical;}
+.cf-submit{background:var(--gold);color:var(--black);border:none;padding:1.2rem 3rem;font-family:'Jost',sans-serif;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;cursor:pointer;width:100%;margin-top:1px;transition:background .3s;position:relative;overflow:hidden;}
+.cf-submit::before{content:'';position:absolute;inset:0;background:var(--gold2);transform:translateX(-101%);transition:transform .4s ease;}
+.cf-submit:hover::before{transform:translateX(0);}
+.cf-submit span{position:relative;z-index:1;}
+
+/* FOOTER */
+footer{background:var(--near);border-top:1px solid var(--border);padding:2.5rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;}
+.footer-logo img{height:44px;object-fit:contain;}
+footer p{font-size:.7rem;color:var(--muted);}
+.footer-links{display:flex;gap:2rem;}
+.footer-links a{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .25s;}
+.footer-links a:hover{color:var(--gold);}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-30px);transition:opacity .8s ease,transform .8s ease;}
+.reveal-left.visible{opacity:1;transform:translateX(0);}
+.reveal-right{opacity:0;transform:translateX(30px);transition:opacity .8s ease,transform .8s ease;}
+.reveal-right.visible{opacity:1;transform:translateX(0);}
+.stagger>*{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;}
+.stagger.visible>*:nth-child(1){opacity:1;transform:translateY(0);transition-delay:.05s;}
+.stagger.visible>*:nth-child(2){opacity:1;transform:translateY(0);transition-delay:.12s;}
+.stagger.visible>*:nth-child(3){opacity:1;transform:translateY(0);transition-delay:.19s;}
+.stagger.visible>*:nth-child(4){opacity:1;transform:translateY(0);transition-delay:.26s;}
+.stagger.visible>*:nth-child(5){opacity:1;transform:translateY(0);transition-delay:.33s;}
+.stagger.visible>*:nth-child(6){opacity:1;transform:translateY(0);transition-delay:.40s;}
+.stagger.visible>*:nth-child(7){opacity:1;transform:translateY(0);transition-delay:.47s;}
+.stagger.visible>*:nth-child(8){opacity:1;transform:translateY(0);transition-delay:.54s;}
+.stagger.visible>*:nth-child(9){opacity:1;transform:translateY(0);transition-delay:.61s;}
+.stagger.visible>*:nth-child(10){opacity:1;transform:translateY(0);transition-delay:.68s;}
+.stagger.visible>*:nth-child(11){opacity:1;transform:translateY(0);transition-delay:.75s;}
+.stagger.visible>*:nth-child(12){opacity:1;transform:translateY(0);transition-delay:.82s;}
+.stagger.visible>*:nth-child(13){opacity:1;transform:translateY(0);transition-delay:.89s;}
+
+@media(max-width:960px){
+  body{cursor:auto;}
+  #cursor,#cursor-ring{display:none;}
+  nav{padding:1rem 1.5rem;}
+  nav ul{display:none;}
+  .hero h1{font-size:clamp(4rem,18vw,7rem);}
+  .hero-content{padding:0 1.5rem;}
+  .hero-stats{display:none;}
+  .story{grid-template-columns:1fr;gap:3rem;padding:5rem 1.5rem;}
+  .story::before{display:none;}
+  .services-section{padding:4rem 1.5rem;}
+  .section-header{flex-direction:column;gap:1.5rem;}
+  .sh-right{text-align:left;max-width:100%;}
+  .svc-grid{grid-template-columns:1fr 1fr;}
+  .svc-card.hero-svc{grid-column:span 2;flex-direction:column;}
+  .service-cta-row{flex-wrap:wrap;}
+  .mag-btn{min-width:calc(33% - 1px);}
+  .t-grid{grid-template-columns:1fr;}
+  .testimonials,.contact,.story{padding:4rem 1.5rem;}
+  .contact-inner{grid-template-columns:1fr;gap:3rem;}
+  footer{flex-direction:column;text-align:center;padding:2rem 1.5rem;}
+  .parallax-split{height:40vh;}
+}
+@media(max-width:560px){
+  .svc-grid{grid-template-columns:1fr;}
+  .svc-card.hero-svc{grid-column:span 1;}
+  .mag-btn{min-width:calc(50% - 1px);}
+  .cf-row{grid-template-columns:1fr;}
+  .story-badge-float{width:90px;height:90px;}
+  .story-badge-float .big{font-size:1.6rem;}
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<nav id="main-nav">
+  <div class="nav-logo"><img src="logo.png" alt="GJ Agency"></div>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="tel:9165629915" class="nav-phone">📞 (916) 562-9915</a>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-bg" id="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-pill">Sacramento, CA</span>
+      <span class="eyebrow-text">Teen-Founded · College-Operated · Locally Owned</span>
+    </div>
+    <h1>WE DO<br><span class="gold">IT</span> <span class="outline">ALL</span></h1>
+    <p class="hero-sub">From car detailing to fence building — one young, hungry team that shows up, works hard, and gets it done right.</p>
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Run by a Sacramento college student · 13 services · 500+ happy clients
+    </div>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-gold"><span>Get a Free Quote</span></a>
+      <a href="#services" class="btn-wire">All Services</a>
+    </div>
+  </div>
+  <div class="scroll-cue"><div class="scroll-cue-line"></div>Scroll to explore</div>
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-num" data-count="500">0</div><div class="hstat-label">Happy Clients</div></div>
+    <div class="hstat"><div class="hstat-num" data-count="13">0</div><div class="hstat-label">Services</div></div>
+    <div class="hstat"><div class="hstat-num" data-count="4.9" data-decimal="1">0</div><div class="hstat-label">Star Rating</div></div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Car Detailing</span><span class="sep">✦</span><span>Pressure Washing</span><span class="sep">✦</span><span>Window Cleaning</span><span class="sep">✦</span><span>Fence Building</span><span class="sep">✦</span><span>Home Painting</span><span class="sep">✦</span><span>Gutter Cleaning</span><span class="sep">✦</span><span>Moss Removal</span><span class="sep">✦</span><span>Yard Projects</span><span class="sep">✦</span><span>Moving Help</span><span class="sep">✦</span><span>Staining</span><span class="sep">✦</span><span>Crawlspace Barrier</span><span class="sep">✦</span><span>Curb Numbers</span><span class="sep">✦</span><span>We Do It All</span><span class="sep">✦</span>
+    <span>Car Detailing</span><span class="sep">✦</span><span>Pressure Washing</span><span class="sep">✦</span><span>Window Cleaning</span><span class="sep">✦</span><span>Fence Building</span><span class="sep">✦</span><span>Home Painting</span><span class="sep">✦</span><span>Gutter Cleaning</span><span class="sep">✦</span><span>Moss Removal</span><span class="sep">✦</span><span>Yard Projects</span><span class="sep">✦</span><span>Moving Help</span><span class="sep">✦</span><span>Staining</span><span class="sep">✦</span><span>Crawlspace Barrier</span><span class="sep">✦</span><span>Curb Numbers</span><span class="sep">✦</span><span>We Do It All</span><span class="sep">✦</span>
+  </div>
+</div>
+
+<section class="story" id="story">
+  <div class="story-visual reveal-left">
+    <div class="story-img-wrap">
+      <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=85" alt="Gavin - GJ Agency founder">
+    </div>
+    <div class="story-badge-float">
+      <div class="big">100%</div>
+      <div class="small">Satisfaction<br>Guaranteed</div>
+    </div>
+  </div>
+  <div class="story-text reveal-right">
+    <div class="label">Our Story</div>
+    <h2>Built by a Kid<br>Who Wanted to <em>Earn It.</em></h2>
+    <p>GJ Agency was started by <strong>Gavin</strong>, a Sacramento-area college student who decided that instead of waiting for opportunity, he'd build it himself. What started as a car detailing side hustle turned into a full-service home and auto company.</p>
+    <p>When you hire GJ Agency, you're not calling a faceless corporation. You're calling <strong>a driven young entrepreneur</strong> who personally shows up, personally does the work, and personally guarantees you'll love it.</p>
+    <p>We're building our reputation one job at a time — and that means <strong>we can't afford to cut corners.</strong> Your satisfaction isn't just a policy. It's how we survive and grow.</p>
+    <div class="story-pills">
+      <span class="pill">College Student Owned</span>
+      <span class="pill">Teen Founded</span>
+      <span class="pill">Sacramento Local</span>
+      <span class="pill">Personally Operated</span>
+      <span class="pill">0 Shortcuts Taken</span>
+    </div>
+  </div>
+</section>
+
+<section class="services-section" id="services">
+  <div class="section-header reveal">
+    <div class="sh-left">
+      <div class="label">Everything We Do</div>
+      <h2>OUR<br>SERVICES</h2>
+    </div>
+    <p class="sh-right">13 services. One team. Every job done with the same care we'd want for our own home.</p>
+  </div>
+  <div class="svc-grid stagger">
+    <a href="car-detailing.html" class="svc-card hero-svc">
+      <img src="WebsiteJ.png" alt="Car Detail" class="hero-svc-img">
+      <div class="svc-content">
+        <div class="svc-badge">⭐ Signature</div>
+        <div class="svc-name">Car Detailing</div>
+        <p class="svc-desc">Wash to full ceramic coating. Your car restored by someone who genuinely cares.</p>
+        <div class="svc-arrow">View Packages</div>
+      </div>
+    </a>
+    <a href="pressure-washing.html" class="svc-card"><div class="svc-card-top"><div class="svc-icon">💧</div><div class="svc-num">02</div></div><div class="svc-name">Pressure Washing</div><p class="svc-desc">Driveways, patios, siding, fences. High-powered results.</p><div class="svc-arrow">Learn More</div></a>
+    <a href="window-cleaning.html" class="svc-card"><div class="svc-card-top"><div class="svc-icon">🪟</div><div class="svc-num">03</div></div><div class="svc-name">Window Cleaning</div><p class="svc-desc">Streak-free interior and exterior glass for homes and businesses.</p><div class="svc-arrow">Learn More</div></a>
+    <a href="home-painting.html" class="svc-card"><div class="svc-card-top"><div class="svc-icon">🎨</div><div class="svc-num">04</div></div><div class="svc-name">Home Painting</div><p class="svc-desc">Interior and exterior — clean prep, quality paint, lasting finish.</p><div class="svc-arrow">Learn More</div></a>
+    <a href="curb-painting.html" class="svc-card"><div class="svc-card-top"><div class="svc-icon">🏠</div><div class="svc-num">05</div></div><div class="svc-name">Curb & Street Numbers</div><p class="svc-desc">Bold address numbers that look sharp and help people find you.</p><div class="svc-arrow">Learn More</div></a>
+    <a href="gutter-cleaning.html" class="svc-card"><div class="svc-card-top"><div class="svc-icon">🍂</div><div class="svc-num">06</div></div><div class="svc-name">Gutter Cleaning</div><p class="svc-desc">Full clear-out of gutters and downspouts to protect your home.</p><div class="svc-arrow">Learn More</div></a>
+    <a href="staining.html" class="svc-card"><div class="svc-card-top"><div class="svc-icon">🪵</div><div class="svc-num">07</div></div><div class="svc-name">Staining</div><p class="svc-desc">Deck, fence, and wood staining that protects and beautifies.</p><div class="svc-arrow">Learn More</div></a>
+    <a href="yard-projects.html" class="svc-card"><div class="svc-card-top"><div class="svc-icon">🌿</div><div class="svc-num">08</div></div><div class="svc-name">Yard Projects</div><p class="svc-desc">Mowing, cleanup, hauling, landscaping — your yard, sorted.</p><div class="svc-arrow">Learn More</div></a>
+    <a href="moving.html" class="svc-card"><div class="svc-card-top"><div class="svc-icon">📦</div><div class="svc-num">09</div></div><div class="svc-name">Moving</div><p class="svc-desc">Local moving help — loading, unloading, hauling. No hassle.</p><div class="svc-arrow">Learn More</div></a>
+    <a href="moss-removal.html" class="svc-card"><div class="svc-card-top"><div class="svc-icon">🌱</div><div class="svc-num">10</div></div><div class="svc-name">Moss Removal</div><p class="svc-desc">Safe removal from roofs, driveways and walkways. Stops regrowth.</p><div class="svc-arrow">Learn More</div></a>
+    <a href="crawlspace.html" class="svc-card"><div class="svc-card-top"><div class="svc-icon">🏗️</div><div class="svc-num">11</div></div><div class="svc-name">Crawlspace Barrier</div><p class="svc-desc">Vapor barrier installation to protect your foundation.</p><div class="svc-arrow">Learn More</div></a>
+    <a href="fence-building.html" class="svc-card"><div class="svc-card-top"><div class="svc-icon">🔨</div><div class="svc-num">12</div></div><div class="svc-name">Fence Building</div><p class="svc-desc">Wood, vinyl, chain link — built solid, built to last.</p><div class="svc-arrow">Learn More</div></a>
+    <a href="other.html" class="svc-card"><div class="svc-card-top"><div class="svc-icon">⚙️</div><div class="svc-num">13</div></div><div class="svc-name">Other Jobs</div><p class="svc-desc">Don't see your job? Just ask — we probably do it.</p><div class="svc-arrow">Ask Us</div></a>
+  </div>
+</section>
+
+<div class="parallax-split">
+  <div class="psplit-bg" id="psplit-bg"></div>
+  <div class="psplit-content reveal">
+    <h2>ONE CALL.<br><span class="gold">DONE RIGHT.</span></h2>
+    <p>Stop juggling five different contractors.</p>
+  </div>
+</div>
+
+<div class="service-cta-row">
+  <a href="car-detailing.html" class="mag-btn"><span class="mag-icon">🚗</span><span class="mag-label">Detailing</span></a>
+  <a href="pressure-washing.html" class="mag-btn"><span class="mag-icon">💧</span><span class="mag-label">Pressure Wash</span></a>
+  <a href="window-cleaning.html" class="mag-btn"><span class="mag-icon">🪟</span><span class="mag-label">Windows</span></a>
+  <a href="home-painting.html" class="mag-btn"><span class="mag-icon">🎨</span><span class="mag-label">Painting</span></a>
+  <a href="gutter-cleaning.html" class="mag-btn"><span class="mag-icon">🍂</span><span class="mag-label">Gutters</span></a>
+  <a href="fence-building.html" class="mag-btn"><span class="mag-icon">🔨</span><span class="mag-label">Fencing</span></a>
+  <a href="yard-projects.html" class="mag-btn"><span class="mag-icon">🌿</span><span class="mag-label">Yard</span></a>
+  <a href="other.html" class="mag-btn"><span class="mag-icon">⚙️</span><span class="mag-label">More →</span></a>
+</div>
+
+<section class="testimonials">
+  <div class="section-header reveal">
+    <div class="sh-left">
+      <div class="label">Real Reviews</div>
+      <h2>CLIENTS<br>LOVE US</h2>
+    </div>
+  </div>
+  <div class="t-grid stagger">
+    <div class="t-card">
+      <div class="stars">★★★★★</div>
+      <p class="t-text">"I was skeptical hiring someone so young but Gavin absolutely crushed it. My driveway and fence look brand new. Professional, fast, and cheaper than anyone else I called."</p>
+      <div class="t-person"><div class="t-avatar">DM</div><div><div class="t-name">Derek M.</div><div class="t-service">Pressure Washing + Staining</div></div></div>
+    </div>
+    <div class="t-card">
+      <div class="stars">★★★★★</div>
+      <p class="t-text">"Got my car detailed and it's never looked this good — not even when it was new. The ceramic coating is insane. I tell everyone about GJ Agency."</p>
+      <div class="t-person"><div class="t-avatar">SR</div><div><div class="t-name">Sarah R.</div><div class="t-service">Full Detail + Ceramic Coat</div></div></div>
+    </div>
+    <div class="t-card">
+      <div class="stars">★★★★★</div>
+      <p class="t-text">"Used them for moving help and yard cleanup the same week. On time, worked hard, didn't stop until the job was done. This kid is going places. Seriously."</p>
+      <div class="t-person"><div class="t-avatar">TL</div><div><div class="t-name">Tina L.</div><div class="t-service">Moving + Yard Projects</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left reveal-left">
+      <div class="label">Get In Touch</div>
+      <h2>LET'S GET<br>YOUR JOB<br><span class="gold">DONE.</span></h2>
+      <div class="c-details">
+        <a href="tel:9165629915" class="c-detail"><span class="c-detail-icon">📞</span><div><div class="c-detail-label">Call or Text</div><div class="c-detail-val">(916) 562-9915</div></div></a>
+        <a href="/cdn-cgi/l/email-protection#9cfbfdeaf5f2fefdeef2f9e8e8aeafaeafdcfbf1fdf5f0b2fff3f1" class="c-detail"><span class="c-detail-icon">✉️</span><div><div class="c-detail-label">Email</div><div class="c-detail-val"><span class="__cf_email__" data-cfemail="f39492859a9d9192819d968787c1c0c1c0b3949e929a9fdd909c9e">[email&#160;protected]</span></div></div></a>
+        <div class="c-detail"><span class="c-detail-icon">📍</span><div><div class="c-detail-label">Service Area</div><div class="c-detail-val">Sacramento, CA & Surrounding Areas</div></div></div>
+        <div class="c-detail"><span class="c-detail-icon">🕐</span><div><div class="c-detail-label">Hours</div><div class="c-detail-val">Mon–Sat, 7am–6pm</div></div></div>
+      </div>
+    </div>
+    <div class="reveal-right">
+      <div class="contact-form">
+        <div class="cf-row">
+          <input type="text" class="cf-field" placeholder="Your Name">
+          <input type="tel" class="cf-field" placeholder="Phone Number">
+        </div>
+        <div class="cf-row">
+          <input type="email" class="cf-field" placeholder="Email Address">
+          <select class="cf-field">
+            <option value="" disabled selected>Select a Service</option>
+            <option>Car Detailing</option><option>Pressure Washing</option><option>Window Cleaning</option>
+            <option>Home Painting</option><option>Curb / Street Numbers</option><option>Gutter Cleaning</option>
+            <option>Staining</option><option>Yard Projects</option><option>Moving</option>
+            <option>Moss Removal</option><option>Crawlspace Barrier</option><option>Fence Building</option>
+            <option>Other / Not Sure</option>
+          </select>
+        </div>
+        <textarea class="cf-field" placeholder="Tell us about the job — address, details, timeline..." style="margin-bottom:1px;"></textarea>
+        <button class="cf-submit" onclick="submitForm(this)"><span>Send My Request — It's Free →</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo"><img src="logo.png" alt="GJ Agency"></div>
+  <p>© 2026 GJ Agency · Sacramento, CA · Teen-Founded, College-Operated</p>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#story">About</a>
+    <a href="tel:9165629915">(916) 562-9915</a>
+    <a href="#contact">Book</a>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// CURSOR
+const cursor=document.getElementById('cursor');
+const ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cursor.style.left=mx+'px';cursor.style.top=my+'px';
+});
+(function animRing(){
+  rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.width='6px';cursor.style.height='6px';ring.style.width='60px';ring.style.height='60px';ring.style.borderColor='var(--gold)';});
+  el.addEventListener('mouseleave',()=>{cursor.style.width='12px';cursor.style.height='12px';ring.style.width='40px';ring.style.height='40px';ring.style.borderColor='rgba(200,151,62,.6)';});
+});
+
+// HERO MOUSE PARALLAX
+const heroBg=document.getElementById('hero-bg');
+document.addEventListener('mousemove',e=>{
+  const dx=(e.clientX/window.innerWidth-0.5)*20;
+  const dy=(e.clientY/window.innerHeight-0.5)*12;
+  heroBg.style.transform=`translate(${dx}px,${dy}px) scale(1.08)`;
+});
+
+// SCROLL EFFECTS
+const psplit=document.getElementById('psplit-bg');
+window.addEventListener('scroll',()=>{
+  const sy=window.scrollY;
+  if(psplit){const rect=psplit.parentElement.getBoundingClientRect();psplit.style.transform=`translateY(${rect.top*0.3}px)`;}
+  document.getElementById('main-nav').classList.toggle('scrolled',sy>60);
+});
+
+// REVEAL
+const allR=document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger');
+const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.08});
+allR.forEach(el=>io.observe(el));
+
+// COUNT UP
+function countUp(el){
+  const target=parseFloat(el.dataset.count);
+  const dec=parseInt(el.dataset.decimal||0);
+  const dur=1800;const start=performance.now();
+  (function step(now){
+    const p=Math.min((now-start)/dur,1);
+    const ease=1-Math.pow(1-p,3);
+    const val=target*ease;
+    el.textContent=dec>0?val.toFixed(dec):Math.floor(val)+(target>=500?'+':'');
+    if(p<1)requestAnimationFrame(step);
+  })(start);
+}
+const cio=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){countUp(e.target);cio.unobserve(e.target);}}),{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+// MAGNETIC BUTTONS
+document.querySelectorAll('.mag-btn').forEach(btn=>{
+  btn.addEventListener('mousemove',e=>{
+    const r=btn.getBoundingClientRect();
+    btn.style.transform=`translate(${(e.clientX-r.left-r.width/2)*0.25}px,${(e.clientY-r.top-r.height/2)*0.25}px)`;
+  });
+  btn.addEventListener('mouseleave',()=>{btn.style.transform='';});
+});
+
+// CARD TILT
+document.querySelectorAll('.svc-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-0.5;
+    const y=(e.clientY-r.top)/r.height-0.5;
+    card.style.transform=`perspective(600px) rotateY(${x*6}deg) rotateX(${-y*6}deg) translateZ(4px)`;
+  });
+  card.addEventListener('mouseleave',()=>{card.style.transform='';});
+});
+
+// STORY PARALLAX
+const sImg=document.querySelector('.story-img-wrap img');
+if(sImg){window.addEventListener('scroll',()=>{const r=sImg.getBoundingClientRect();sImg.style.transform=`translateY(${(r.top+r.height/2-window.innerHeight/2)*0.08}px)`;});}
+
+// FORM
+function submitForm(btn){
+  const f=btn.closest('.contact-form');
+  const n=f.querySelector('input[type="text"]').value.trim();
+  if(n){btn.querySelector('span'
