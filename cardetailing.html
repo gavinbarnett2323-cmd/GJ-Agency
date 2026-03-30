@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Detailing — GJ Agency</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,700;1,300;1,700&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black:  #080807;
+      --near:   #0f0f0e;
+      --card:   #131312;
+      --gold:   #c8973e;
+      --gold2:  #e8b85a;
+      --white:  #f4f0e8;
+      --muted:  #6b6760;
+      --border: rgba(200,151,62,0.18);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ── CURSOR ── */
+    #cursor {
+      position: fixed; width: 12px; height: 12px;
+      background: var(--gold); border-radius: 50%;
+      pointer-events: none; z-index: 9999;
+      transform: translate(-50%,-50%);
+      mix-blend-mode: difference;
+      transition: width .3s, height .3s;
+    }
+    #cursor-ring {
+      position: fixed; width: 40px; height: 40px;
+      border: 1px solid rgba(200,151,62,.6); border-radius: 50%;
+      pointer-events: none; z-index: 9998;
+      transform: translate(-50%,-50%);
+      transition: width .3s, height .3s, border-color .3s;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      padding: 1.2rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background .4s;
+    }
+    nav.scrolled {
+      background: rgba(8,8,7,.94);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo img { height: 52px; object-fit: contain; }
+    .nav-center {
+      display: flex; align-items: center; gap: 2.5rem;
+    }
+    .back-link {
+      text-decoration: none;
+      color: rgba(244,240,232,.5);
+      font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+      font-weight: 500; display: flex; align-items: center; gap: .5rem;
+      transition: color .25s;
+    }
+    .back-link:hover { color: var(--gold); }
+    .back-link::before { content: '←'; }
+    .nav-divider {
+      width: 1px; height: 18px; background: var(--border);
+    }
+    nav ul { list-style: none; display: flex; gap: 2.5rem; }
+    nav ul a {
+      text-decoration: none; color: rgba(244,240,232,.5);
+      font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+      font-weight: 500; transition: color .25s; position: relative;
+    }
+    nav ul a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 1px; background: var(--gold);
+      transform: scaleX(0); transition: transform .3s;
+    }
+    nav ul a:hover { color: var(--white); }
+    nav ul a:hover::after { transform: scaleX(1); }
+    .nav-phone {
+      font-size: .78rem; letter-spacing: .08em; color: var(--gold);
+      text-decoration: none; font-weight: 500;
+      border: 1px solid var(--border); padding: .5rem 1.2rem;
+      transition: all .3s;
+    }
+    .nav-phone:hover { background: var(--gold); color: var(--black); }
+
+    /* ── HERO ── */
+    .hero {
+      height: 100vh; position: relative;
+      display: flex; align-items: flex-end; overflow: hidden;
+      background: #1a1208;
+    }
+    .hero-gradient {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(135deg, rgba(8,8,7,.98) 0%, rgba(8,8,7,.6) 60%, #1a1208 100%),
+        linear-gradient(to top, rgba(8,8,7,1) 0%, transparent 50%);
+    }
+    .hero-bg-text {
+      position: absolute;
+      right: -1rem; top: 50%; transform: translateY(-50%);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 25vw; line-height: 1;
+      color: rgba(200,151,62,.04);
+      pointer-events: none; user-select: none;
+      white-space: nowrap;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 3rem 5.5rem; max-width: 860px;
+      animation: fadeUp 1s .3s both;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: .6rem;
+      background: rgba(200,151,62,.12); border: 1px solid var(--border);
+      padding: .35rem 1rem; border-radius: 100px;
+      font-size: .68rem; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--gold); font-weight: 500; margin-bottom: 1.5rem;
+    }
+    .hero-tag .dot {
+      width: 6px; height: 6px; background: var(--gold); border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.5; transform:scale(.7); } }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(5rem, 13vw, 11rem);
+      line-height: .88; letter-spacing: .01em;
+      margin-bottom: .3em;
+    }
+    .hero h1 .gold { color: var(--gold); }
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-style: italic; font-weight: 300;
+      color: rgba(244,240,232,.55); margin-bottom: 1.2rem;
+    }
+    .hero-sub {
+      font-size: .92rem; line-height: 1.85;
+      color: rgba(244,240,232,.45); max-width: 540px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-btns { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+    .btn-gold {
+      background: var(--gold); color: var(--black);
+      padding: .9rem 2.2rem; font-size: .75rem; letter-spacing: .15em;
+      text-transform: uppercase; font-weight: 600;
+      text-decoration: none; display: inline-block;
+      transition: all .3s; position: relative; overflow: hidden;
+    }
+    .btn-gold::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--gold2); transform: translateX(-101%);
+      transition: transform .4s ease;
+    }
+    .btn-gold:hover::before { transform: translateX(0); }
+    .btn-gold span { position: relative; z-index: 1; }
+    .btn-wire {
+      border: 1px solid rgba(244,240,232,.25); color: var(--white);
+      padding: .9rem 2.2rem; font-size: .75rem; letter-spacing: .15em;
+      text-transform: uppercase; text-decoration: none; transition: all .3s;
+    }
+    .btn-wire:hover { border-color: var(--gold); color: var(--gold); }
+    .scroll-cue {
+      position: absolute; bottom: 2.5rem; right: 3rem; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: .6rem;
+      font-size: .6rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--muted); animation: fadeUp 1s 1s both;
+    }
+    .scroll-line {
+      width: 1px; height: 50px; background: var(--gold);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse { 0%,100% { opacity:.3; } 50% { opacity:1; } }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      background: var(--gold); padding: .8rem 0; overflow: hidden;
+    }
+    .marquee-track {
+      display: flex; animation: marquee 25s linear infinite; white-space: nowrap;
+    }
+    .marquee-track span {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem; letter-spacing: .12em;
+      color: var(--black); padding: 0 2.5rem;
+    }
+    .marquee-track .sep { color: rgba(0,0,0,.3); }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── SECTION COMMON ── */
+    .section-label {
+      font-size: .65rem; letter-spacing: .25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: .8rem;
+      display: flex; align-items: center; gap: .7rem;
+    }
+    .section-label::before {
+      content: ''; width: 24px; height: 1px; background: var(--gold);
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 6vw, 5rem); line-height: .9; letter-spacing: .02em;
+      margin-bottom: .5rem;
+    }
+    .section-sub {
+      font-size: .88rem; line-height: 1.75; color: var(--muted); max-width: 520px;
+    }
+
+    /* ── PACKAGES ── */
+    .packages-section {
+      padding: 7rem 3rem; background: var(--near);
+    }
+    .pkg-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1px; background: var(--border); margin-top: 3.5rem;
+    }
+    .pkg-card {
+      background: var(--card); padding: 2.5rem 2rem;
+      display: flex; flex-direction: column;
+      transition: background .4s;
+    }
+    .pkg-card:hover { background: #1a1a18; }
+    .pkg-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem; color: var(--gold); line-height: 1;
+      margin-bottom: .3rem;
+    }
+    .pkg-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 700;
+      margin-bottom: .8rem; line-height: 1.2;
+    }
+    .pkg-desc {
+      font-size: .82rem; line-height: 1.7;
+      color: rgba(244,240,232,.45); flex: 1; margin-bottom: 1.5rem;
+    }
+    .pkg-cta {
+      font-size: .68rem; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--gold); text-decoration: none;
+      display: flex; align-items: center; gap: .5rem;
+      transition: gap .3s;
+    }
+    .pkg-cta:hover { gap: 1rem; }
+
+    /* ── PHOTO GALLERY ── */
+    .gallery-section {
+      padding: 7rem 3rem; background: var(--black);
+    }
+    .gallery-header {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; margin-bottom: 3.5rem;
+    }
+    .gallery-note {
+      font-size: .8rem; color: var(--muted); max-width: 260px;
+      text-align: right; line-height: 1.6;
+    }
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--border);
+    }
+    .photo-slot {
+      aspect-ratio: 4/3;
+      background: var(--card);
+      position: relative; overflow: hidden;
+      cursor: pointer;
+      transition: background .3s;
+    }
+    .photo-slot:first-child {
+      grid-column: span 2; aspect-ratio: 16/9;
+    }
+    .photo-slot:hover { background: #1c1c1a; }
+    .photo-inner {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 1rem;
+      border: 1px dashed rgba(200,151,62,.2);
+      margin: 12px;
+      transition: border-color .3s;
+    }
+    .photo-slot:hover .photo-inner { border-color: rgba(200,151,62,.5); }
+    .photo-plus {
+      width: 50px; height: 50px;
+      border: 1px solid var(--border); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; color: var(--gold);
+      transition: background .3s, transform .3s;
+    }
+    .photo-slot:hover .photo-plus {
+      background: rgba(200,151,62,.12); transform: scale(1.1);
+    }
+    .photo-label {
+      font-size: .65rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── WHY / PILLARS ── */
+    .why-section {
+      padding: 7rem 3rem; background: var(--near);
+    }
+    .pillars-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1px; background: var(--border); margin-top: 3.5rem;
+    }
+    .pillar {
+      background: var(--card); padding: 2.5rem 2rem;
+      display: flex; gap: 1.5rem;
+      transition: background .3s;
+    }
+    .pillar:hover { background: #1a1a18; }
+    .pillar-icon {
+      font-size: 1.8rem; min-width: 2.2rem; line-height: 1;
+    }
+    .pillar h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 700; margin-bottom: .4rem;
+    }
+    .pillar p {
+      font-size: .82rem; line-height: 1.7;
+      color: rgba(244,240,232,.45);
+    }
+
+    /* ── CTA BAND ── */
+    .cta-band {
+      background: var(--gold);
+      padding: 4rem 3rem;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+    }
+    .cta-band h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.5rem); color: var(--black); line-height: .9;
+    }
+    .btn-dark {
+      background: var(--black); color: var(--white);
+      padding: 1rem 2.5rem; font-size: .75rem; letter-spacing: .15em;
+      text-transform: uppercase; font-weight: 600;
+      text-decoration: none; transition: opacity .3s;
+    }
+    .btn-dark:hover { opacity: .8; }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      padding: 7rem 3rem; background: var(--black);
+      position: relative; overflow: hidden;
+    }
+    .contact-section::before {
+      content: 'TEXT US';
+      position: absolute; font-family: 'Bebas Neue', sans-serif;
+      font-size: 20vw; line-height: 1;
+      color: rgba(200,151,62,.025);
+      top: 50%; left: 50%; transform: translate(-50%,-50%);
+      white-space: nowrap; pointer-events: none;
+    }
+    .contact-inner {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    }
+    .contact-left h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: .9; margin-bottom: 2rem; letter-spacing: .02em;
+    }
+    .contact-left h2 .gold { color: var(--gold); }
+    .c-details { display: flex; flex-direction: column; gap: 1rem; }
+    .c-detail {
+      display: flex; align-items: center; gap: 1.2rem;
+      padding: 1.2rem 1.5rem; border: 1px solid var(--border);
+      transition: border-color .3s, background .3s;
+      text-decoration: none; color: var(--white);
+    }
+    .c-detail:hover { border-color: var(--gold); background: rgba(200,151,62,.05); }
+    .c-detail-icon { font-size: 1.4rem; width: 2rem; text-align: center; }
+    .c-detail-label {
+      font-size: .6rem; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: .2rem;
+    }
+    .c-detail-val { font-size: .95rem; font-weight: 400; }
+    .contact-right {
+      display: flex; flex-direction: column; gap: .9rem;
+      padding-top: 6rem;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+    .contact-right input,
+    .contact-right textarea {
+      width: 100%; background: var(--card);
+      border: 1px solid var(--border); color: var(--white);
+      padding: .9rem 1.1rem; font-family: 'Jost', sans-serif;
+      font-size: .88rem; outline: none; transition: border-color .3s;
+      font-weight: 300;
+    }
+    .contact-right input::placeholder,
+    .contact-right textarea::placeholder { color: var(--muted); }
+    .contact-right input:focus,
+    .contact-right textarea:focus { border-color: var(--gold); }
+    .contact-right textarea { resize: vertical; min-height: 110px; }
+    .contact-right button {
+      background: var(--gold); color: var(--black); border: none;
+      padding: 1rem 2.2rem; font-family: 'Jost', sans-serif;
+      font-size: .75rem; letter-spacing: .15em; text-transform: uppercase;
+      font-weight: 600; cursor: pointer; align-self: flex-start;
+      transition: opacity .3s;
+    }
+    .contact-right button:hover { opacity: .85; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--near); border-top: 1px solid var(--border);
+      padding: 2.5rem 3rem;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1.5rem;
+    }
+    .footer-logo img { height: 44px; object-fit: contain; }
+    footer p { font-size: .7rem; color: var(--muted); }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a {
+      font-size: .68rem; letter-spacing: .15em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; transition: color .25s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(22px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+    .reveal.on { opacity: 1; transform: translateY(0); }
+
+    /* ── MOBILE ── */
+    @media(max-width: 960px) {
+      body { cursor: auto; }
+      #cursor, #cursor-ring { display: none; }
+      nav { padding: 1rem 1.5rem; }
+      nav ul { display: none; }
+      .hero-content { padding: 0 1.5rem 4.5rem; }
+      .packages-section, .gallery-section, .why-section,
+      .contact-section { padding: 4.5rem 1.5rem; }
+      .photo-grid { grid-template-columns: 1fr 1fr; }
+      .photo-slot:first-child { grid-column: span 2; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-right { padding-top: 0; }
+      .form-row { grid-template-columns: 1fr; }
+      .cta-band { flex-direction: column; text-align: center; padding: 3rem 1.5rem; }
+      footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+      .gallery-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .gallery-note { text-align: left; max-width: 100%; }
+    }
+    @media(max-width: 560px) {
+      .photo-grid { grid-template-columns: 1fr; }
+      .photo-slot:first-child { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+
+  <nav id="main-nav">
+    <div class="nav-logo"><img src="GJ_AGENCY_No_Background.png" alt="GJ Agency"></div>
+    <div class="nav-center">
+      <a href="index.html" class="back-link">All Services</a>
+      <div class="nav-divider"></div>
+      <ul>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#story">Our Story</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <a href="tel:9165629915" class="nav-phone">📞 (916) 562-9915</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-gradient"></div>
+    <div class="hero-bg-text">🚗</div>
+    <div class="hero-content">
+      <div class="hero-tag">
+        <span class="dot"></span>
+        Signature Service
+      </div>
+      <h1>CAR<br>DETAILING</h1>
+      <p class="hero-tagline">Showroom Finish, Every Time</p>
+      <p class="hero-sub">From a quick hand wash to full paint correction and ceramic coating — GJ Agency's detailing service restores your vehicle to its best and keeps it there.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-gold"><span>Get a Free Quote</span></a>
+        <a href="#packages" class="btn-wire">View Packages</a>
+      </div>
+    </div>
+    <div class="scroll-cue"><div class="scroll-line"></div>Scroll</div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span>Car Detailing</span><span class="sep">✦</span><span>Pressure Washing</span><span class="sep">✦</span><span>Fence Building</span><span class="sep">✦</span><span>Home Painting</span><span class="sep">✦</span><span>Gutter Cleaning</span><span class="sep">✦</span><span>Moss Removal</span><span class="sep">✦</span><span>Moving Help</span><span class="sep">✦</span><span>Crawlspace Barrier</span><span class="sep">✦</span><span>Curb Numbers</span><span class="sep">✦</span><span>We Do It All</span><span class="sep">✦</span>
+      <span>Car Detailing</span><span class="sep">✦</span><span>Pressure Washing</span><span class="sep">✦</span><span>Fence Building</span><span class="sep">✦</span><span>Home Painting</span><span class="sep">✦</span><span>Gutter Cleaning</span><span class="sep">✦</span><span>Moss Removal</span><span class="sep">✦</span><span>Moving Help</span><span class="sep">✦</span><span>Crawlspace Barrier</span><span class="sep">✦</span><span>Curb Numbers</span><span class="sep">✦</span><span>We Do It All</span><span class="sep">✦</span>
+    </div>
+  </div>
+
+  <!-- PACKAGES -->
+  <section class="packages-section" id="packages">
+    <div class="reveal">
+      <div class="section-label">Pricing & Packages</div>
+      <div class="section-title">CAR DETAILING<br>PACKAGES</div>
+    </div>
+    <div class="pkg-grid">
+      
+        <div class="pkg-card reveal">
+          <div class="pkg-price">$80</div>
+          <div class="pkg-name">Basic Wash & Vac</div>
+          <p class="pkg-desc">Full exterior hand wash, wheel cleaning, interior vacuum, and window wipe-down. A solid refresh for everyday drivers.</p>
+          <a href="#contact" class="pkg-cta">Get a Quote →</a>
+        </div>
+        <div class="pkg-card reveal">
+          <div class="pkg-price">$200</div>
+          <div class="pkg-name">Full Detail</div>
+          <p class="pkg-desc">Complete interior and exterior reset. Deep interior cleaning, stain treatment, full hand wash, wheels, door jambs, and protective sealant.</p>
+          <a href="#contact" class="pkg-cta">Get a Quote →</a>
+        </div>
+        <div class="pkg-card reveal">
+          <div class="pkg-price">$250</div>
+          <div class="pkg-name">Full Detail + Paint Protection</div>
+          <p class="pkg-desc">Full detail plus clay bar treatment and paint sealant. Removes embedded contaminants and adds long-lasting protection with a deep gloss.</p>
+          <a href="#contact" class="pkg-cta">Get a Quote →</a>
+        </div>
+        <div class="pkg-card reveal">
+          <div class="pkg-price">$499</div>
+          <div class="pkg-name">Paint Correction</div>
+          <p class="pkg-desc">Multi-stage machine polish removes swirls, scratches and oxidation. Factory-fresh gloss restored.</p>
+          <a href="#contact" class="pkg-cta">Get a Quote →</a>
+        </div>
+        <div class="pkg-card reveal">
+          <div class="pkg-price">$199</div>
+          <div class="pkg-name">Interior Restoration</div>
+          <p class="pkg-desc">Steam clean, fabric extraction, leather conditioning, plastic restoration, headliner cleaning.</p>
+          <a href="#contact" class="pkg-cta">Get a Quote →</a>
+        </div>
+        <div class="pkg-card reveal">
+          <div class="pkg-price">Call Us</div>
+          <div class="pkg-name">Fleet / Custom</div>
+          <p class="pkg-desc">Monthly programs for businesses and fleet operators. Volume pricing available — just ask.</p>
+          <a href="#contact" class="pkg-cta">Get a Quote →</a>
+        </div>
+    </div>
+  </section>
+
+  <!-- PHOTO GALLERY -->
+  <section class="gallery-section" id="gallery">
+    <div class="gallery-header reveal">
+      <div>
+        <div class="section-label">Our Work</div>
+        <div class="section-title">PAST DETAILS</div>
+      </div>
+      <p class="gallery-note">Photos coming soon — replace the placeholders below with your own job photos.</p>
+    </div>
+    <div class="photo-grid">
+      
+          <div class="photo-slot">
+            <div class="photo-inner">
+              <div class="photo-plus">+</div>
+              <div class="photo-label">Add Photo 1</div>
+            </div>
+          </div>
+          <div class="photo-slot">
+            <div class="photo-inner">
+              <div class="photo-plus">+</div>
+              <div class="photo-label">Add Photo 2</div>
+            </div>
+          </div>
+          <div class="photo-slot">
+            <div class="photo-inner">
+              <div class="photo-plus">+</div>
+              <div class="photo-label">Add Photo 3</div>
+            </div>
+          </div>
+          <div class="photo-slot">
+            <div class="photo-inner">
+              <div class="photo-plus">+</div>
+              <div class="photo-label">Add Photo 4</div>
+            </div>
+          </div>
+          <div class="photo-slot">
+            <div class="photo-inner">
+              <div class="photo-plus">+</div>
+              <div class="photo-label">Add Photo 5</div>
+            </div>
+          </div>
+          <div class="photo-slot">
+            <div class="photo-inner">
+              <div class="photo-plus">+</div>
+              <div class="photo-label">Add Photo 6</div>
+            </div>
+          </div>
+    </div>
+  </section>
+
+  <!-- WHY GJ -->
+  <section class="why-section">
+    <div class="reveal">
+      <div class="section-label">Why GJ Agency</div>
+      <div class="section-title">THE GJ<br>DIFFERENCE</div>
+    </div>
+    <div class="pillars-grid">
+      
+          <div class="pillar reveal">
+            <div class="pillar-icon">🧴</div>
+            <div>
+              <h4>Premium Products Only</h4>
+              <p>We use professional-grade detailing products, not the stuff you find at the grocery store.</p>
+            </div>
+          </div>
+          <div class="pillar reveal">
+            <div class="pillar-icon">🔍</div>
+            <div>
+              <h4>Eye for Detail</h4>
+              <p>Every gap, every vent, every corner — treated with the same care we'd want on our own car.</p>
+            </div>
+          </div>
+          <div class="pillar reveal">
+            <div class="pillar-icon">⏱️</div>
+            <div>
+              <h4>On Time, Every Time</h4>
+              <p>We confirm appointments and show up when we say we will. Period.</p>
+            </div>
+          </div>
+          <div class="pillar reveal">
+            <div class="pillar-icon">🔁</div>
+            <div>
+              <h4>Satisfaction Guaranteed</h4>
+              <p>Not happy? We come back and make it right — no questions asked.</p>
+            </div>
+          </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <div class="cta-band reveal">
+    <h3>READY TO BOOK<br>CAR DETAILING?</h3>
+    <a href="#contact" class="btn-dark">Get a Free Quote →</a>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="contact-inner">
+      <div class="contact-left reveal">
+        <div class="section-label">Get In Touch</div>
+        <h2>LET'S GET<br>YOUR JOB<br><span class="gold">DONE.</span></h2>
+        <div class="c-details">
+          <a href="tel:9165629915" class="c-detail">
+            <span class="c-detail-icon">📞</span>
+            <div>
+              <div class="c-detail-label">Text or Leave Voicemail</div>
+              <div class="c-detail-val">(916) 562-9915</div>
+            </div>
+          </a>
+          <a href="mailto:gavinbarnett2323@gmail.com" class="c-detail">
+            <span class="c-detail-icon">✉️</span>
+            <div>
+              <div class="c-detail-label">Email</div>
+              <div class="c-detail-val">gavinbarnett2323@gmail.com</div>
+            </div>
+          </a>
+          <div class="c-detail">
+            <span class="c-detail-icon">📍</span>
+            <div>
+              <div class="c-detail-label">Service Area</div>
+              <div class="c-detail-val">Sacramento, CA & Surrounding Areas</div>
+            </div>
+          </div>
+          <div class="c-detail">
+            <span class="c-detail-icon">🕐</span>
+            <div>
+              <div class="c-detail-label">Hours</div>
+              <div class="c-detail-val">Sat–Sun 6am–10pm · Select Days Mon–Fri</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-right reveal">
+        <div class="form-row">
+          <input type="text" placeholder="Your Name">
+          <input type="tel" placeholder="Phone Number">
+        </div>
+        <input type="text" placeholder="Address / Location">
+        <textarea placeholder="Tell us about the job..."></textarea>
+        <button onclick="submitForm(this)">Send Request →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo"><img src="GJ_AGENCY_No_Background.png" alt="GJ Agency"></div>
+    <p>© 2026 GJ Agency · Sacramento, CA · Teen-Founded, College-Operated</p>
+    <div class="footer-links">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#story">About</a>
+      <a href="tel:9165629915">(916) 562-9915</a>
+      <a href="#contact">Book</a>
+    </div>
+  </footer>
+
+  <script>
+    // CURSOR
+    const cursor = document.getElementById('cursor');
+    const ring   = document.getElementById('cursor-ring');
+    let mx=0, my=0, rx=0, ry=0;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx+'px'; cursor.style.top = my+'px';
+    });
+    (function animRing(){
+      rx += (mx-rx)*0.12; ry += (my-ry)*0.12;
+      ring.style.left = rx+'px'; ring.style.top = ry+'px';
+      requestAnimationFrame(animRing);
+    })();
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.width='6px'; cursor.style.height='6px';
+        ring.style.width='60px'; ring.style.height='60px';
+        ring.style.borderColor='var(--gold)';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.width='12px'; cursor.style.height='12px';
+        ring.style.width='40px'; ring.style.height='40px';
+        ring.style.borderColor='rgba(200,151,62,.6)';
+      });
+    });
+
+    // NAV
+    window.addEventListener('scroll', () => {
+      document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 60);
+      checkReveal();
+    });
+
+    // REVEAL
+    function checkReveal() {
+      document.querySelectorAll('.reveal').forEach(el => {
+        if(el.getBoundingClientRect().top < window.innerHeight * 0.92) el.classList.add('on');
+      });
+    }
+    window.addEventListener('load', checkReveal);
+    checkReveal();
+
+    // FORM
+    function submitForm(btn) {
+      const name = btn.closest('.contact-right').querySelector('input[type="text"]').value.trim();
+      if (name) {
+        btn.textContent = '✓ Sent! We\'ll be in touch soon.';
+        btn.style.opacity = '0.7';
+        btn.style.pointerEvents = 'none';
+      } else {
+        btn.closest('.contact-right').querySelector('input[type="text"]').focus();
+      }
+    }
+
+    // CARD TILT
+    document.querySelectorAll('.pkg-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX-r.left)/r.width - 0.5;
+        const y = (e.clientY-r.top)/r.height - 0.5;
+        card.style.transform = `perspective(600px) rotateY(${x*5}deg) rotateX(${-y*5}deg) translateZ(3px)`;
+      });
+      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+    });
+  </script>
+</body>
+</html>
