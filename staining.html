@@ -86,6 +86,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 /* ─── SERVICES — horizontal scrolling cards ─── */
 .services-section{padding:100px 0 80px}
 .services-scroll{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:64px}
+.svc-card.wide{grid-column:1/3}
 .svc-card{background:var(--black);padding:52px 44px;position:relative;overflow:hidden;transition:background .3s}
 .svc-card:hover{background:rgba(200,151,62,.04)}
 .svc-bg-letter{position:absolute;bottom:-20px;right:20px;font-family:'Bebas Neue',sans-serif;font-size:9rem;color:rgba(200,151,62,.05);line-height:1;pointer-events:none;letter-spacing:-.02em}
@@ -197,8 +198,8 @@ footer{background:#050504;border-top:1px solid var(--border);padding:48px;displa
 <!-- MARQUEE -->
 <div class="marquee-bar">
   <div class="marquee-track">
-    <span>Fence Staining</span><span>Wood Staining</span><span>Gate Finishing</span><span>Cedar Treatment</span><span>Color Restoration</span><span>Sacramento CA</span><span>GJ Agency</span>
-    <span>Fence Staining</span><span>Wood Staining</span><span>Gate Finishing</span><span>Cedar Treatment</span><span>Color Restoration</span><span>Sacramento CA</span><span>GJ Agency</span>
+    <span>Fence Staining</span><span>Deck Staining</span><span>Teak Oil Finishing</span><span>Gate Staining</span><span>Furniture Staining</span><span>Cedar Treatment</span><span>Wood Restoration</span><span>Sacramento CA</span><span>GJ Agency</span>
+    <span>Fence Staining</span><span>Deck Staining</span><span>Teak Oil Finishing</span><span>Gate Staining</span><span>Furniture Staining</span><span>Cedar Treatment</span><span>Wood Restoration</span><span>Sacramento CA</span><span>GJ Agency</span>
   </div>
 </div>
 
@@ -212,14 +213,14 @@ footer{background:#050504;border-top:1px solid var(--border);padding:48px;displa
   </div>
   <div class="hero-content">
     <div class="hero-left">
-      <span class="hero-eyebrow">Sacramento's Wood Staining Crew</span>
+      <span class="hero-eyebrow">Fences · Decks · Teak · Gates · Sacramento</span>
       <h1 class="hero-title">
-        <span class="line1">FENCE</span>
+        <span class="line1">WOOD</span>
         <span class="line2">STAINING.</span>
       </h1>
     </div>
     <div class="hero-right">
-      <p class="hero-desc">Weathered, faded, or never been done — we stain fences, gates, and wood structures so they actually look like they belong there.</p>
+      <p class="hero-desc">Fences, decks, gates, teak furniture, pergolas — if it's wood and it's looking rough, we stain it and bring it back. One text for a custom quote.</p>
       <div class="hero-actions">
         <a href="sms:9165629915" class="btn-primary">Text for a Quote</a>
         <a href="#services" class="btn-ghost">See Services ↓</a>
@@ -230,7 +231,7 @@ footer{background:#050504;border-top:1px solid var(--border);padding:48px;displa
 
 <!-- QUOTE BANNER -->
 <div class="quote-banner">
-  <p><strong>ALL STAINING JOBS ARE CUSTOM QUOTED</strong> — pricing depends on fence length, condition &amp; access</p>
+  <p><strong>ALL STAINING JOBS ARE CUSTOM QUOTED</strong> — fences, decks, furniture, gates &amp; more — pricing based on size, condition &amp; access</p>
 </div>
 
 <!-- SERVICES -->
@@ -246,7 +247,7 @@ footer{background:#050504;border-top:1px solid var(--border);padding:48px;displa
         <div class="svc-bg-letter">F</div>
         <span class="svc-num">01 · Service</span>
         <div class="svc-name">Fence Staining</div>
-        <div class="svc-desc">Full fence staining from top to bottom. We prep, apply, and leave it looking rich and even — no streaks, no missed boards. Works on cedar, redwood, pine.</div>
+        <div class="svc-desc">Full fence staining from top to bottom. We prep, apply, and leave it looking rich and even — no streaks, no missed boards. Works on cedar, redwood, pine, and more.</div>
         <div class="svc-tags">
           <span class="tag">Cedar</span>
           <span class="tag">Redwood</span>
@@ -256,22 +257,49 @@ footer{background:#050504;border-top:1px solid var(--border);padding:48px;displa
         <div class="svc-bottom">Custom Quote · Text Us</div>
       </div>
       <div class="svc-card reveal delay-1">
-        <div class="svc-bg-letter">G</div>
+        <div class="svc-bg-letter">D</div>
         <span class="svc-num">02 · Service</span>
-        <div class="svc-name">Gate &amp; Entry Staining</div>
-        <div class="svc-desc">Gates take more wear than the rest of the fence. We give them a thorough prep and finish so they stand out — clean, dark, and protected against the elements.</div>
+        <div class="svc-name">Deck Staining</div>
+        <div class="svc-desc">Decks take sun and foot traffic all year. We prep the surface, open the grain, and apply a deep-penetrating stain that holds up — and looks incredible doing it.</div>
         <div class="svc-tags">
-          <span class="tag">Single Gates</span>
-          <span class="tag">Double Gates</span>
-          <span class="tag">Entry Frames</span>
+          <span class="tag">All Wood Decks</span>
+          <span class="tag">UV Protection</span>
+          <span class="tag">Anti-Slip Safe</span>
         </div>
         <div class="svc-bottom">Custom Quote · Text Us</div>
       </div>
       <div class="svc-card reveal delay-2">
-        <div class="svc-bg-letter">R</div>
+        <div class="svc-bg-letter">T</div>
         <span class="svc-num">03 · Service</span>
+        <div class="svc-name">Teak Oil Finishing</div>
+        <div class="svc-desc">Teak oil penetrates deep into hardwood to restore natural color, prevent drying, and bring out a rich warm finish. Works on teak furniture, outdoor loungers, benches, and hardwood structures — before and after is wild.</div>
+        <div class="svc-tags">
+          <span class="tag">Teak Furniture</span>
+          <span class="tag">Outdoor Loungers</span>
+          <span class="tag">Hardwood</span>
+          <span class="tag">Deep Penetrating</span>
+        </div>
+        <div class="svc-bottom">Custom Quote · Text Us</div>
+      </div>
+      <div class="svc-card wide reveal">
+        <div class="svc-bg-letter">G</div>
+        <span class="svc-num">04 · Service</span>
+        <div class="svc-name">Gates, Furniture &amp; Any Wood Surface</div>
+        <div class="svc-desc">If it's wood and it needs staining, we can handle it — gates, entry frames, pergolas, garden boxes, outdoor furniture, wood trim, you name it. We stain it, seal it, and leave it looking sharp. Just text us what you have and we'll let you know.</div>
+        <div class="svc-tags">
+          <span class="tag">Gates &amp; Entries</span>
+          <span class="tag">Pergolas</span>
+          <span class="tag">Outdoor Furniture</span>
+          <span class="tag">Wood Trim</span>
+          <span class="tag">Garden Structures</span>
+        </div>
+        <div class="svc-bottom">Custom Quote · Text Us</div>
+      </div>
+      <div class="svc-card reveal delay-1">
+        <div class="svc-bg-letter">R</div>
+        <span class="svc-num">05 · Service</span>
         <div class="svc-name">Restoration &amp; Re-Stain</div>
-        <div class="svc-desc">Old stain peeling, fading, or turning gray? We strip and re-stain to bring the wood back. Dramatically different results — same fence, completely new look.</div>
+        <div class="svc-desc">Old stain peeling, fading, or turning gray? We strip and re-stain to bring the wood back completely. Same fence or deck — totally new look.</div>
         <div class="svc-tags">
           <span class="tag">Old Stain Removal</span>
           <span class="tag">Color Refresh</span>
@@ -291,8 +319,8 @@ footer{background:#050504;border-top:1px solid var(--border);padding:48px;displa
   <div class="feature-text reveal-right">
     <p class="section-label">Why Stain</p>
     <h2>PROTECT THE <span class="gold">WOOD.</span></h2>
-    <p>Bare or faded wood absorbs moisture, splits, and rots fast — especially in Sacramento's heat. Stain seals the grain and keeps the fence solid for years.</p>
-    <p>We use penetrating stains that soak in deep, not surface coatings that peel. It holds longer and looks better the whole time.</p>
+    <p>Whether it's a fence, a deck, a gate, or a set of teak loungers — bare or faded wood absorbs moisture, splits, and breaks down fast in Sacramento's heat. The right stain or oil treatment seals it and adds years to its life.</p>
+    <p>We use penetrating stains and teak oils that soak into the grain, not surface coatings that peel. Better protection, better look, longer hold.</p>
     <div class="why-list">
       <div class="why-item">
         <span class="why-icon">✦</span>
@@ -353,8 +381,8 @@ footer{background:#050504;border-top:1px solid var(--border);padding:48px;displa
 <div class="cta-band">
   <div class="cta-bg">STAIN</div>
   <div class="cta-left reveal-left">
-    <h2>READY FOR A<br/><span class="gold">FRESH STAIN?</span></h2>
-    <p>Text us a few photos of your fence and your address. We'll take a look and send a quote — no calls, no forms, no waiting around.</p>
+    <h2>ANY WOOD.<br/><span class="gold">WE STAIN IT.</span></h2>
+    <p>Fence, deck, gate, furniture, teak — text us a few photos and your address. We'll scope it and send a quote same day. No calls, no forms.</p>
   </div>
   <div class="cta-right reveal-right">
     <a href="sms:9165629915" class="btn-primary" style="font-size:.95rem;padding:18px 48px">Text (916) 562-9915</a>
