@@ -33,6 +33,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-links a:hover{opacity:1;color:var(--gold)}
 .nav-cta{background:var(--gold);color:var(--black);padding:9px 22px;border-radius:2px;font-weight:600;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:background .2s}
 .nav-cta:hover{background:var(--gold2)}
+.nav-back{border:1px solid var(--border);color:rgba(244,240,232,.6);padding:9px 18px;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:border-color .2s,color .2s;margin-right:8px}
+.nav-back:hover{border-color:var(--gold);color:var(--gold)}
 
 /* MARQUEE */
 .marquee-bar{margin-top:72px;background:var(--gold);overflow:hidden;padding:10px 0}
@@ -189,7 +191,10 @@ footer{background:#050504;border-top:1px solid var(--border);padding:48px;displa
     <li><a href="yard-projects.html">Yard</a></li>
     <li><a href="cardetailing.html">Detailing</a></li>
   </ul>
-  <a href="sms:9165629915" class="nav-cta">Text for Quote</a>
+  <div style="display:flex;align-items:center;gap:0">
+    <a href="index.html" class="nav-back">← All Services</a>
+    <a href="sms:9165629915" class="nav-cta">Text for Quote</a>
+  </div>
 </nav>
 
 <!-- MARQUEE -->
