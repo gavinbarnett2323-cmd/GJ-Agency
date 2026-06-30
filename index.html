@@ -3,7 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GJ Agency — We Do It All</title>
+<title>Gavin Does It All — Sacramento Car Detailing, Pressure Washing & Window Cleaning</title>
+<meta name="description" content="Gavin Does It All — Sacramento's teen-founded, college-operated home & auto service team. Car detailing, pressure washing, window cleaning, gutters, painting, fence building & more. 350+ happy clients, 5.0 stars. Free quotes — (916) 562-9915.">
+<meta name="keywords" content="Sacramento car detailing, Sacramento pressure washing, window cleaning Sacramento, gutter cleaning, fence building, home painting, East Sacramento handyman, Gavin Does It All">
+<meta name="author" content="Gavin Does It All">
+<link rel="canonical" href="https://gavinbarnett2323-cmd.github.io/GJ-Agency/index.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Gavin Does It All">
+<meta property="og:title" content="Gavin Does It All — Sacramento Car Detailing, Pressure Washing & Window Cleaning">
+<meta property="og:description" content="One young, hungry team that does it all — car detailing, pressure washing, windows, gutters, fences & more across Sacramento. 350+ happy clients. Free quotes.">
+<meta property="og:url" content="https://gavinbarnett2323-cmd.github.io/GJ-Agency/index.html">
+<meta property="og:image" content="https://gavinbarnett2323-cmd.github.io/GJ-Agency/GJ_AGENCY_No_Background.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gavin Does It All — Sacramento Home & Auto Services">
+<meta name="twitter:description" content="Car detailing, pressure washing, window cleaning & more across Sacramento. 350+ happy clients, 5.0 stars.">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,700;1,300;1,700&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -142,6 +155,8 @@ nav ul a:hover::after { transform: scaleX(1); }
 
 /* TESTIMONIALS */
 .testimonials { padding: 7rem 3rem; background: var(--near); }
+.review-cta { text-align: center; margin-top: 3.5rem; }
+.review-cta-text { font-size: .95rem; color: var(--muted); margin-bottom: 1.4rem; max-width: 520px; margin-left: auto; margin-right: auto; }
 .t-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); margin-top: 4rem; }
 .t-card { background: var(--card); padding: 2.8rem 2.5rem; position: relative; overflow: hidden; }
 .t-card::before { content: '"'; position: absolute; top: -1rem; right: 1.5rem; font-family: 'Cormorant Garamond', serif; font-size: 10rem; color: rgba(200,151,62,.06); line-height: 1; pointer-events: none; }
@@ -220,6 +235,15 @@ footer p { font-size: .7rem; color: var(--muted); }
   .story-badge-float { width: 90px; height: 90px; }
   .story-badge-float .big { font-size: 1.6rem; }
 }
+/* MOBILE STICKY CALL BAR */
+#mobile-cta { display: none; }
+@media(max-width:960px) {
+  #mobile-cta { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 600; }
+  #mobile-cta a { flex: 1; text-align: center; padding: .95rem .5rem; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; text-decoration: none; }
+  #mobile-cta .mc-call { background: var(--gold); color: var(--black); }
+  #mobile-cta .mc-quote { background: var(--near); color: var(--white); border-top: 1px solid var(--border); }
+  body { padding-bottom: 3.2rem; }
+}
 </style>
 </head>
 <body>
@@ -228,7 +252,7 @@ footer p { font-size: .7rem; color: var(--muted); }
 <div id="cursor-ring"></div>
 
 <nav id="main-nav">
-  <div class="nav-logo"><img src="GJ_AGENCY_No_Background.png" alt="GJ Agency"></div>
+  <div class="nav-logo"><img src="GJ_AGENCY_No_Background.png" alt="Gavin Does It All"></div>
   <ul>
     <li><a href="#services">Services</a></li>
     <li><a href="#story">Our Story</a></li>
@@ -257,9 +281,9 @@ footer p { font-size: .7rem; color: var(--muted); }
   </div>
   <div class="scroll-cue"><div class="scroll-cue-line"></div>Scroll to explore</div>
   <div class="hero-stats">
-    <div class="hstat"><div class="hstat-num" data-count="350">0</div><div class="hstat-label">Happy Clients</div></div>
-    <div class="hstat"><div class="hstat-num" data-count="13">0</div><div class="hstat-label">Services</div></div>
-    <div class="hstat"><div class="hstat-num" data-count="5.0" data-decimal="1">0</div><div class="hstat-label">Star Rating</div></div>
+    <div class="hstat"><div class="hstat-num" data-count="350">350+</div><div class="hstat-label">Happy Clients</div></div>
+    <div class="hstat"><div class="hstat-num" data-count="13">13</div><div class="hstat-label">Services</div></div>
+    <div class="hstat"><div class="hstat-num" data-count="5.0" data-decimal="1">5.0</div><div class="hstat-label">Star Rating</div></div>
   </div>
 </section>
 
@@ -273,7 +297,7 @@ footer p { font-size: .7rem; color: var(--muted); }
 <section class="story" id="story">
   <div class="story-visual reveal-left">
     <div class="story-img-wrap">
-      <img src="gavin-story.png" alt="Gavin - GJ Agency founder">
+      <img src="gavin-story.png" alt="Gavin - Gavin Does It All founder">
     </div>
     <div class="story-badge-float">
       <div class="big">100%</div>
@@ -283,8 +307,8 @@ footer p { font-size: .7rem; color: var(--muted); }
   <div class="story-text reveal-right">
     <div class="label">Our Story</div>
     <h2>Built by a Kid<br>Who Wanted to <em>Earn It.</em></h2>
-    <p>GJ Agency was started by <strong>Gavin</strong>, a Sacramento-area college student who decided that instead of waiting for opportunity, he'd build it himself. What started as a car detailing side hustle turned into a full-service home and auto company.</p>
-    <p>When you hire GJ Agency, you're not calling a faceless corporation. You're calling <strong>a driven young entrepreneur</strong> who personally shows up, personally does the work, and personally guarantees you'll love it.</p>
+    <p>Gavin Does It All was started by <strong>Gavin</strong>, a Sacramento-area college student who decided that instead of waiting for opportunity, he'd build it himself. What started as a car detailing side hustle turned into a full-service home and auto company.</p>
+    <p>When you hire Gavin Does It All, you're not calling a faceless corporation. You're calling <strong>a driven young entrepreneur</strong> who personally shows up, personally does the work, and personally guarantees you'll love it.</p>
     <p>We're building our reputation one job at a time — and that means <strong>we can't afford to cut corners.</strong> Your satisfaction isn't just a policy. It's how we survive and grow.</p>
     <div class="story-pills">
       <span class="pill">College Student Owned</span>
@@ -372,6 +396,10 @@ footer p { font-size: .7rem; color: var(--muted); }
       <div class="t-person"><div class="t-avatar">GL</div><div><div class="t-name">Gloria L.</div><div class="t-service">Multiple Home Services</div></div></div>
     </div>
   </div>
+  <div class="review-cta reveal">
+    <p class="review-cta-text">Worked with us? A quick Google review means the world to a young, growing business.</p>
+    <a href="https://share.google/JhNNfp7xQXRCzS6nK" target="_blank" rel="noopener" class="btn-gold"><span>⭐ Leave a Google Review</span></a>
+  </div>
 </section>
 
 <section class="contact" id="contact">
@@ -391,11 +419,12 @@ footer p { font-size: .7rem; color: var(--muted); }
 </section>
 
 <footer>
-  <div class="footer-logo"><img src="GJ_AGENCY_No_Background.png" alt="GJ Agency"></div>
-  <p>© 2026 GJ Agency · Sacramento, CA · Teen-Founded, College-Operated</p>
+  <div class="footer-logo"><img src="GJ_AGENCY_No_Background.png" alt="Gavin Does It All"></div>
+  <p>© 2026 Gavin Does It All · Sacramento, CA · Teen-Founded, College-Operated</p>
   <div class="footer-links">
     <a href="#services">Services</a>
     <a href="#story">About</a>
+    <a href="https://share.google/JhNNfp7xQXRCzS6nK" target="_blank" rel="noopener">★ Leave a Review</a>
     <a href="tel:9165629915">(916) 562-9915</a>
     <a href="#contact">Book</a>
   </div>
@@ -496,5 +525,9 @@ if(sImg){ window.addEventListener('scroll', () => { const r = sImg.getBoundingCl
 
 
 </script>
+<div id="mobile-cta">
+  <a href="tel:9165629915" class="mc-call">📞 Tap to Call</a>
+  <a href="#contact" class="mc-quote">Free Quote →</a>
+</div>
 </body>
 </html>
