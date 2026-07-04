@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Crawlspace Barrier – Gavin Does It All</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#080807;--gold:#c8973e;--gold2:#e8b85a;--white:#f4f0e8;--muted:#6b6760;--border:rgba(200,151,62,0.18);--dark:#0d0d0b}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;cursor:none;overflow-x:hidden}
+#cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+#cursor-ring{position:fixed;width:32px;height:32px;border:1.5px solid var(--gold2);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(8,8,7,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.08em;color:var(--gold);text-decoration:none}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{color:var(--white);text-decoration:none;font-size:.85rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;opacity:.75;transition:opacity .2s,color .2s}
+.nav-links a:hover{opacity:1;color:var(--gold)}
+.nav-right{display:flex;align-items:center}
+.nav-back{border:1px solid var(--border);color:rgba(244,240,232,.6);padding:9px 18px;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:border-color .2s,color .2s}
+.nav-back:hover{border-color:var(--gold);color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--black);padding:9px 22px;font-weight:600;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:background .2s}
+.nav-cta:hover{background:var(--gold2)}
+.marquee-bar{margin-top:72px;background:var(--gold);overflow:hidden;padding:10px 0}
+.marquee-track{display:flex;width:max-content;animation:marquee 28s linear infinite}
+.marquee-track span{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.14em;color:var(--black);padding:0 48px;white-space:nowrap}
+.marquee-track span::before{content:"✦";margin-right:48px;opacity:.6}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ─── HERO — dark geometric, no photo ─── */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:center;
+  padding:140px 72px 100px;overflow:hidden;
+}
+/* grid line pattern */
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(200,151,62,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(200,151,62,.06) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+/* corner glow */
+.hero::after{
+  content:'';position:absolute;bottom:-100px;right:-100px;
+  width:600px;height:600px;
+  background:radial-gradient(ellipse,rgba(200,151,62,.06) 0%,transparent 65%);
+  pointer-events:none;
+}
+/* big background word */
+.hero-bg-word{
+  position:absolute;right:-20px;top:50%;transform:translateY(-50%);
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(14rem,22vw,24rem);
+  color:rgba(200,151,62,.04);line-height:1;letter-spacing:.04em;
+  pointer-events:none;white-space:nowrap;writing-mode:vertical-rl;
+}
+.hero-eyebrow{position:relative;z-index:2;font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:flex;align-items:center;gap:16px}
+.hero-eyebrow::before{content:'';width:40px;height:1px;background:var(--gold);opacity:.5}
+.hero-title{position:relative;z-index:2;font-family:'Bebas Neue',sans-serif;line-height:.88;letter-spacing:.02em;margin-bottom:32px}
+.hero-title .t1{font-size:clamp(5rem,10vw,10.5rem);-webkit-text-stroke:2px rgba(244,240,232,.18);color:transparent;display:block}
+.hero-title .t2{font-size:clamp(5rem,10vw,10.5rem);color:var(--gold);display:block}
+.hero-title .t3{font-size:clamp(2rem,4vw,4rem);color:rgba(244,240,232,.28);display:block;letter-spacing:.1em}
+.hero-desc{position:relative;z-index:2;font-family:'Cormorant Garamond',sans-serif;font-style:italic;font-size:1.3rem;color:rgba(244,240,232,.6);line-height:1.7;max-width:520px;margin-bottom:44px}
+.hero-actions{position:relative;z-index:2;display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{background:var(--gold);color:var(--black);padding:15px 38px;font-size:.86rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;display:inline-block;transition:background .2s;cursor:none}
+.btn-primary:hover{background:var(--gold2)}
+.btn-ghost{border:1px solid rgba(200,151,62,.4);color:var(--gold2);padding:15px 38px;font-size:.86rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:border-color .2s,color .2s;display:inline-block;cursor:none}
+.btn-ghost:hover{border-color:var(--gold2);color:var(--white)}
+/* stat badges in hero */
+.hero-stats{position:relative;z-index:2;display:flex;gap:0;margin-top:64px;border:1px solid var(--border)}
+.hero-stat{padding:20px 40px;border-right:1px solid var(--border);text-align:center}
+.hero-stat:last-child{border-right:none}
+.hero-stat-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--gold);letter-spacing:.04em}
+.hero-stat-label{font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+
+.quote-banner{background:rgba(200,151,62,.07);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:28px 48px;text-align:center}
+.quote-banner p{font-family:'Cormorant Garamond',sans-serif;font-style:italic;font-size:1.4rem;color:var(--gold2)}
+.quote-banner p strong{font-style:normal;font-family:'Bebas Neue',sans-serif;font-size:1.55rem;letter-spacing:.1em;color:var(--gold)}
+
+.container{max-width:1200px;margin:0 auto;padding:0 48px}
+.section-label{font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,5vw,4.5rem);line-height:1;letter-spacing:.02em}
+.gold{color:var(--gold)}
+.divider{width:48px;height:2px;background:var(--gold);margin:20px 0 64px}
+
+/* SERVICES */
+.services-section{padding:100px 0 80px}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:64px}
+.svc-card{background:var(--black);padding:52px 44px;position:relative;overflow:hidden;transition:background .3s}
+.svc-card:hover{background:rgba(200,151,62,.04)}
+.svc-bg-num{font-family:'Bebas Neue',sans-serif;font-size:7rem;color:rgba(200,151,62,.05);line-height:1;position:absolute;top:12px;right:24px}
+.svc-lbl{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:block}
+.svc-name{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:.03em;color:var(--white);line-height:1;margin-bottom:14px}
+.svc-desc{font-size:.88rem;color:var(--muted);line-height:1.75;max-width:320px}
+.svc-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.tag{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border:1px solid var(--border);padding:4px 12px}
+.svc-bottom{margin-top:32px;padding-top:24px;border-top:1px solid var(--border);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+/* WHY IT MATTERS — two column text layout */
+.why-section{padding:100px 0;background:rgba(200,151,62,.03);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:64px;align-items:start}
+.why-left h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,4.5vw,4rem);line-height:.95;letter-spacing:.02em;margin-bottom:28px}
+.why-left p{font-size:.92rem;color:var(--muted);line-height:1.8}
+.why-left p+p{margin-top:14px}
+.why-right{display:flex;flex-direction:column;gap:0;border:1px solid var(--border)}
+.why-item{display:flex;align-items:flex-start;gap:20px;padding:28px 32px;border-bottom:1px solid var(--border)}
+.why-item:last-child{border-bottom:none}
+.why-icon{color:var(--gold);font-size:1.1rem;flex-shrink:0;margin-top:2px}
+.why-item-text strong{display:block;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.04em;color:var(--white);margin-bottom:6px}
+.why-item-text span{font-size:.85rem;color:var(--muted);line-height:1.65}
+
+/* PROCESS */
+.process-section{padding:100px 0}
+.process-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:64px;border:1px solid var(--border)}
+.step{padding:52px 44px;border-right:1px solid var(--border);position:relative}
+.step:last-child{border-right:none}
+.step-num{font-family:'Bebas Neue',sans-serif;font-size:4.5rem;color:rgba(200,151,62,.1);line-height:1;margin-bottom:20px}
+.step-name{font-family:'Bebas Neue',sans-serif;font-size:1.65rem;letter-spacing:.04em;color:var(--white);margin-bottom:14px}
+.step-desc{font-size:.88rem;color:var(--muted);line-height:1.75}
+.step-arrow{position:absolute;top:50px;right:-20px;width:40px;height:40px;background:var(--black);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--gold);z-index:2}
+.step:last-child .step-arrow{display:none}
+
+/* CTA */
+.cta-band{position:relative;overflow:hidden;padding:100px 72px;text-align:center;border-top:1px solid var(--border)}
+.cta-band::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(200,151,62,.12) 1px,transparent 1px);background-size:36px 36px;opacity:.4}
+.cta-bg-word{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:clamp(10rem,20vw,22rem);color:rgba(200,151,62,.04);letter-spacing:.06em;pointer-events:none;white-space:nowrap;line-height:1}
+.cta-inner{position:relative;z-index:2}
+.cta-inner h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,6vw,6rem);line-height:.9;letter-spacing:.02em;margin-bottom:24px}
+.cta-inner p{font-size:1rem;color:var(--muted);line-height:1.8;max-width:480px;margin:0 auto 40px}
+.cta-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.sms-note{font-size:.75rem;color:var(--muted);letter-spacing:.06em;margin-top:16px}
+.sms-note a{color:var(--gold);text-decoration:none}
+
+footer{background:#050504;border-top:1px solid var(--border);padding:48px;display:flex;justify-content:space-between;align-items:center}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--gold);letter-spacing:.1em}
+.footer-copy{font-size:.75rem;color:var(--muted);letter-spacing:.06em}
+.footer-sms{font-size:.75rem;color:var(--gold);letter-spacing:.06em;text-decoration:none}
+
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .75s ease,transform .75s ease}
+.reveal.on{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-36px);transition:opacity .75s ease,transform .75s ease}
+.reveal-left.on{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(36px);transition:opacity .75s ease,transform .75s ease}
+.reveal-right.on{opacity:1;transform:translateX(0)}
+.delay-1{transition-delay:.12s}.delay-2{transition-delay:.24s}
+
+@media(max-width:900px){
+  nav{padding:14px 20px}.nav-links{display:none}
+  .hero{padding:120px 24px 80px}
+  .hero-bg-word{display:none}
+  .hero-stats{flex-wrap:wrap}
+  .hero-stat{flex:1;min-width:120px}
+  .container{padding:0 24px}
+  .services-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr;gap:40px}
+  .process-steps{grid-template-columns:1fr}
+  .step{border-right:none;border-bottom:1px solid var(--border)}.step-arrow{display:none}
+  .cta-band{padding:72px 24px}
+  footer{flex-direction:column;gap:16px;text-align:center;padding:32px 24px}
+}
+</style>
+</head>
+<body>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<nav>
+  <a href="index.html" class="nav-logo">Gavin Does It All</a>
+  <ul class="nav-links">
+    <li><a href="pressure-washing.html">Pressure Washing</a></li>
+    <li><a href="gutter-cleaning.html">Gutters</a></li>
+    <li><a href="moss-removal.html">Moss Removal</a></li>
+    <li><a href="fence-building.html">Fences</a></li>
+    <li><a href="yard-projects.html">Yard</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="index.html" class="nav-back">← All Services</a>
+    <a href="sms:9165629915" class="nav-cta">Text for Quote</a>
+  </div>
+</nav>
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span>Crawlspace Barrier</span><span>Vapor Barrier</span><span>Moisture Control</span><span>Under-Home Protection</span><span>Mold Prevention</span><span>Sacramento CA</span><span>Gavin Does It All</span>
+    <span>Crawlspace Barrier</span><span>Vapor Barrier</span><span>Moisture Control</span><span>Under-Home Protection</span><span>Mold Prevention</span><span>Sacramento CA</span><span>Gavin Does It All</span>
+  </div>
+</div>
+<section class="hero">
+  <div class="hero-bg-word">CRAWL</div>
+  <span class="hero-eyebrow">Home Protection · Sacramento</span>
+  <h1 class="hero-title">
+    <span class="t1">VAPOR</span>
+    <span class="t2">BARRIER.</span>
+    <span class="t3">DONE RIGHT.</span>
+  </h1>
+  <p class="hero-desc">Moisture under your home causes mold, rot, and structural damage you can't see until it's expensive. A crawlspace vapor barrier stops it before it starts.</p>
+  <div class="hero-actions">
+    <a href="sms:9165629915" class="btn-primary">Text for a Quote</a>
+    <a href="#services" class="btn-ghost">See Services ↓</a>
+  </div>
+  <div class="hero-stats reveal">
+    <div class="hero-stat"><div class="hero-stat-num">100%</div><div class="hero-stat-label">Coverage</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">0</div><div class="hero-stat-label">Hidden Fees</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">5★</div><div class="hero-stat-label">Rated</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">SAC</div><div class="hero-stat-label">Area</div></div>
+  </div>
+</section>
+<div class="quote-banner">
+  <p><strong>ALL CRAWLSPACE JOBS ARE CUSTOM QUOTED</strong> — pricing based on crawlspace size, access &amp; condition</p>
+</div>
+<section class="services-section" id="services">
+  <div class="container">
+    <p class="section-label reveal">What We Offer</p>
+    <h2 class="section-title reveal">OUR <span class="gold">SERVICES</span></h2>
+    <div class="divider reveal"></div>
+  </div>
+  <div class="container" style="max-width:100%;padding:0">
+    <div class="services-grid">
+      <div class="svc-card reveal">
+        <div class="svc-bg-num">01</div>
+        <span class="svc-lbl">01 · Service</span>
+        <div class="svc-name">Vapor Barrier Install</div>
+        <div class="svc-desc">We lay a heavy-duty polyethylene vapor barrier across the entire crawlspace floor. Properly overlapped and sealed at the seams so moisture has nowhere to get through.</div>
+        <div class="svc-tags"><span class="tag">Poly Barrier</span><span class="tag">Full Coverage</span><span class="tag">Sealed Seams</span><span class="tag">Heavy-Duty</span></div>
+        <div class="svc-bottom">Custom Quote · Text Us</div>
+      </div>
+      <div class="svc-card reveal delay-1">
+        <div class="svc-bg-num">02</div>
+        <span class="svc-lbl">02 · Service</span>
+        <div class="svc-name">Crawlspace Cleanout</div>
+        <div class="svc-desc">Before the barrier goes in, the space needs to be clear. We remove debris, old materials, and anything that shouldn't be down there so the barrier installs clean and lays flat.</div>
+        <div class="svc-tags"><span class="tag">Debris Removal</span><span class="tag">Old Barrier Tear-Out</span><span class="tag">Full Cleanout</span></div>
+        <div class="svc-bottom">Custom Quote · Text Us</div>
+      </div>
+      <div class="svc-card reveal delay-2">
+        <div class="svc-bg-num">03</div>
+        <span class="svc-lbl">03 · Service</span>
+        <div class="svc-name">Full Barrier Package</div>
+        <div class="svc-desc">Cleanout plus full barrier install in one job. We come in, clear the space, lay the barrier wall-to-wall, seal all seams, and leave it done right. Most common option for homes that haven't had it done.</div>
+        <div class="svc-tags"><span class="tag">Cleanout Included</span><span class="tag">Full Install</span><span class="tag">Wall-to-Wall</span><span class="tag">One Visit</span></div>
+        <div class="svc-bottom">Custom Quote · Text Us</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="why-section">
+  <div class="container">
+    <p class="section-label reveal">Why It Matters</p>
+    <h2 class="section-title reveal">PROTECT WHAT'S<br/><span class="gold">UNDER YOUR HOME</span></h2>
+    <div class="divider reveal"></div>
+    <div class="why-grid">
+      <div class="why-left reveal-left">
+        <h2>MOISTURE IS THE<br/><span class="gold">SILENT PROBLEM.</span></h2>
+        <p>Most homeowners never look under their house. That's exactly why crawlspace moisture damage gets so bad before anyone notices — by the time it shows up as a musty smell, warped floors, or high energy bills, the damage is already done.</p>
+        <p>A properly installed vapor barrier keeps ground moisture from evaporating up into your home's structure. It's one of the most cost-effective things you can do for the long-term health of your house.</p>
+      </div>
+      <div class="why-right reveal-right">
+        <div class="why-item">
+          <span class="why-icon">✦</span>
+          <div class="why-item-text">
+            <strong>Stops Mold Before It Starts</strong>
+            <span>Mold needs moisture to grow. Cut off the moisture source under your home and you stop the problem at the root.</span>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-icon">✦</span>
+          <div class="why-item-text">
+            <strong>Protects Wood Framing &amp; Joists</strong>
+            <span>Constant moisture causes wood rot in the structural members that hold your floors up. A barrier adds years to their life.</span>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-icon">✦</span>
+          <div class="why-item-text">
+            <strong>Lowers Heating &amp; Cooling Costs</strong>
+            <span>Moisture in the crawlspace makes your HVAC work harder. A dry crawlspace means a more energy-efficient home.</span>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-icon">✦</span>
+          <div class="why-item-text">
+            <strong>Required for Most Home Sales</strong>
+            <span>Home inspectors flag missing or damaged vapor barriers. Getting it done now saves headaches when you sell.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="process-section">
+  <div class="container">
+    <p class="section-label reveal">How It Works</p>
+    <h2 class="section-title reveal">THE <span class="gold">PROCESS</span></h2>
+  </div>
+  <div class="process-steps reveal">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-name">Text Us Your Home</div>
+      <div class="step-desc">Send your address and we'll ask a few quick questions about your crawlspace. No need to get under there yourself — we handle the inspection when we arrive.</div>
+      <div class="step-arrow">→</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-name">We Assess &amp; Quote</div>
+      <div class="step-desc">We come out, check the space, measure it up, and give you a straight quote. You know exactly what it costs before we do anything.</div>
+      <div class="step-arrow">→</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-name">Clean Install, Done</div>
+      <div class="step-desc">We clean out the space, lay the barrier wall-to-wall, seal every seam, and leave it done correctly. Most jobs completed in a single visit.</div>
+    </div>
+  </div>
+</section>
+<div class="cta-band">
+  <div class="cta-bg-word">BARRIER</div>
+  <div class="cta-inner reveal">
+    <h2>PROTECT YOUR<br/><span class="gold">CRAWLSPACE.</span></h2>
+    <p>Text us your address and we'll scope it out and send a quote same day. No forms, no calls, no guesswork.</p>
+    <div class="cta-actions">
+      <a href="sms:9165629915" class="btn-primary" style="font-size:.95rem;padding:18px 48px">Text (916) 562-9915</a>
+    </div>
+    <p class="sms-note">SMS only · <a href="sms:9165629915">Tap to text on mobile</a> · Fast response</p>
+  </div>
+</div>
+<footer>
+  <div class="footer-logo">Gavin Does It All</div>
+  <div class="footer-copy">© 2025 Gavin Does It All · Sacramento, CA</div>
+  <a href="sms:9165629915" class="footer-sms">Text Us: (916) 562-9915</a>
+</footer>
+<script>
+const cursor=document.getElementById('cursor');
+const ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+(function ani(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(ani);})();
+function reveal(){['reveal','reveal-left','reveal-right'].forEach(cls=>{document.querySelectorAll('.'+cls+':not(.on)').forEach(el=>{if(el.getBoundingClientRect().top<window.innerHeight-60)el.classList.add('on');});});}
+window.addEventListener('scroll',reveal,{passive:true});reveal();
+</script>
+</body>
+</html>
