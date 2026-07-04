@@ -2,509 +2,532 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gavin Does It All — Sacramento Car Detailing, Pressure Washing & Window Cleaning</title>
-<meta name="description" content="Gavin Does It All — Sacramento's do-it-all home & auto service. Car detailing, pressure washing, window cleaning, painting, gutters, fencing & more. 350+ happy clients, 5.0 stars. Call (916) 562-9915 for a free quote.">
-<meta name="keywords" content="Sacramento car detailing, Sacramento pressure washing, window cleaning Sacramento, gutter cleaning, home painting, fence building, handyman Sacramento, Gavin Does It All">
+<meta name="description" content="Gavin Does It All — Sacramento's teen-founded, college-operated home & auto service team. Car detailing, pressure washing, window cleaning, gutters, painting, fence building & more. 350+ happy clients, 5.0 stars. Free quotes — (916) 562-9915.">
+<meta name="keywords" content="Sacramento car detailing, Sacramento pressure washing, window cleaning Sacramento, gutter cleaning, fence building, home painting, East Sacramento handyman, Gavin Does It All">
+<meta name="author" content="Gavin Does It All">
 <link rel="canonical" href="https://gavinbarnett2323-cmd.github.io/GJ-Agency/index.html">
-<meta property="og:title" content="Gavin Does It All — Sacramento's Do-It-All Service">
-<meta property="og:description" content="Car detailing, pressure washing, window cleaning, painting, gutters & more. 350+ happy clients · 5.0 stars. Call (916) 562-9915.">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Gavin Does It All">
+<meta property="og:title" content="Gavin Does It All — Sacramento Car Detailing, Pressure Washing & Window Cleaning">
+<meta property="og:description" content="One young, hungry team that does it all — car detailing, pressure washing, windows, gutters, fences & more across Sacramento. 350+ happy clients. Free quotes.">
 <meta property="og:url" content="https://gavinbarnett2323-cmd.github.io/GJ-Agency/index.html">
+<meta property="og:image" content="https://gavinbarnett2323-cmd.github.io/GJ-Agency/GJ_AGENCY_No_Background.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0a0b0f">
-
-<!-- Cinematic stack -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-
+<meta name="twitter:title" content="Gavin Does It All — Sacramento Home & Auto Services">
+<meta name="twitter:description" content="Car detailing, pressure washing, window cleaning & more across Sacramento. 350+ happy clients, 5.0 stars.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,700;1,300;1,700&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --ink:#0a0b0f; --ink2:#0f1117; --paper:#f7f5f0; --txt:#eef1f6; --muted:#9aa3b2;
-    --gold:#f5b301; --gold2:#ffd166; --blue:#3b82f6; --teal:#22d3c5; --amber:#ff8a3d; --violet:#8b5cf6;
-    --accent:#f5b301; /* shifts per chapter via GSAP */
-    --maxw:1160px;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{ -webkit-text-size-adjust:100%; }
-  body{
-    background:var(--ink); color:var(--txt); overflow-x:hidden;
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-    -webkit-font-smoothing:antialiased; line-height:1.55;
-  }
-  /* Lenis */
-  html.lenis,html.lenis body{height:auto}
-  .lenis.lenis-smooth{scroll-behavior:auto!important}
-  a{color:inherit;text-decoration:none}
-  img{max-width:100%;display:block}
-  h1,h2,h3{line-height:1.05;letter-spacing:-.02em;font-weight:800}
+:root {
+  --black: #080807;
+  --near: #0f0f0e;
+  --card: #131312;
+  --gold: #c8973e;
+  --gold2: #e8b85a;
+  --white: #f4f0e8;
+  --muted: #6b6760;
+  --border: rgba(200,151,62,0.18);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'Jost', sans-serif; font-weight: 300; overflow-x: hidden; cursor: none; }
 
-  /* ---- Three.js reactive background (fixed behind everything) ---- */
-  #bg{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;pointer-events:none;
-      transition:opacity .6s ease; opacity:.9}
-  .veil{position:fixed;inset:0;z-index:1;pointer-events:none;
-        background:radial-gradient(120% 80% at 50% 0%, transparent 40%, rgba(6,7,10,.55) 100%);}
-  /* content sits above bg */
-  .wrap{position:relative;z-index:2}
+/* CURSOR */
+#cursor { position: fixed; width: 12px; height: 12px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); mix-blend-mode: difference; transition: width .3s, height .3s; }
+#cursor-ring { position: fixed; width: 40px; height: 40px; border: 1px solid rgba(200,151,62,.6); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .3s, height .3s, border-color .3s; }
 
-  /* ---- Sticky glass nav (always-visible conversion) ---- */
-  nav{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;justify-content:space-between;
-      padding:14px clamp(16px,4vw,40px); backdrop-filter:blur(10px);
-      background:linear-gradient(to bottom, rgba(10,11,15,.72), rgba(10,11,15,0)); transition:background .3s}
-  nav.solid{background:rgba(10,11,15,.86);box-shadow:0 1px 0 rgba(255,255,255,.06)}
-  .brand{font-weight:900;letter-spacing:.02em;font-size:clamp(14px,2.4vw,18px);text-transform:uppercase}
-  .brand b{color:var(--accent);transition:color .8s}
-  .navcta{display:flex;gap:10px;align-items:center}
-  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;border-radius:999px;
-       padding:11px 18px;font-size:14px;cursor:pointer;border:1px solid transparent;transition:transform .15s, box-shadow .2s, background .2s;white-space:nowrap}
-  .btn:hover{transform:translateY(-2px)}
-  .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#15130a;box-shadow:0 8px 24px rgba(245,179,1,.32)}
-  .btn-ghost{background:rgba(255,255,255,.06);color:var(--txt);border-color:rgba(255,255,255,.16)}
-  .btn-lg{padding:15px 26px;font-size:16px}
-  .navcall{font-weight:800;color:var(--txt);font-size:14px}
-  @media(max-width:720px){ .navcall{display:none} }
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; padding: 1.2rem 3rem; display: flex; align-items: center; justify-content: space-between; transition: background .4s; }
+nav.scrolled { background: rgba(8,8,7,.94); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+.nav-logo img { height: 52px; object-fit: contain; }
+nav ul { list-style: none; display: flex; gap: 2.5rem; }
+nav ul a { text-decoration: none; color: rgba(244,240,232,.5); font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; font-weight: 500; transition: color .25s; position: relative; }
+nav ul a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--gold); transform: scaleX(0); transition: transform .3s; }
+nav ul a:hover { color: var(--white); }
+nav ul a:hover::after { transform: scaleX(1); }
+.nav-phone { font-size: .78rem; letter-spacing: .08em; color: var(--gold); text-decoration: none; font-weight: 500; border: 1px solid var(--border); padding: .5rem 1.2rem; transition: all .3s; }
+.nav-phone:hover { background: var(--gold); color: var(--black); }
 
-  /* ---- Chapters ---- */
-  section{position:relative;z-index:2;padding:clamp(80px,12vh,140px) clamp(18px,5vw,40px)}
-  .chapter{min-height:100vh;display:flex;flex-direction:column;justify-content:center}
-  .inner{max-width:var(--maxw);margin:0 auto;width:100%}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:.22em;
-           font-size:12px;font-weight:700;color:var(--accent);margin-bottom:18px;transition:color .8s}
-  .eyebrow::before{content:"";width:26px;height:1px;background:var(--accent);transition:background .8s}
+/* HERO */
+.hero { height: 100vh; position: relative; display: flex; align-items: center; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; background: url('WebsiteGJ.png') center/cover no-repeat; will-change: transform; }
+.hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(105deg, rgba(8,8,7,.97) 0%, rgba(8,8,7,.75) 50%, rgba(8,8,7,.3) 100%), linear-gradient(to top, rgba(8,8,7,.9) 0%, transparent 40%); }
+.hero-content { position: relative; z-index: 2; padding: 0 3rem; max-width: 900px; }
+.hero-eyebrow { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; animation: fadeUp 1s .2s both; }
+.eyebrow-pill { background: var(--gold); color: var(--black); font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; font-weight: 700; padding: .3rem .8rem; border-radius: 100px; }
+.eyebrow-text { font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(244,240,232,.45); }
+.hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(5.5rem,14vw,13rem); line-height: .88; letter-spacing: .01em; margin-bottom: .15em; animation: fadeUp 1s .4s both; }
+.hero h1 .gold { color: var(--gold); }
+.hero h1 .outline { -webkit-text-stroke: 1px rgba(244,240,232,.25); color: transparent; }
+.hero-sub { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.1rem,2vw,1.5rem); font-style: italic; font-weight: 300; color: rgba(244,240,232,.55); max-width: 520px; line-height: 1.6; margin-bottom: 2.5rem; animation: fadeUp 1s .6s both; }
+.hero-badge { display: inline-flex; align-items: center; gap: .7rem; background: rgba(200,151,62,.12); border: 1px solid var(--border); padding: .6rem 1.2rem; border-radius: 100px; font-size: .72rem; letter-spacing: .1em; color: var(--gold); margin-bottom: 2.5rem; animation: fadeUp 1s .7s both; }
+.hero-badge .dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.5; transform:scale(.7); } }
+.hero-actions { display: flex; gap: 1.2rem; align-items: center; animation: fadeUp 1s .8s both; flex-wrap: wrap; }
+.btn-gold { background: var(--gold); color: var(--black); padding: 1rem 2.5rem; font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; font-weight: 600; text-decoration: none; display: inline-block; transition: all .3s; position: relative; overflow: hidden; }
+.btn-gold::before { content: ''; position: absolute; inset: 0; background: var(--gold2); transform: translateX(-101%); transition: transform .4s ease; }
+.btn-gold:hover::before { transform: translateX(0); }
+.btn-gold span { position: relative; z-index: 1; }
+.btn-wire { border: 1px solid rgba(244,240,232,.25); color: var(--white); padding: 1rem 2.5rem; font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; text-decoration: none; transition: all .3s; }
+.btn-wire:hover { border-color: var(--gold); color: var(--gold); }
+.scroll-cue { position: absolute; bottom: 2.5rem; left: 3rem; z-index: 2; display: flex; align-items: center; gap: 1rem; font-size: .62rem; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); animation: fadeUp 1s 1.2s both; }
+.scroll-cue-line { width: 60px; height: 1px; background: linear-gradient(to right, var(--gold), transparent); }
+.hero-stats { position: absolute; right: 3rem; bottom: 3rem; z-index: 2; display: flex; flex-direction: column; gap: 1.5rem; animation: fadeUp 1s 1s both; }
+.hstat { text-align: right; }
+.hstat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: var(--gold); line-height: 1; }
+.hstat-label { font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
 
-  /* ---- HERO ---- */
-  #hero{min-height:100svh;display:flex;align-items:center}
-  .hero-h{font-size:clamp(44px,11vw,150px);line-height:.92;font-weight:900;letter-spacing:-.03em;text-transform:uppercase}
-  .hero-h .line{display:block;overflow:hidden}
-  .hero-h .line span{display:block;will-change:transform}
-  .hero-h .doit{color:var(--accent);transition:color .8s}
-  .hero-sub{margin-top:22px;font-size:clamp(16px,2.2vw,22px);color:var(--muted);max-width:620px}
-  .hero-sub b{color:var(--txt)}
-  .hero-cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
-  .scrollcue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:var(--muted);font-size:12px;
-             letter-spacing:.2em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px}
-  .scrollcue .dot{width:22px;height:36px;border:1.5px solid rgba(255,255,255,.3);border-radius:14px;position:relative}
-  .scrollcue .dot::after{content:"";position:absolute;top:7px;left:50%;transform:translateX(-50%);width:4px;height:7px;border-radius:2px;background:var(--accent);animation:cue 1.6s infinite}
-  @keyframes cue{0%{opacity:0;transform:translate(-50%,0)}30%{opacity:1}100%{opacity:0;transform:translate(-50%,14px)}}
+/* MARQUEE */
+.marquee-wrap { background: var(--gold); padding: .8rem 0; overflow: hidden; }
+.marquee-track { display: flex; animation: marquee 25s linear infinite; white-space: nowrap; }
+.marquee-track span { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: .12em; color: var(--black); padding: 0 2.5rem; }
+.marquee-track .sep { color: rgba(0,0,0,.3); }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-  .ticker{margin-top:46px;display:flex;gap:26px;flex-wrap:wrap;color:var(--muted);font-size:14px;font-weight:600}
-  .ticker span{display:inline-flex;align-items:center;gap:8px}
-  .ticker b{color:var(--accent);transition:color .8s}
+/* STORY */
+.story { padding: 8rem 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; position: relative; overflow: hidden; }
+.story::before { content: 'GJ'; position: absolute; right: -2rem; top: 50%; transform: translateY(-50%); font-family: 'Bebas Neue', sans-serif; font-size: 28vw; color: rgba(200,151,62,.03); line-height: 1; pointer-events: none; }
+.story-visual { position: relative; }
+.story-img-wrap { position: relative; width: 100%; padding-bottom: 120%; overflow: hidden; }
+.story-img-wrap img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.7); transition: filter .5s; }
+.story-img-wrap:hover img { filter: saturate(1); }
+.story-img-wrap::before { content: ''; position: absolute; top: -12px; left: -12px; right: 12px; bottom: 12px; border: 1px solid var(--border); z-index: -1; }
+.story-badge-float { position: absolute; bottom: -20px; right: -20px; background: var(--gold); color: var(--black); width: 120px; height: 120px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Bebas Neue', sans-serif; box-shadow: 0 20px 60px rgba(200,151,62,.4); animation: rotate 20s linear infinite; }
+.story-badge-float .big { font-size: 2.2rem; line-height: 1; }
+.story-badge-float .small { font-size: .55rem; letter-spacing: .15em; text-transform: uppercase; line-height: 1.4; }
+@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.story-text .label { font-size: .65rem; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: .7rem; }
+.story-text .label::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+.story-text h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem,4vw,4rem); font-weight: 700; line-height: 1.05; letter-spacing: -.01em; margin-bottom: 1.5rem; }
+.story-text h2 em { font-style: italic; color: var(--gold); }
+.story-text p { font-size: .95rem; line-height: 1.9; color: rgba(244,240,232,.55); margin-bottom: 1.2rem; font-weight: 300; }
+.story-text p strong { color: var(--white); font-weight: 500; }
+.story-pills { display: flex; gap: .7rem; flex-wrap: wrap; margin-top: 2rem; }
+.pill { border: 1px solid var(--border); padding: .5rem 1.1rem; font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); transition: all .3s; }
+.pill:hover { background: var(--gold); color: var(--black); }
 
-  /* ---- big section headings ---- */
-  .big{font-size:clamp(34px,7vw,84px);font-weight:900;letter-spacing:-.02em;line-height:.98}
-  .lead{font-size:clamp(17px,2.2vw,21px);color:var(--muted);max-width:640px;margin-top:20px}
-  .lead b{color:var(--txt)}
+/* SERVICES */
+.services-section { padding: 6rem 3rem; background: var(--near); }
+.section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; }
+.sh-left .label { font-size: .65rem; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); margin-bottom: .8rem; display: flex; align-items: center; gap: .7rem; }
+.sh-left .label::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+.sh-left h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem,6vw,5.5rem); letter-spacing: .02em; line-height: .9; }
+.sh-right { font-size: .85rem; line-height: 1.7; color: var(--muted); max-width: 280px; text-align: right; }
+.svc-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); }
+.svc-card { background: var(--card); padding: 2.5rem 2rem; text-decoration: none; color: var(--white); display: flex; flex-direction: column; position: relative; overflow: hidden; transition: background .4s; }
+.svc-card-shine { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg,rgba(200,151,62,.08),transparent); opacity: 0; transition: opacity .4s; pointer-events: none; }
+.svc-card:hover { background: #1a1a18; }
+.svc-card:hover .svc-card-shine { opacity: 1; }
+.svc-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem; }
+.svc-icon { font-size: 2.2rem; line-height: 1; }
+.svc-num { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: rgba(200,151,62,.07); line-height: 1; transition: color .4s; }
+.svc-card:hover .svc-num { color: rgba(200,151,62,.15); }
+.svc-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: .6rem; line-height: 1.2; }
+.svc-desc { font-size: .78rem; line-height: 1.65; color: rgba(244,240,232,.4); flex: 1; margin-bottom: 1.5rem; font-weight: 300; }
+.svc-arrow { font-size: .65rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: .5rem; transition: gap .3s; }
+.svc-card:hover .svc-arrow { gap: 1rem; }
+.svc-arrow::after { content: '→'; }
+.svc-card.hero-svc { grid-column: span 2; background: linear-gradient(135deg,#1a160d,#0f0e0c); border: 1px solid rgba(200,151,62,.25); flex-direction: row; gap: 2rem; align-items: center; }
+.svc-card.hero-svc .svc-content { flex: 1; }
+.svc-card.hero-svc .svc-name { font-size: 1.8rem; }
+.svc-card.hero-svc .svc-desc { color: rgba(244,240,232,.5); }
+.hero-svc-img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); filter: saturate(.6); transition: filter .4s, transform .4s; flex-shrink: 0; }
+.svc-card.hero-svc:hover .hero-svc-img { filter: saturate(1); transform: scale(1.05); }
+.svc-badge { display: inline-block; background: var(--gold); color: var(--black); font-size: .55rem; letter-spacing: .18em; text-transform: uppercase; font-weight: 700; padding: .25rem .7rem; margin-bottom: .7rem; }
 
-  /* ---- stat counters ---- */
-  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:50px;max-width:720px}
-  .stat{padding:22px;border:1px solid rgba(255,255,255,.1);border-radius:16px;background:rgba(255,255,255,.03)}
-  .stat .n{font-size:clamp(34px,6vw,58px);font-weight:900;color:var(--accent);letter-spacing:-.02em;transition:color .8s}
-  .stat .k{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.12em;margin-top:6px}
+/* PARALLAX SPLIT */
+.parallax-split { height: 60vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.psplit-bg { position: absolute; inset: -20%; background: url('parallax-bg.png') center/cover; filter: saturate(.7); will-change: transform; }
+.psplit-content { position: relative; z-index: 2; text-align: center; }
+.psplit-content h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem,10vw,9rem); letter-spacing: .05em; color: var(--white); line-height: .9; }
+.psplit-content h2 .gold { color: var(--gold); }
+.psplit-content p { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-style: italic; color: rgba(244,240,232,.5); margin-top: 1rem; }
 
-  /* ---- services grid ---- */
-  .svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:48px}
-  .svc{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:150px;padding:20px;
-       border-radius:18px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.035);
-       overflow:hidden;transition:transform .25s, border-color .25s, background .25s}
-  .svc:hover{transform:translateY(-6px);border-color:var(--accent);background:rgba(255,255,255,.06)}
-  .svc .ic{font-size:30px;margin-bottom:auto}
-  .svc h3{font-size:18px;font-weight:800}
-  .svc p{color:var(--muted);font-size:13px;margin-top:4px}
-  .svc .go{position:absolute;top:18px;right:18px;color:var(--accent);opacity:0;transform:translateX(-6px);transition:all .25s;font-weight:800;transition:color .8s}
-  .svc:hover .go{opacity:1;transform:translateX(0)}
-  .svc.signature{grid-column:span 2;border-color:rgba(245,179,1,.4);background:linear-gradient(135deg,rgba(245,179,1,.12),rgba(255,255,255,.03))}
-  @media(max-width:560px){ .svc.signature{grid-column:span 1} }
+/* QUICK LINKS */
+.service-cta-row { display: flex; gap: 1px; background: var(--border); }
+.mag-btn { flex: 1; background: var(--card); padding: 2.5rem 2rem; text-align: center; text-decoration: none; color: var(--white); display: flex; flex-direction: column; align-items: center; gap: .8rem; transition: background .3s, transform .2s; position: relative; overflow: hidden; }
+.mag-btn::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transition: transform .4s; }
+.mag-btn:hover { background: #1c1c1a; }
+.mag-btn:hover::after { transform: scaleX(1); }
+.mag-icon { font-size: 2rem; }
+.mag-label { font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); }
 
-  /* ---- scroll-scrubbed video chapter ---- */
-  #transform{padding:0}
-  .scrub-wrap{position:relative;height:300vh}
-  .scrub-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
-  .scrub-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
-  .scrub-fallback{position:absolute;inset:0;z-index:1;background:
-     linear-gradient(135deg,#0c1622,#10242e 55%,#0a1a14);}
-  .scrub-overlay{position:relative;z-index:3;text-align:center;max-width:760px;padding:0 24px}
-  .scrub-grad{position:absolute;inset:0;z-index:2;background:radial-gradient(80% 80% at 50% 50%,transparent 30%,rgba(7,9,12,.75) 100%)}
-  .scrub-badge{display:inline-block;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);
-               border:1px solid rgba(34,211,197,.4);border-radius:999px;padding:7px 14px;margin-bottom:20px;font-weight:700}
+/* TESTIMONIALS */
+.testimonials { padding: 7rem 3rem; background: var(--near); }
+.review-cta { text-align: center; margin-top: 3.5rem; }
+.review-cta-text { font-size: .95rem; color: var(--muted); margin-bottom: 1.4rem; max-width: 520px; margin-left: auto; margin-right: auto; }
+.t-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); margin-top: 4rem; }
+.t-card { background: var(--card); padding: 2.8rem 2.5rem; position: relative; overflow: hidden; }
+.t-card::before { content: '"'; position: absolute; top: -1rem; right: 1.5rem; font-family: 'Cormorant Garamond', serif; font-size: 10rem; color: rgba(200,151,62,.06); line-height: 1; pointer-events: none; }
+.stars { color: var(--gold); font-size: .85rem; letter-spacing: .08em; margin-bottom: 1.2rem; }
+.t-text { font-size: .92rem; line-height: 1.8; color: rgba(244,240,232,.65); font-style: italic; margin-bottom: 1.8rem; font-weight: 300; }
+.t-person { display: flex; align-items: center; gap: 1rem; }
+.t-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--gold); color: var(--black); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; }
+.t-name { font-size: .9rem; font-weight: 500; }
+.t-service { font-size: .72rem; color: var(--muted); margin-top: .1rem; }
 
-  /* ---- reviews ---- */
-  .rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:48px}
-  .rev{padding:26px;border-radius:18px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.035)}
-  .rev .stars{color:var(--gold);letter-spacing:2px;margin-bottom:12px}
-  .rev p{font-size:15px;color:#dfe4ec}
-  .rev .who{margin-top:16px;display:flex;align-items:center;gap:12px}
-  .rev .av{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:800;color:#15130a;
-           background:linear-gradient(135deg,var(--gold),var(--gold2))}
-  .rev .who b{display:block;font-size:14px}
-  .rev .who span{font-size:12px;color:var(--muted)}
+/* CONTACT */
+.contact { padding: 8rem 3rem; background: var(--black); position: relative; overflow: hidden; }
+.contact::before { content: 'TEXT US'; position: absolute; font-family: 'Bebas Neue', sans-serif; font-size: 25vw; line-height: 1; color: rgba(200,151,62,.025); top: 50%; left: 50%; transform: translate(-50%,-50%); white-space: nowrap; pointer-events: none; }
+.contact-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr; gap: 6rem; align-items: start; max-width: 600px; }
+.contact-left .label { font-size: .65rem; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: .7rem; }
+.contact-left .label::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+.contact-left h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem,7vw,6.5rem); letter-spacing: .02em; line-height: .9; margin-bottom: 2rem; }
+.contact-left h2 .gold { color: var(--gold); }
+.c-details { display: flex; flex-direction: column; gap: 1.2rem; }
+.c-detail { display: flex; align-items: center; gap: 1.2rem; padding: 1.2rem 1.5rem; border: 1px solid var(--border); transition: border-color .3s, background .3s; text-decoration: none; color: var(--white); }
+.c-detail:hover { border-color: var(--gold); background: rgba(200,151,62,.05); }
+.c-detail-icon { font-size: 1.4rem; width: 2rem; text-align: center; }
+.c-detail-label { font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-bottom: .2rem; }
+.c-detail-val { font-size: .95rem; font-weight: 400; }
 
-  /* ---- contact / book ---- */
-  .contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;margin-top:44px}
-  @media(max-width:820px){ .contact-grid{grid-template-columns:1fr} }
-  .cinfo{display:flex;flex-direction:column;gap:18px}
-  .cinfo .row{display:flex;gap:14px;align-items:flex-start}
-  .cinfo .row .ic{font-size:22px}
-  .cinfo .row b{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-  .cinfo .row a,.cinfo .row span{font-size:18px;font-weight:700;color:var(--txt)}
-  .bookcard{padding:30px;border-radius:22px;border:1px solid rgba(255,255,255,.12);
-            background:linear-gradient(160deg,rgba(245,179,1,.14),rgba(255,255,255,.03))}
-  .bookcard h3{font-size:26px;margin-bottom:8px}
-  .bookcard p{color:var(--muted);margin-bottom:22px}
-  .guarantee{margin-top:26px;display:inline-flex;align-items:center;gap:10px;color:var(--muted);font-size:14px}
-  .guarantee b{color:var(--gold)}
 
-  footer{position:relative;z-index:2;padding:48px clamp(18px,5vw,40px);border-top:1px solid rgba(255,255,255,.08);text-align:center;color:var(--muted);font-size:13px}
-  footer .frev{margin-bottom:18px}
+/* FOOTER */
+footer { background: var(--near); border-top: 1px solid var(--border); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+.footer-logo img { height: 44px; object-fit: contain; }
+footer p { font-size: .7rem; color: var(--muted); }
+.footer-links { display: flex; gap: 2rem; }
+.footer-links a { font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .25s; }
+.footer-links a:hover { color: var(--gold); }
 
-  /* ---- sticky mobile call bar (conversion) ---- */
-  .mobar{position:fixed;left:0;right:0;bottom:0;z-index:50;display:none;gap:10px;padding:10px;
-         padding-bottom:calc(10px + env(safe-area-inset-bottom));
-         background:rgba(10,11,15,.92);backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,.1)}
-  .mobar .btn{flex:1;justify-content:center}
-  @media(max-width:760px){ .mobar{display:flex} body{padding-bottom:70px} }
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-  /* reveal anim default state (GSAP overrides) */
-  .reveal{opacity:0;transform:translateY(34px)}
-  .no-anim .reveal{opacity:1;transform:none}
+/* SCROLL REVEAL — starts visible, animates nicely */
+.reveal, .reveal-left, .reveal-right { opacity: 0; transition: opacity .8s ease, transform .8s ease; }
+.reveal { transform: translateY(28px); }
+.reveal-left { transform: translateX(-30px); }
+.reveal-right { transform: translateX(30px); }
+.reveal.on, .reveal-left.on, .reveal-right.on { opacity: 1; transform: translate(0,0); }
 
-  /* ---- reduced motion / no-JS fallback ---- */
-  @media (prefers-reduced-motion: reduce){
-    #bg{display:none} .scrub-wrap{height:auto} .scrub-sticky{position:relative;height:70vh}
-    .reveal{opacity:1;transform:none}
-  }
-  noscript .reveal{opacity:1;transform:none}
+.stagger > * { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
+.stagger > *.on { opacity: 1; transform: translateY(0); }
+
+/* MOBILE */
+@media(max-width:960px) {
+  body { cursor: auto; }
+  #cursor, #cursor-ring { display: none; }
+  nav { padding: 1rem 1.5rem; }
+  nav ul { display: none; }
+  .hero h1 { font-size: clamp(4rem,18vw,7rem); }
+  .hero-content { padding: 0 1.5rem; }
+  .hero-stats { display: none; }
+  .story { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
+  .story::before { display: none; }
+  .services-section { padding: 4rem 1.5rem; }
+  .section-header { flex-direction: column; gap: 1.5rem; }
+  .sh-right { text-align: left; max-width: 100%; }
+  .svc-grid { grid-template-columns: 1fr 1fr; }
+  .svc-card.hero-svc { grid-column: span 2; flex-direction: column; }
+  .service-cta-row { flex-wrap: wrap; }
+  .mag-btn { min-width: calc(33% - 1px); }
+  .t-grid { grid-template-columns: 1fr; }
+  .testimonials, .contact, .story { padding: 4rem 1.5rem; }
+  .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+  footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+  .parallax-split { height: 40vh; }
+}
+@media(max-width:560px) {
+  .svc-grid { grid-template-columns: 1fr; }
+  .svc-card.hero-svc { grid-column: span 1; }
+  .mag-btn { min-width: calc(50% - 1px); }
+  .story-badge-float { width: 90px; height: 90px; }
+  .story-badge-float .big { font-size: 1.6rem; }
+}
+/* MOBILE STICKY CALL BAR */
+#mobile-cta { display: none; }
+@media(max-width:960px) {
+  #mobile-cta { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 600; }
+  #mobile-cta a { flex: 1; text-align: center; padding: .95rem .5rem; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; text-decoration: none; }
+  #mobile-cta .mc-call { background: var(--gold); color: var(--black); }
+  #mobile-cta .mc-quote { background: var(--near); color: var(--white); border-top: 1px solid var(--border); }
+  body { padding-bottom: 3.2rem; }
+}
 </style>
 </head>
 <body>
 
-<canvas id="bg" aria-hidden="true"></canvas>
-<div class="veil" aria-hidden="true"></div>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
 
-<nav id="nav">
-  <a class="brand" href="#hero">GAVIN <b>DOES IT ALL</b></a>
-  <div class="navcta">
-    <a class="navcall" href="tel:9165629915">📞 (916) 562-9915</a>
-    <a class="btn btn-gold" href="tel:9165629915">Call Now</a>
-    <a class="btn btn-ghost" href="#book">Free Quote</a>
-  </div>
+<nav id="main-nav">
+  <div class="nav-logo"><img src="GJ_AGENCY_No_Background.png" alt="Gavin Does It All"></div>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="tel:9165629915" class="nav-phone">📞 (916) 562-9915</a>
 </nav>
 
-<div class="wrap">
-
-  <!-- ============ HERO ============ -->
-  <section id="hero" class="chapter" data-accent="#f5b301">
-    <div class="inner">
-      <div class="eyebrow">Sacramento, CA · Home &amp; Auto</div>
-      <h1 class="hero-h">
-        <span class="line"><span>Gavin</span></span>
-        <span class="line"><span class="doit">Does It All</span></span>
-      </h1>
-      <p class="hero-sub">One trusted local who actually shows up and gets it done right — <b>13 services, 350+ happy clients, 5.0 stars.</b> Detailing, pressure washing, windows, painting, gutters, fencing &amp; more.</p>
-      <div class="hero-cta">
-        <a class="btn btn-gold btn-lg" href="tel:9165629915">📞 Call (916) 562-9915</a>
-        <a class="btn btn-ghost btn-lg" href="#book">Get a Free Quote →</a>
-      </div>
-      <div class="ticker" id="ticker">
-        <span>⭐ <b>5.0</b> Google rating</span>
-        <span>👥 <b>350+</b> happy clients</span>
-        <span>🛠️ <b>13</b> services</span>
-        <span>✅ 100% satisfaction</span>
-      </div>
+<section class="hero" id="home">
+  <div class="hero-bg" id="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-pill">Sacramento, CA</span>
+      <span class="eyebrow-text">Teen-Founded · College-Operated · Locally Owned</span>
     </div>
-    <div class="scrollcue"><div class="dot"></div>Scroll to explore</div>
-  </section>
-
-  <!-- ============ CHAPTER: SIGNATURE / WHAT WE DO ============ -->
-  <section class="chapter" data-accent="#3b82f6">
-    <div class="inner">
-      <div class="eyebrow reveal">Chapter 01 — The Work</div>
-      <h2 class="big reveal">One call.<br>Everything handled.</h2>
-      <p class="lead reveal">Most people juggle five different contractors. You get <b>one person who does it all</b> — and treats your home and car like his own. Here's where it starts.</p>
-      <div class="svc-grid">
-        <a class="svc signature reveal" href="car-detailing.html">
-          <span class="go">→</span><div class="ic">✨</div>
-          <h3>Car Detailing <span style="color:var(--gold);font-size:12px;vertical-align:middle">★ SIGNATURE</span></h3>
-          <p>Showroom-level interior &amp; exterior. The service that built the name.</p>
-        </a>
-        <a class="svc reveal" href="pressure-washing.html"><span class="go">→</span><div class="ic">💦</div><h3>Pressure Washing</h3><p>Driveways, siding, decks — like new.</p></a>
-        <a class="svc reveal" href="window-cleaning.html"><span class="go">→</span><div class="ic">🪟</div><h3>Window Cleaning</h3><p>Streak-free, inside &amp; out.</p></a>
-      </div>
+    <h1>WE DO<br><span class="gold">IT</span> <span class="outline">ALL</span></h1>
+    <p class="hero-sub">From car detailing to fence building — one young, hungry team that shows up, works hard, and gets it done right.</p>
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Run by a Sacramento college student · 13 services · 350+ happy clients
     </div>
-  </section>
-
-  <!-- ============ CHAPTER: SCROLL-SCRUBBED VIDEO (the cinematic centerpiece) ============ -->
-  <section id="transform" data-accent="#22d3c5">
-    <div class="scrub-wrap" id="scrubWrap">
-      <div class="scrub-sticky">
-        <div class="scrub-fallback" aria-hidden="true"></div>
-        <video class="scrub-video" id="scrubVideo" muted playsinline preload="auto" aria-hidden="true"></video>
-        <div class="scrub-grad" aria-hidden="true"></div>
-        <div class="scrub-overlay">
-          <div class="scrub-badge">Watch the transformation</div>
-          <h2 class="big reveal" style="opacity:1;transform:none">Dirty → Done.<br>Every single time.</h2>
-          <p class="lead reveal" style="margin:20px auto 0;opacity:1;transform:none">Scroll and watch it happen. No shortcuts, no “good enough” — just the before-and-after our clients come back for.</p>
-          <a class="btn btn-gold btn-lg" style="margin-top:28px" href="#book">Book your transformation →</a>
-        </div>
-      </div>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-gold"><span>Get a Free Quote</span></a>
+      <a href="#services" class="btn-wire">All Services</a>
     </div>
-  </section>
+  </div>
+  <div class="scroll-cue"><div class="scroll-cue-line"></div>Scroll to explore</div>
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-num" data-count="350">350+</div><div class="hstat-label">Happy Clients</div></div>
+    <div class="hstat"><div class="hstat-num" data-count="13">13</div><div class="hstat-label">Services</div></div>
+    <div class="hstat"><div class="hstat-num" data-count="5.0" data-decimal="1">5.0</div><div class="hstat-label">Star Rating</div></div>
+  </div>
+</section>
 
-  <!-- ============ CHAPTER: ALL SERVICES ============ -->
-  <section class="chapter" data-accent="#ff8a3d">
-    <div class="inner">
-      <div class="eyebrow reveal">Chapter 02 — Everything Else</div>
-      <h2 class="big reveal">If it needs doing,<br>it gets done.</h2>
-      <p class="lead reveal">Thirteen services and counting. Tap any one for details &amp; pricing.</p>
-      <div class="svc-grid" id="svcGrid">
-        <a class="svc reveal" href="home-painting.html"><span class="go">→</span><div class="ic">🎨</div><h3>Home Painting</h3><p>Interior &amp; exterior.</p></a>
-        <a class="svc reveal" href="gutter-cleaning.html"><span class="go">→</span><div class="ic">🍂</div><h3>Gutter Cleaning</h3><p>Clear &amp; flowing.</p></a>
-        <a class="svc reveal" href="fence-building.html"><span class="go">→</span><div class="ic">🔨</div><h3>Fence Building</h3><p>Built to last.</p></a>
-        <a class="svc reveal" href="yard-projects.html"><span class="go">→</span><div class="ic">🌿</div><h3>Yard Projects</h3><p>Cleanups &amp; hauling.</p></a>
-        <a class="svc reveal" href="staining.html"><span class="go">→</span><div class="ic">🪵</div><h3>Staining</h3><p>Decks &amp; fences.</p></a>
-        <a class="svc reveal" href="moss-removal.html"><span class="go">→</span><div class="ic">🌱</div><h3>Moss Removal</h3><p>Roofs &amp; walkways.</p></a>
-        <a class="svc reveal" href="curb-painting.html"><span class="go">→</span><div class="ic">🔢</div><h3>Curb Numbers</h3><p>Sharp &amp; reflective.</p></a>
-        <a class="svc reveal" href="crawlspace.html"><span class="go">→</span><div class="ic">🏚️</div><h3>Crawlspace Barrier</h3><p>Moisture control.</p></a>
-        <a class="svc reveal" href="moving.html"><span class="go">→</span><div class="ic">📦</div><h3>Moving Help</h3><p>Lifting &amp; hauling.</p></a>
-        <a class="svc reveal" href="other.html"><span class="go">→</span><div class="ic">⚙️</div><h3>Something Else?</h3><p>Just ask — we do it all.</p></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ CHAPTER: PROOF (stats + reviews) ============ -->
-  <section class="chapter" data-accent="#8b5cf6">
-    <div class="inner">
-      <div class="eyebrow reveal">Chapter 03 — The Proof</div>
-      <h2 class="big reveal">Sacramento already<br>trusts the work.</h2>
-      <div class="stats">
-        <div class="stat reveal"><div class="n" data-count="350" data-suffix="+">350+</div><div class="k">Happy Clients</div></div>
-        <div class="stat reveal"><div class="n" data-count="13">13</div><div class="k">Services</div></div>
-        <div class="stat reveal"><div class="n" data-count="5" data-dec="1">5.0</div><div class="k">Star Rating</div></div>
-      </div>
-      <div class="rev-grid">
-        <div class="rev reveal">
-          <div class="stars">★★★★★</div>
-          <p>“These guys are great all around — dependable, timely, hard-working and easy to communicate with. Will definitely continue working with them!”</p>
-          <div class="who"><div class="av">M</div><div><b>Megan R.</b><span>Google Review</span></div></div>
-        </div>
-        <div class="rev reveal">
-          <div class="stars">★★★★★</div>
-          <p>“Gavin is AWESOME. I've trusted him countless times for power washing &amp; detailing — he's my go-to for pretty much everything his company does.”</p>
-          <div class="who"><div class="av">S</div><div><b>Scott T.</b><span>Power Washing + Auto Detailing</span></div></div>
-        </div>
-        <div class="rev reveal">
-          <div class="stars">★★★★★</div>
-          <p>“These young gentlemen are gems! Professional, and the pricing is uber-fair — you'll want them back time and again.”</p>
-          <div class="who"><div class="av">G</div><div><b>Gloria L.</b><span>Multiple Home Services</span></div></div>
-        </div>
-      </div>
-      <div style="margin-top:32px">
-        <a class="btn btn-gold btn-lg" href="https://share.google/JhNNfp7xQXRCzS6nK" target="_blank" rel="noopener">⭐ Leave a Google Review</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ CHAPTER: STORY ============ -->
-  <section class="chapter" data-accent="#f5b301">
-    <div class="inner" style="max-width:820px">
-      <div class="eyebrow reveal">Chapter 04 — The Story</div>
-      <h2 class="big reveal">Teen-founded.<br>College-operated.<br>Zero shortcuts.</h2>
-      <p class="lead reveal">Gavin Does It All is run by a Sacramento college student who built a reputation one honest job at a time. We don't have a corporate budget to fall back on — <b>your satisfaction isn't just a policy, it's how we survive and grow.</b> That's why we treat every driveway, window and dashboard like it's our own.</p>
-    </div>
-  </section>
-
-  <!-- ============ CHAPTER: BOOK / CONTACT ============ -->
-  <section id="book" class="chapter" data-accent="#f5b301">
-    <div class="inner">
-      <div class="eyebrow reveal">Get Started</div>
-      <h2 class="big reveal">Let's get it done.</h2>
-      <div class="contact-grid">
-        <div class="cinfo reveal">
-          <div class="row"><div class="ic">📞</div><div><b>Call / Text</b><a href="tel:9165629915">(916) 562-9915</a></div></div>
-          <div class="row"><div class="ic">✉️</div><div><b>Email</b><a href="mailto:gavinbarnett2323@gmail.com">gavinbarnett2323@gmail.com</a></div></div>
-          <div class="row"><div class="ic">📍</div><div><b>Service Area</b><span>Sacramento, CA &amp; surrounding areas</span></div></div>
-          <div class="row"><div class="ic">🕐</div><div><b>Hours</b><span>Sat–Sun 6am–10pm · Select weekdays</span></div></div>
-          <div class="guarantee">✅ <b>100% satisfaction guarantee</b> — we make it right.</div>
-        </div>
-        <div class="bookcard reveal">
-          <h3>Free, no-pressure quote</h3>
-          <p>Tell us the job — we'll text you a fair price, usually same day.</p>
-          <a class="btn btn-gold btn-lg" style="width:100%;justify-content:center;margin-bottom:12px" href="tel:9165629915">📞 Call (916) 562-9915</a>
-          <a class="btn btn-ghost btn-lg" style="width:100%;justify-content:center" href="mailto:gavinbarnett2323@gmail.com?subject=Free%20Quote%20Request&body=Hi%20Gavin%2C%20I%27d%20like%20a%20quote%20for%3A%20">✉️ Email for a quote</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="frev"><a class="btn btn-ghost" href="https://share.google/JhNNfp7xQXRCzS6nK" target="_blank" rel="noopener">★ Leave a Review</a></div>
-    © 2026 Gavin Does It All · Sacramento, CA · Teen-Founded, College-Operated · <a href="tel:9165629915" style="color:var(--gold)">(916) 562-9915</a>
-  </footer>
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Car Detailing</span><span class="sep">✦</span><span>Pressure Washing</span><span class="sep">✦</span><span>Window Cleaning</span><span class="sep">✦</span><span>Fence Building</span><span class="sep">✦</span><span>Home Painting</span><span class="sep">✦</span><span>Gutter Cleaning</span><span class="sep">✦</span><span>Moss Removal</span><span class="sep">✦</span><span>Yard Projects</span><span class="sep">✦</span><span>Moving Help</span><span class="sep">✦</span><span>Staining</span><span class="sep">✦</span><span>Crawlspace Barrier</span><span class="sep">✦</span><span>Curb Numbers</span><span class="sep">✦</span><span>We Do It All</span><span class="sep">✦</span>
+    <span>Car Detailing</span><span class="sep">✦</span><span>Pressure Washing</span><span class="sep">✦</span><span>Window Cleaning</span><span class="sep">✦</span><span>Fence Building</span><span class="sep">✦</span><span>Home Painting</span><span class="sep">✦</span><span>Gutter Cleaning</span><span class="sep">✦</span><span>Moss Removal</span><span class="sep">✦</span><span>Yard Projects</span><span class="sep">✦</span><span>Moving Help</span><span class="sep">✦</span><span>Staining</span><span class="sep">✦</span><span>Crawlspace Barrier</span><span class="sep">✦</span><span>Curb Numbers</span><span class="sep">✦</span><span>We Do It All</span><span class="sep">✦</span>
+  </div>
 </div>
 
-<!-- sticky mobile conversion bar -->
-<div class="mobar">
-  <a class="btn btn-gold" href="tel:9165629915">📞 Tap to Call</a>
-  <a class="btn btn-ghost" href="#book">Free Quote →</a>
+<section class="story" id="story">
+  <div class="story-visual reveal-left">
+    <div class="story-img-wrap">
+      <img src="gavin-story.png" alt="Gavin - Gavin Does It All founder">
+    </div>
+    <div class="story-badge-float">
+      <div class="big">100%</div>
+      <div class="small">Satisfaction<br>Guaranteed</div>
+    </div>
+  </div>
+  <div class="story-text reveal-right">
+    <div class="label">Our Story</div>
+    <h2>Built by a Kid<br>Who Wanted to <em>Earn It.</em></h2>
+    <p>Gavin Does It All was started by <strong>Gavin</strong>, a Sacramento-area college student who decided that instead of waiting for opportunity, he'd build it himself. What started as a car detailing side hustle turned into a full-service home and auto company.</p>
+    <p>When you hire Gavin Does It All, you're not calling a faceless corporation. You're calling <strong>a driven young entrepreneur</strong> who personally shows up, personally does the work, and personally guarantees you'll love it.</p>
+    <p>We're building our reputation one job at a time — and that means <strong>we can't afford to cut corners.</strong> Your satisfaction isn't just a policy. It's how we survive and grow.</p>
+    <div class="story-pills">
+      <span class="pill">College Student Owned</span>
+      <span class="pill">Teen Founded</span>
+      <span class="pill">Sacramento Local</span>
+      <span class="pill">Personally Operated</span>
+      <span class="pill">0 Shortcuts Taken</span>
+    </div>
+  </div>
+</section>
+
+<section class="services-section" id="services">
+  <div class="section-header reveal">
+    <div class="sh-left">
+      <div class="label">Everything We Do</div>
+      <h2>OUR<br>SERVICES</h2>
+    </div>
+    <p class="sh-right">13 services. One team. Every job done with the same care we'd want for our own home.</p>
+  </div>
+  <div class="svc-grid stagger">
+    <a href="car-detailing.html" class="svc-card hero-svc">
+      <img src="WebsiteGJ.png" alt="Car Detail" class="hero-svc-img">
+      <div class="svc-content">
+        <div class="svc-badge">⭐ Signature</div>
+        <div class="svc-name">Car Detailing</div>
+        <p class="svc-desc">Wash to full ceramic coating. Your car restored by someone who genuinely cares.</p>
+        <div class="svc-arrow">View Packages</div>
+      </div>
+    </a>
+    <a href="pressure-washing.html" class="svc-card"><div class="svc-card-shine"></div><div class="svc-card-top"><div class="svc-icon">💧</div><div class="svc-num">02</div></div><div class="svc-name">Pressure Washing</div><p class="svc-desc">Driveways, patios, siding, fences. High-powered results.</p><div class="svc-arrow">Learn More</div></a>
+    <a href="window-cleaning.html" class="svc-card"><div class="svc-card-shine"></div><div class="svc-card-top"><div class="svc-icon">🪟</div><div class="svc-num">03</div></div><div class="svc-name">Window Cleaning</div><p class="svc-desc">Streak-free interior and exterior glass for homes and businesses.</p><div class="svc-arrow">Learn More</div></a>
+    <a href="home-painting.html" class="svc-card"><div class="svc-card-shine"></div><div class="svc-card-top"><div class="svc-icon">🎨</div><div class="svc-num">04</div></div><div class="svc-name">Home Painting</div><p class="svc-desc">Interior and exterior — clean prep, quality paint, lasting finish.</p><div class="svc-arrow">Learn More</div></a>
+    <a href="curb-painting.html" class="svc-card"><div class="svc-card-shine"></div><div class="svc-card-top"><div class="svc-icon">🏠</div><div class="svc-num">05</div></div><div class="svc-name">Curb & Street Numbers</div><p class="svc-desc">Bold address numbers that look sharp and help people find you.</p><div class="svc-arrow">Learn More</div></a>
+    <a href="gutter-cleaning.html" class="svc-card"><div class="svc-card-shine"></div><div class="svc-card-top"><div class="svc-icon">🍂</div><div class="svc-num">06</div></div><div class="svc-name">Gutter Cleaning</div><p class="svc-desc">Full clear-out of gutters and downspouts to protect your home.</p><div class="svc-arrow">Learn More</div></a>
+    <a href="staining.html" class="svc-card"><div class="svc-card-shine"></div><div class="svc-card-top"><div class="svc-icon">🪵</div><div class="svc-num">07</div></div><div class="svc-name">Staining</div><p class="svc-desc">Deck, fence, and wood staining that protects and beautifies.</p><div class="svc-arrow">Learn More</div></a>
+    <a href="yard-projects.html" class="svc-card"><div class="svc-card-shine"></div><div class="svc-card-top"><div class="svc-icon">🌿</div><div class="svc-num">08</div></div><div class="svc-name">Yard Projects</div><p class="svc-desc">Mowing, cleanup, hauling, landscaping — your yard, sorted.</p><div class="svc-arrow">Learn More</div></a>
+    <a href="moving.html" class="svc-card"><div class="svc-card-shine"></div><div class="svc-card-top"><div class="svc-icon">📦</div><div class="svc-num">09</div></div><div class="svc-name">Moving</div><p class="svc-desc">Local moving help — loading, unloading, hauling. No hassle.</p><div class="svc-arrow">Learn More</div></a>
+    <a href="moss-removal.html" class="svc-card"><div class="svc-card-shine"></div><div class="svc-card-top"><div class="svc-icon">🌱</div><div class="svc-num">10</div></div><div class="svc-name">Moss Removal</div><p class="svc-desc">Safe removal from roofs, driveways and walkways. Stops regrowth.</p><div class="svc-arrow">Learn More</div></a>
+    <a href="crawlspace.html" class="svc-card"><div class="svc-card-shine"></div><div class="svc-card-top"><div class="svc-icon">🏗️</div><div class="svc-num">11</div></div><div class="svc-name">Crawlspace Barrier</div><p class="svc-desc">Vapor barrier installation to protect your foundation.</p><div class="svc-arrow">Learn More</div></a>
+    <a href="fence-building.html" class="svc-card"><div class="svc-card-shine"></div><div class="svc-card-top"><div class="svc-icon">🔨</div><div class="svc-num">12</div></div><div class="svc-name">Fence Building</div><p class="svc-desc">Wood, vinyl, chain link — built solid, built to last.</p><div class="svc-arrow">Learn More</div></a>
+    <a href="other.html" class="svc-card"><div class="svc-card-shine"></div><div class="svc-card-top"><div class="svc-icon">⚙️</div><div class="svc-num">13</div></div><div class="svc-name">Other Jobs</div><p class="svc-desc">Don't see your job? Just ask — we probably do it.</p><div class="svc-arrow">Ask Us</div></a>
+  </div>
+</section>
+
+<div class="parallax-split">
+  <div class="psplit-bg" id="psplit-bg"></div>
+  <div class="psplit-content reveal">
+    <h2>ONE CALL.<br><span class="gold">DONE RIGHT.</span></h2>
+    <p>Stop juggling five different contractors.</p>
+  </div>
 </div>
 
-<noscript><style>#bg{display:none}.reveal{opacity:1;transform:none}.scrub-wrap{height:auto}.scrub-sticky{position:relative;height:60vh}</style></noscript>
+<div class="service-cta-row">
+  <a href="car-detailing.html" class="mag-btn"><span class="mag-icon">🚗</span><span class="mag-label">Detailing</span></a>
+  <a href="pressure-washing.html" class="mag-btn"><span class="mag-icon">💧</span><span class="mag-label">Pressure Wash</span></a>
+  <a href="window-cleaning.html" class="mag-btn"><span class="mag-icon">🪟</span><span class="mag-label">Windows</span></a>
+  <a href="home-painting.html" class="mag-btn"><span class="mag-icon">🎨</span><span class="mag-label">Painting</span></a>
+  <a href="gutter-cleaning.html" class="mag-btn"><span class="mag-icon">🍂</span><span class="mag-label">Gutters</span></a>
+  <a href="fence-building.html" class="mag-btn"><span class="mag-icon">🔨</span><span class="mag-label">Fencing</span></a>
+  <a href="yard-projects.html" class="mag-btn"><span class="mag-icon">🌿</span><span class="mag-label">Yard</span></a>
+  <a href="other.html" class="mag-btn"><span class="mag-icon">⚙️</span><span class="mag-label">More →</span></a>
+</div>
+
+<section class="testimonials">
+  <div class="section-header reveal">
+    <div class="sh-left">
+      <div class="label">Real Reviews</div>
+      <h2>CLIENTS<br>LOVE US</h2>
+    </div>
+  </div>
+  <div class="t-grid stagger">
+    <div class="t-card">
+      <div class="stars">★★★★★</div>
+      <p class="t-text">"These guys are great all around — dependable, timely, hard workers, and easy to communicate with. Will definitely continue working with them!"</p>
+      <div class="t-person"><div class="t-avatar">MR</div><div><div class="t-name">Megan R.</div><div class="t-service">Google Review</div></div></div>
+    </div>
+    <div class="t-card">
+      <div class="stars">★★★★★</div>
+      <p class="t-text">"Gavin is AWESOME. I've trusted him countless times for power washing and auto detailing. Nothing but professional and courteous, and his work is flawless. He's my go-to for pretty much everything his company does."</p>
+      <div class="t-person"><div class="t-avatar">ST</div><div><div class="t-name">Scott T.</div><div class="t-service">Power Washing + Auto Detailing</div></div></div>
+    </div>
+    <div class="t-card">
+      <div class="stars">★★★★★</div>
+      <p class="t-text">"These young gentlemen are gems! Professional, dedicated, and I TRUST them for any job around the home. They show up early, do the job to perfection, and leave my space cleaner than when they arrived. Their pricing is uber-fair — you'll want them back time and again."</p>
+      <div class="t-person"><div class="t-avatar">GL</div><div><div class="t-name">Gloria L.</div><div class="t-service">Multiple Home Services</div></div></div>
+    </div>
+  </div>
+  <div class="review-cta reveal">
+    <p class="review-cta-text">Worked with us? A quick Google review means the world to a young, growing business.</p>
+    <a href="https://share.google/JhNNfp7xQXRCzS6nK" target="_blank" rel="noopener" class="btn-gold"><span>⭐ Leave a Google Review</span></a>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left reveal-left">
+      <div class="label">Get In Touch</div>
+      <h2>LET'S GET<br>YOUR JOB<br><span class="gold">DONE.</span></h2>
+      <div class="c-details">
+        <a href="tel:9165629915" class="c-detail"><span class="c-detail-icon">📞</span><div><div class="c-detail-label">Text or Leave Voicemail</div><div class="c-detail-val">(916) 562-9915</div></div></a>
+        <a href="mailto:gavinbarnett2323@gmail.com" class="c-detail"><span class="c-detail-icon">✉️</span><div><div class="c-detail-label">Email</div><div class="c-detail-val">gavinbarnett2323@gmail.com</div></div></a>
+        <div class="c-detail"><span class="c-detail-icon">📍</span><div><div class="c-detail-label">Service Area</div><div class="c-detail-val">Sacramento, CA & Surrounding Areas</div></div></div>
+        <div class="c-detail"><span class="c-detail-icon">🕐</span><div><div class="c-detail-label">Hours</div><div class="c-detail-val">Sat–Sun 6am–10pm · Select Days Mon–Fri</div></div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo"><img src="GJ_AGENCY_No_Background.png" alt="Gavin Does It All"></div>
+  <p>© 2026 Gavin Does It All · Sacramento, CA · Teen-Founded, College-Operated</p>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#story">About</a>
+    <a href="https://share.google/JhNNfp7xQXRCzS6nK" target="_blank" rel="noopener">★ Leave a Review</a>
+    <a href="tel:9165629915">(916) 562-9915</a>
+    <a href="#contact">Book</a>
+  </div>
+</footer>
 
 <script>
-/* ===========================================================
-   Gavin Does It All — cinematic engine
-   Lenis (smooth) + GSAP ScrollTrigger (reveals/colors/scrub) + Three.js (reactive bg)
-   Conversion-first + graceful mobile / reduced-motion fallback.
-   =========================================================== */
-(function(){
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const isMobile = matchMedia('(max-width:760px)').matches;
-  const boot = () => {
-    const hasGSAP = window.gsap && window.ScrollTrigger;
-    if (hasGSAP) gsap.registerPlugin(ScrollTrigger);
-
-    /* ---------- Lenis smooth scroll (skip on reduced-motion) ---------- */
-    let lenis=null;
-    if (window.Lenis && !reduce){
-      lenis = new Lenis({ duration:1.15, smoothWheel:true, smoothTouch:false,
-                          easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)) });
-      function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
-      requestAnimationFrame(raf);
-      if (hasGSAP){ lenis.on('scroll', ScrollTrigger.update);
-        gsap.ticker.add(t=>lenis.raf(t*1000)); gsap.ticker.lagSmoothing(0); }
-    }
-
-    /* ---------- nav solidify ---------- */
-    const nav=document.getElementById('nav');
-    const onScroll=()=>{ nav.classList.toggle('solid', window.scrollY>40); };
-    window.addEventListener('scroll',onScroll); onScroll();
-
-    /* ---------- accent color per chapter (the "fluid color transitions") ---------- */
-    const root=document.documentElement;
-    let tint={r:0.96,g:0.70,b:0.00}; // matches --gold, fed to three.js
-    function hexToRgb(h){const n=parseInt(h.slice(1),16);return {r:((n>>16)&255)/255,g:((n>>8)&255)/255,b:(n&255)/255};}
-    if (hasGSAP){
-      document.querySelectorAll('section[data-accent]').forEach(sec=>{
-        const col=sec.dataset.accent;
-        ScrollTrigger.create({ trigger:sec, start:'top 60%', end:'bottom 40%',
-          onToggle:self=>{ if(self.isActive){
-            gsap.to(root,{duration:.8,'--accent':col,ease:'power2.out'});
-            const c=hexToRgb(col); gsap.to(tint,{duration:1.0,r:c.r,g:c.g,b:c.b,ease:'power2.out'});
-          }}});
-      });
-      // GSAP can't always tween CSS vars across browsers; set instantly as a fallback
-      document.querySelectorAll('section[data-accent]').forEach(sec=>{
-        ScrollTrigger.create({trigger:sec,start:'top 55%',end:'bottom 45%',
-          onToggle:self=>{ if(self.isActive) root.style.setProperty('--accent',sec.dataset.accent); }});
-      });
-    }
-
-    /* ---------- hero headline reveal ---------- */
-    if (hasGSAP && !reduce){
-      gsap.from('.hero-h .line span',{yPercent:115,duration:1.1,stagger:.12,ease:'power4.out',delay:.15});
-      gsap.from('.hero-sub,.hero-cta,.ticker',{y:24,opacity:0,duration:.9,stagger:.12,ease:'power3.out',delay:.5});
-    }
-
-    /* ---------- generic reveal-on-scroll ---------- */
-    if (hasGSAP && !reduce){
-      gsap.utils.toArray('.reveal').forEach(el=>{
-        gsap.to(el,{opacity:1,y:0,duration:.9,ease:'power3.out',
-          scrollTrigger:{trigger:el,start:'top 85%'}});
-      });
-    } else { document.body.classList.add('no-anim'); }
-
-    /* ---------- count-up stats ---------- */
-    document.querySelectorAll('.stat .n').forEach(el=>{
-      const target=parseFloat(el.dataset.count), dec=+(el.dataset.dec||0), suf=el.dataset.suffix||'';
-      const run=()=>{ const o={v:0}; if(hasGSAP){ gsap.to(o,{v:target,duration:1.6,ease:'power2.out',
-            onUpdate:()=>{el.textContent=o.v.toFixed(dec)+suf;}}); }
-          else el.textContent=target.toFixed(dec)+suf; };
-      if(hasGSAP){ ScrollTrigger.create({trigger:el,start:'top 88%',once:true,onEnter:run}); }
-      else run();
-    });
-
-    /* ---------- SCROLL-SCRUBBED VIDEO ("video plays as you scroll") ---------- */
-    // Drop your own clip in: set PLACEHOLDER to your mp4 (or a /assets/transform.mp4 in the repo).
-    // Free commercial-use stock: pexels.com/videos, coverr.co, mixkit.co, pixabay.com/videos.
-    const PLACEHOLDER = "transform.mp4"; // Gavin's real footage (foam cannon detail, 2026) — swapped 2026-07-02
-    const v=document.getElementById('scrubVideo');
-    const wrap=document.getElementById('scrubWrap');
-    let videoReady=false;
-    if(v && !reduce){
-      v.src=PLACEHOLDER;
-      v.addEventListener('loadedmetadata',()=>{ videoReady=true; v.pause();
-        if(hasGSAP){
-          let dur=v.duration||1;
-          ScrollTrigger.create({trigger:wrap,start:'top top',end:'bottom bottom',scrub:true,
-            onUpdate:self=>{ if(videoReady && isFinite(dur)) v.currentTime = Math.min(dur-0.05, dur*self.progress); }});
-        }
-      });
-      v.addEventListener('error',()=>{ v.style.display='none'; }); // fallback gradient shows
-    } else if (v){ v.style.display='none'; }
-
-    /* ---------- THREE.JS cursor-reactive painted-texture background ---------- */
-    // Skipped on mobile + reduced-motion for speed/battery; the page is fully styled without it.
-    const canvas=document.getElementById('bg');
-    if(canvas && window.THREE && !reduce && !isMobile){
-      const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
-      renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));
-      const scene=new THREE.Scene();
-      const cam=new THREE.OrthographicCamera(-1,1,1,-1,0,1);
-      const uniforms={
-        uTime:{value:0}, uRes:{value:new THREE.Vector2(innerWidth,innerHeight)},
-        uMouse:{value:new THREE.Vector2(.5,.5)}, uTint:{value:new THREE.Color(0.96,0.70,0.0)}
-      };
-      const mat=new THREE.ShaderMaterial({uniforms,
-        vertexShader:`void main(){gl_Position=vec4(position,1.0);}`,
-        fragmentShader:`
-          precision highp float;
-          uniform float uTime; uniform vec2 uRes; uniform vec2 uMouse; uniform vec3 uTint;
-          // flowing value-noise "painted" field
-          vec2 hash(vec2 p){p=vec2(dot(p,vec2(127.1,311.7)),dot(p,vec2(269.5,183.3)));return -1.+2.*fract(sin(p)*43758.5453);}
-          float noise(vec2 p){vec2 i=floor(p),f=fract(p);vec2 u=f*f*(3.-2.*f);
-            return mix(mix(dot(hash(i+vec2(0,0)),f-vec2(0,0)),dot(hash(i+vec2(1,0)),f-vec2(1,0)),u.x),
-                       mix(dot(hash(i+vec2(0,1)),f-vec2(0,1)),dot(hash(i+vec2(1,1)),f-vec2(1,1)),u.x),u.y);}
-          float fbm(vec2 p){float s=0.,a=.5;for(int i=0;i<5;i++){s+=a*noise(p);p*=2.02;a*=.5;}return s;}
-          void main(){
-            vec2 uv=gl_FragCoord.xy/uRes.xy; vec2 p=uv; p.x*=uRes.x/uRes.y;
-            float t=uTime*.05;
-            vec2 q=vec2(fbm(p+t),fbm(p+vec2(5.2,1.3)-t));
-            float n=fbm(p+1.8*q+t*.5);
-            // cursor "brush": warps + glows toward mouse
-            vec2 m=uMouse; m.x*=uRes.x/uRes.y;
-            float d=distance(p,m);
-            float glow=smoothstep(.6,.0,d);
-            n+=glow*.35;
-            vec3 base=mix(vec3(0.035,0.04,0.06), vec3(0.07,0.08,0.11), smoothstep(0.,1.,n));
-            vec3 col=mix(base, uTint, pow(max(n,0.),2.2)*.5 + glow*.45);
-            col=mix(col, uTint*1.2, glow*.25);
-            // vignette
-            col*=smoothstep(1.25,.2,length(uv-.5));
-            gl_FragColor=vec4(col,1.0);
-          }`});
-      scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2,2),mat));
-      const resize=()=>{renderer.setSize(innerWidth,innerHeight);uniforms.uRes.value.set(innerWidth,innerHeight);};
-      resize(); addEventListener('resize',resize);
-      const tmouse={x:.5,y:.5};
-      addEventListener('pointermove',e=>{ tmouse.x=e.clientX/innerWidth; tmouse.y=1-e.clientY/innerHeight; },{passive:true});
-      let raf2; const clock=new THREE.Clock();
-      const loop=()=>{ uniforms.uTime.value=clock.getElapsedTime();
-        uniforms.uMouse.value.x+=(tmouse.x-uniforms.uMouse.value.x)*.06;
-        uniforms.uMouse.value.y+=(tmouse.y-uniforms.uMouse.value.y)*.06;
-        uniforms.uTint.value.setRGB(tint.r,tint.g,tint.b);
-        renderer.render(scene,cam); raf2=requestAnimationFrame(loop); };
-      loop();
-      // pause when tab hidden (battery)
-      document.addEventListener('visibilitychange',()=>{ if(document.hidden){cancelAnimationFrame(raf2);} else loop(); });
-    } else if (canvas){ canvas.style.display='none'; }
-
-    if(hasGSAP){ ScrollTrigger.refresh(); }
-  };
-  if(document.readyState==='complete') boot();
-  else window.addEventListener('load', boot);
+// CURSOR
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0, my=0, rx=0, ry=0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx+'px'; cursor.style.top = my+'px';
+});
+(function animRing(){
+  rx += (mx-rx)*0.12; ry += (my-ry)*0.12;
+  ring.style.left = rx+'px'; ring.style.top = ry+'px';
+  requestAnimationFrame(animRing);
 })();
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => { cursor.style.width='6px'; cursor.style.height='6px'; ring.style.width='60px'; ring.style.height='60px'; ring.style.borderColor='var(--gold)'; });
+  el.addEventListener('mouseleave', () => { cursor.style.width='12px'; cursor.style.height='12px'; ring.style.width='40px'; ring.style.height='40px'; ring.style.borderColor='rgba(200,151,62,.6)'; });
+});
+
+// HERO PARALLAX
+const heroBg = document.getElementById('hero-bg');
+document.addEventListener('mousemove', e => {
+  const dx = (e.clientX/window.innerWidth - 0.5) * 20;
+  const dy = (e.clientY/window.innerHeight - 0.5) * 12;
+  heroBg.style.transform = `translate(${dx}px,${dy}px) scale(1.08)`;
+});
+
+// NAV + PARALLAX SCROLL
+const psplit = document.getElementById('psplit-bg');
+window.addEventListener('scroll', () => {
+  const sy = window.scrollY;
+  document.getElementById('main-nav').classList.toggle('scrolled', sy > 60);
+  if(psplit){ const rect = psplit.parentElement.getBoundingClientRect(); psplit.style.transform = `translateY(${rect.top*0.3}px)`; }
+  checkReveal();
+});
+
+// REVEAL — uses class "on" to avoid conflicts
+function checkReveal() {
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+    if(el.getBoundingClientRect().top < window.innerHeight * 0.92) el.classList.add('on');
+  });
+  document.querySelectorAll('.stagger').forEach(el => {
+    if(el.getBoundingClientRect().top < window.innerHeight * 0.92) {
+      el.querySelectorAll(':scope > *').forEach((child, i) => {
+        setTimeout(() => child.classList.add('on'), i * 70);
+      });
+    }
+  });
+}
+// Run on load immediately
+window.addEventListener('load', checkReveal);
+checkReveal();
+
+// COUNT UP
+function countUp(el) {
+  const target = parseFloat(el.dataset.count);
+  const dec = parseInt(el.dataset.decimal||0);
+  const dur = 1800; const start = performance.now();
+  (function step(now){
+    const p = Math.min((now-start)/dur, 1);
+    const ease = 1 - Math.pow(1-p, 3);
+    const val = target * ease;
+    el.textContent = dec > 0 ? val.toFixed(dec) : Math.floor(val) + (target >= 100 ? '+' : '');
+    if(p < 1) requestAnimationFrame(step);
+  })(start);
+}
+const cio = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting){ countUp(e.target); cio.unobserve(e.target); }}), {threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+
+// MAGNETIC BUTTONS
+document.querySelectorAll('.mag-btn').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const r = btn.getBoundingClientRect();
+    btn.style.transform = `translate(${(e.clientX-r.left-r.width/2)*0.25}px,${(e.clientY-r.top-r.height/2)*0.25}px)`;
+  });
+  btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+});
+
+// CARD TILT
+document.querySelectorAll('.svc-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX-r.left)/r.width - 0.5;
+    const y = (e.clientY-r.top)/r.height - 0.5;
+    card.style.transform = `perspective(600px) rotateY(${x*6}deg) rotateX(${-y*6}deg) translateZ(4px)`;
+  });
+  card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+});
+
+// STORY PARALLAX
+const sImg = document.querySelector('.story-img-wrap img');
+if(sImg){ window.addEventListener('scroll', () => { const r = sImg.getBoundingClientRect(); sImg.style.transform = `translateY(${(r.top+r.height/2-window.innerHeight/2)*0.08}px)`; }); }
+
+
 </script>
+<div id="mobile-cta">
+  <a href="tel:9165629915" class="mc-call">📞 Tap to Call</a>
+  <a href="#contact" class="mc-quote">Free Quote →</a>
+</div>
 </body>
 </html>
