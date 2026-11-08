@@ -108,6 +108,9 @@ nav ul a:hover::after { transform: scaleX(1); }
 .story-text h2 em { font-style: italic; color: var(--gold); }
 .story-text p { font-size: .95rem; line-height: 1.9; color: rgba(244,240,232,.55); margin-bottom: 1.2rem; font-weight: 300; }
 .story-text p strong { color: var(--white); font-weight: 500; }
+.story-solo { grid-template-columns: 1fr; padding: 5rem 3rem; }
+.story-solo .story-text { max-width: 760px; margin: 0 auto; text-align: center; }
+.story-solo .story-text p { font-size: 1.15rem; margin-bottom: 0; }
 .story-pills { display: flex; gap: .7rem; flex-wrap: wrap; margin-top: 2rem; }
 .pill { border: 1px solid var(--border); padding: .5rem 1.1rem; font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); transition: all .3s; }
 .pill:hover { background: var(--gold); color: var(--black); }
@@ -281,7 +284,7 @@ footer p { font-size: .7rem; color: var(--muted); }
   <ul>
     <li><a href="#services">Services</a></li>
     <li><a href="car-detailing.html#plan">Plans</a></li>
-    <li><a href="#story">Our Story</a></li>
+    
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="tel:9165629915" class="nav-phone">📞 (916) 562-9915</a>
@@ -320,30 +323,9 @@ footer p { font-size: .7rem; color: var(--muted); }
   </div>
 </div>
 
-<section class="story" id="story">
-  <div class="story-visual reveal-left">
-    <div class="story-img-wrap">
-      <img src="gavin-story.png" alt="Gavin - Gavin Does It All founder">
-    </div>
-    <div class="story-badge-float">
-      <div class="big">100%</div>
-      <div class="small">Satisfaction<br>Guaranteed</div>
-    </div>
-  </div>
+<section class="story story-solo" id="story">
   <div class="story-text reveal-right">
-    <div class="label">Our Story</div>
-    <h2>Built by a Kid<br>Who Wanted to <em>Earn It.</em></h2>
-    <p>Gavin Does It All was started by <strong>Gavin</strong>, a Sacramento-area college student who decided that instead of waiting for opportunity, he'd build it himself. What started as a car detailing side hustle turned into a full-service home and auto company.</p>
-    <p>When you hire Gavin Does It All, you're not calling a faceless corporation. You're calling <strong>a driven young entrepreneur</strong> who personally shows up, personally does the work, and personally guarantees you'll love it.</p>
-    <p>We're building our reputation one job at a time — and that means <strong>we can't afford to cut corners.</strong> Your satisfaction isn't just a policy. It's how we survive and grow.</p>
-    <div class="story-pills">
-      <span class="pill">College Student Owned</span>
-      <span class="pill">Teen Founded</span>
-      <span class="pill">Sacramento Local</span>
-      <span class="pill">Personally Operated</span>
-      <span class="pill">0 Shortcuts Taken</span>
-      <span class="pill">🏆 2023 &amp; 2024 Nextdoor Neighborhood Fave</span>
-    </div>
+    <p>We're building our reputation one job at a time, and that means <strong>we can't afford to cut corners.</strong> Your satisfaction isn't just a policy. It's how we survive and grow.</p>
   </div>
 </section>
 
