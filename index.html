@@ -179,6 +179,13 @@ nav ul a:hover::after { transform: scaleX(1); }
 .contact { padding: 8rem 3rem; background: var(--black); position: relative; overflow: hidden; }
 .contact::before { content: 'TEXT US'; position: absolute; font-family: 'Bebas Neue', sans-serif; font-size: 25vw; line-height: 1; color: rgba(200,151,62,.025); top: 50%; left: 50%; transform: translate(-50%,-50%); white-space: nowrap; pointer-events: none; }
 .contact-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr; gap: 6rem; align-items: start; max-width: 600px; }
+.quote-form { display: flex; flex-direction: column; gap: 1rem; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 2rem; max-width: 460px; }
+.quote-form .qf-label { font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: .35rem; display: block; }
+.quote-form input, .quote-form select, .quote-form textarea { width: 100%; background: var(--near); border: 1px solid var(--border); border-radius: 6px; color: var(--white); padding: .7rem .8rem; font-family: inherit; font-size: .92rem; }
+.quote-form input:focus, .quote-form select:focus, .quote-form textarea:focus { outline: none; border-color: var(--gold); }
+.quote-form textarea { resize: vertical; min-height: 80px; }
+.quote-form .qf-hint { font-size: .72rem; color: var(--muted); margin-top: -.3rem; }
+.quote-form button { margin-top: .4rem; }
 .contact-left .label { font-size: .65rem; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: .7rem; }
 .contact-left .label::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
 .contact-left h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem,7vw,6.5rem); letter-spacing: .02em; line-height: .9; margin-bottom: 2rem; }
@@ -233,6 +240,7 @@ footer p { font-size: .7rem; color: var(--muted); }
   .t-grid { grid-template-columns: 1fr; }
   .testimonials, .contact, .story { padding: 4rem 1.5rem; }
   .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .quote-form { padding: 1.4rem; max-width: 100%; }
   footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
   .parallax-split { height: 40vh; }
 }
@@ -438,6 +446,53 @@ footer p { font-size: .7rem; color: var(--muted); }
       </div>
     </div>
 
+    <div class="contact-right reveal-right">
+      <form class="quote-form" id="quote-form">
+        <div>
+          <label class="qf-label" for="qf-name">Name</label>
+          <input type="text" id="qf-name" name="name" required>
+        </div>
+        <div>
+          <label class="qf-label" for="qf-phone">Phone</label>
+          <input type="tel" id="qf-phone" name="phone" required>
+        </div>
+        <div>
+          <label class="qf-label" for="qf-service">Service</label>
+          <select id="qf-service" name="service" required>
+            <option value="" disabled selected>Choose a service</option>
+            <option>Property Care Plans</option>
+            <option>Car Detailing</option>
+            <option>Pressure Washing</option>
+            <option>Window Cleaning</option>
+            <option>Home Painting</option>
+            <option>Curb/Street Numbers</option>
+            <option>Gutter Cleaning</option>
+            <option>Fence Building</option>
+            <option>Staining</option>
+            <option>Yard Projects</option>
+            <option>Moving</option>
+            <option>Moss Removal</option>
+            <option>Crawlspace Barrier</option>
+            <option>Small Tree Removal</option>
+            <option>Pet & House Sitting</option>
+            <option>Xeriscaping</option>
+            <option>Attic Insulation</option>
+            <option>Garage Remodel</option>
+            <option>Holiday Decorating</option>
+            <option>Outdoor Restoration</option>
+            <option>Teak Oiling</option>
+            <option>Other / Not Sure</option>
+          </select>
+        </div>
+        <div>
+          <label class="qf-label" for="qf-message">Job Details</label>
+          <textarea id="qf-message" name="message" placeholder="What do you need done?"></textarea>
+        </div>
+        <p class="qf-hint">Got photos? Text or email them to us separately after sending this.</p>
+        <button type="submit" class="btn-gold"><span>Send Quote Request</span></button>
+      </form>
+    </div>
+
   </div>
 </section>
 
@@ -552,5 +607,21 @@ if(sImg){ window.addEventListener('scroll', () => { const r = sImg.getBoundingCl
   <a href="tel:9165629915" class="mc-call">📞 Tap to Call</a>
   <a href="#contact" class="mc-quote">Free Quote →</a>
 </div>
+<script>
+(function(){
+  var f = document.getElementById('quote-form');
+  if (!f) return;
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('qf-name').value.trim();
+    var phone = document.getElementById('qf-phone').value.trim();
+    var service = document.getElementById('qf-service').value;
+    var message = document.getElementById('qf-message').value.trim();
+    var subject = 'Quote Request: ' + service;
+    var body = 'Name: ' + name + '\nPhone: ' + phone + '\nService: ' + service + '\n\nJob details:\n' + message;
+    window.location.href = 'mailto:gavinbarnett2323@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  });
+})();
+</script>
 </body>
 </html>
